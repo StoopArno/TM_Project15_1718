@@ -12,9 +12,10 @@
     <title>Project 15_1718</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="../assets/css/bootstrap-reboot.css">
+  
+    <?php echo pasStylesheetAan("bootstrap.css"); ?>
+    <?php echo pasStylesheetAan("bootstrap-grid.css"); ?>
+    <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
 
 
     <script type="text/javascript">
