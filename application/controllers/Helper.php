@@ -8,10 +8,13 @@ class Helper extends CI_Controller
     }
 
     public function index(){
-     //   $this->load->view("test");
 
-        $partials = array('hoofding' => 'helper_header',
-            'inhoud' => 'test');
+
+        $partials = array('hoofding' => 'views_helper/helper_header',
+            'inhoud' => 'hello_world',
+            'footer' => 'main_footer'
+
+    );
         $this->template->load('main_master', $partials);
     }
 }

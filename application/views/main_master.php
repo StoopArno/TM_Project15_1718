@@ -12,7 +12,7 @@
     <title>Project 15_1718</title>
 
     <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/css/bootstrap-grid.css">
     <link rel="stylesheet" href="../assets/css/bootstrap-reboot.css">
 
@@ -41,24 +41,24 @@
 
     <!-- inhoud meegegeven in controller-->
 
-        <div class="row">
-            <div class="col-lg-12 hero-feature">
-                <div class="thumbnail" style="padding: 20px">
-                    <div class="caption">
-                        <p>
-                            <?php echo $inhoud; ?>
-                        </p>
-                    </div>
+    <div class="row">
+        <div class="col-lg-12 hero-feature">
+            <div class="thumbnail" style="padding: 20px">
+                <div class="caption">
+                    <p>
+                        <?php echo $inhoud; ?>
+                    </p>
                 </div>
             </div>
         </div>
+    </div>
 
 
     <hr>
 
     <!-- Footer -->
     <footer>
-
+        <?php echo $footer ?>
     </footer>
 
 </div>
