@@ -30,7 +30,7 @@
 
 
 <!-- Pagina inhoud -->
-<div class="container">
+<div class="col-lg-12 container">
 
     <!-- Jumbotron Header -->
     <header class="jumbotron hero-spacer">
