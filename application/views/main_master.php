@@ -37,8 +37,6 @@
         <?php echo $hoofding; ?>
     </header>
 
-    <hr>
-
 
     <!-- inhoud meegegeven in controller-->
 
@@ -55,13 +53,11 @@
     </div>
 
 
-    <hr>
-
-    <!-- Footer -->
     <footer>
+    <!-- Footer -->
         <?php echo $footer ?>
     </footer>
-
+    
 </div>
 
 
