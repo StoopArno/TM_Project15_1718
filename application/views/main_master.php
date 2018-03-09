@@ -16,6 +16,7 @@
     <?php echo pasStylesheetAan("bootstrap.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-grid.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
+    <?php echo pasStylesheetAan("style.css"); ?>
 
 <?php?>
     <script type="text/javascript">
@@ -30,7 +31,7 @@
 
 
 <!-- Pagina inhoud -->
-<div class="container">
+<div class="col-lg-12 ">
 
     <!-- Jumbotron Header -->
     <header class="jumbotron hero-spacer">
