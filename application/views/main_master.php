@@ -12,12 +12,12 @@
     <title>Project 15_1718</title>
 
     <!-- Bootstrap Core CSS -->
-  
+
     <?php echo pasStylesheetAan("bootstrap.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-grid.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
 
-
+<?php?>
     <script type="text/javascript">
 
     </script>
