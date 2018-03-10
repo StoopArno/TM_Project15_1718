@@ -6,4 +6,17 @@ class Optie_model extends CI_Model
     {
         parent::__construct();
     }
+
+    function getAllWhereDagonderdeelidWithTaken($dagonderdeelid){
+        $this->db->where('dagonderdeelid', $dagonderdeelid);
+        $query = $this->db->get('optie');
+        $opties = $query->result();
+
+        $this->load->model('Taak_model');
+        foreach ($opties as $optie){
+            $optie->taken = $this->Taak_model->getAllWhereOptieidWithShiften($optie->id);
+        }
+
+        return $opties;
+    }
 }

@@ -57,7 +57,7 @@
 
             <!--Grid column-->
             <div class="col-md-6 mb-3">               
-                <p>Eindverantwoordelijke: Natalie Smets</p>
+                <p>Eindverantwoordelijke: <?php echo $verantwoordelijke ?></p>
             </div>
 
             <div class="col-md-6 mb-3">

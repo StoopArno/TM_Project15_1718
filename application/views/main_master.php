@@ -18,9 +18,12 @@
     <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
     <?php echo pasStylesheetAan("style.css"); ?>
 
-<?php?>
-    <script type="text/javascript">
+    <?php echo haalJavascriptOp("jquery-3.3.1.min.js"); ?>
+    <?php echo haalJavascriptOp("bootstrap.js"); ?>
 
+    <script type="text/javascript">
+        var site_url = '<?php echo site_url(); ?>';
+        var base_url = '<?php echo base_url(); ?>';
     </script>
 
 </head>
@@ -60,8 +63,6 @@
     </footer>
     
 </div>
-
-
 </body>
 
 </html>
