@@ -41,7 +41,15 @@
                                 </tr>
                                 <tr>
                                     <th>Organisator verwijderen:</th>
-                                    <td><?php echo anchor('organisator_toevoegen/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger"'); ?></td>
+                                    <?php
+                                    if($admin->voornaam != "Admin") {
+                                        ?>
+                                        <td><?php echo anchor('organisator_toevoegen/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger"'); ?></td>
+                                    <?php
+                                    }
+                                    ?>
+
+
                                 </tr>
                             </tbody>
                         </table>
