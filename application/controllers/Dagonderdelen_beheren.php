@@ -1,10 +1,17 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Linde
+ * Date: 20/03/2018
+ * Time: 17:53
+ */
 
-class Admin extends CI_Controller
+class Dagonderdelen_beheren extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
+
     }
 
     public function overzichtDagonderdelen(){

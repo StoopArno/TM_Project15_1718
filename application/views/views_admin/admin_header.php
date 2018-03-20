@@ -9,14 +9,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <?php echo anchor('aanmelden/home', 'Home', 'class="nav-item nav-link"'); ?>
+            <?php echo anchor('organisator_toevoegen/organisatorToevoegen', 'Organisator toevoegen', 'class="nav-item nav-link"'); ?>
             <a class="nav-item nav-link" href="#">Dagonderdelen beheren</a>
             <a class="nav-item nav-link" href="#">Fuif beheren</a>
             <a class="nav-item nav-link" href="#">Eten beheren</a>
             <a class="nav-item nav-link" href="#">Overzicht deelnemers/helpers</a>
             <a class="nav-item nav-link" href="#">Mails</a>
             <a class="nav-item nav-link" href="#">Vervoer beheren</a>
-            <a class="nav-item nav-link" href="#">Vervoer beheren</a>
+            <?php echo anchor('aanmelden/meldAf', 'Meld af', 'class="nav-item nav-link"'); ?>
         </div>
     </div>
 </nav>
