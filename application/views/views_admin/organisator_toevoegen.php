@@ -39,6 +39,10 @@
                                     <th>GSM:</th>
                                     <td><?php echo $admin->gsm_nummer; ?></td>
                                 </tr>
+                                <tr>
+                                    <th>Organisator verwijderen:</th>
+                                    <td><?php echo anchor('organisator_toevoegen/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger"'); ?></td>
+                                </tr>
                             </tbody>
                         </table>
 

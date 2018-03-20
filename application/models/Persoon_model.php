@@ -45,5 +45,10 @@ class Persoon_model extends CI_Model
         $this->db->insert('persoon', $admin);
     }
 
+    function verwijder($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('persoon');
+    }
+
 
 }

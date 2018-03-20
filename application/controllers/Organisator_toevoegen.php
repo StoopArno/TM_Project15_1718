@@ -37,4 +37,11 @@ class Organisator_toevoegen extends CI_Controller
         $this->persoon_model->organisatorToevoegen($naam, $voornaam, $email, $gsm, $wachtwoord);
         redirect('organisator_toevoegen/organisatorToevoegen');
     }
+
+    public function verwijderOrganisator($id) {
+        $this->load->model('persoon_model');
+        $this->persoon_model->verwijder($id);
+        $this->organisatorToevoegen();
+
+    }
 }
