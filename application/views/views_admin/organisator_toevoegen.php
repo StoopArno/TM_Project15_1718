@@ -40,10 +40,11 @@
                                     <td><?php echo $admin->gsm_nummer; ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Organisator verwijderen:</th>
+
                                     <?php
                                     if($admin->voornaam != "Admin") {
                                         ?>
+                                        <th>Organisator verwijderen:</th>
                                         <td><?php echo anchor('organisator_toevoegen/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger"'); ?></td>
                                     <?php
                                     }
@@ -81,7 +82,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" name="email">
                 <small id="emailHelp" class="form-text text-muted">Voer hier de email in.</small>
             </div>
 

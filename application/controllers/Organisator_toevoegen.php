@@ -12,6 +12,10 @@ class Organisator_toevoegen extends CI_Controller
     {
         parent::__construct();
 
+        if(!$this->authex->isAdmin()) {
+            redirect('aanmelden/index');
+        }
+
     }
 
     public function organisatorToevoegen() {
