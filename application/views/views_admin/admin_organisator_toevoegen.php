@@ -1,8 +1,13 @@
+<?php
+echo pasStylesheetAan('style.css');
+?>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6">
 
     <div class="col-12">
+        <h2>Organisatoren beheren (verwijderen)</h2>
         <div class="list-group" id="list-tab" role="tablist">
             <?php
             foreach($admins as $admin){
@@ -16,6 +21,7 @@
         <br>
 
         <div class="col-12">
+
             <div class="tab-content" id="nav-tabContent">
                 <?php
                 foreach($admins as $admin){
@@ -69,6 +75,7 @@
 
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6">
+            <h2>Organisator toevoegen</h2>
             <?php echo form_open('organisator_toevoegen/voegToe');?>
             <div class="form-group">
                 <label for="familienaam">Familienaam</label>

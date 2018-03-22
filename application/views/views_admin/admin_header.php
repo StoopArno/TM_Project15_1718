@@ -1,3 +1,9 @@
+<?php
+echo pasStylesheetAan('style.css');
+?>
+
+
+
 <?php ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
@@ -11,6 +17,8 @@
         <div class="navbar-nav">
             <?php echo anchor('aanmelden/home', 'Home', 'class="nav-item nav-link"'); ?>
             <?php echo anchor('organisator_toevoegen/organisatorToevoegen', 'Organisator toevoegen', 'class="nav-item nav-link"'); ?>
+            <?php echo anchor('teksten_aanpassen/index', 'Teksten aanpassen', 'class="nav-item nav-link"'); ?>
+
             <a class="nav-item nav-link" href="#">Dagonderdelen beheren</a>
             <a class="nav-item nav-link" href="#">Fuif beheren</a>
             <a class="nav-item nav-link" href="#">Eten beheren</a>

@@ -26,7 +26,7 @@ class Organisator_toevoegen extends CI_Controller
         $data['admins'] = $this->persoon_model->getAllAdmin();
 
         $partials = array('hoofding' => 'views_admin/admin_header',
-            'inhoud' => 'views_admin/organisator_toevoegen',
+            'inhoud' => 'views_admin/admin_organisator_toevoegen',
             'footer' => 'main_footer',);
         $this->template->load('main_master', $partials, $data);
     }
