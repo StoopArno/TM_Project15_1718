@@ -6,4 +6,15 @@ class Locatie_model extends CI_Model
     {
         parent::__construct();
     }
+
+    /**
+     * Ophalen bepaalde locatie
+     */
+
+    function get($locatieid){
+        $this->db->where("id", $locatieid);
+        $query = $this->db->get("locatie");
+
+        return $query->row();
+    }
 }

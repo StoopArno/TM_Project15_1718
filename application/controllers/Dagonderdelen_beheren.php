@@ -14,11 +14,22 @@ class Dagonderdelen_beheren extends CI_Controller
 
     }
 
-    public function overzichtDagonderdelen(){
+
+    /**
+     * Toont een overzicht van alle dagonderdelen
+     */
+
+    public function index(){
         $data['verantwoordelijke'] = 'Arno Stoop';
+        $data['titel'] = 'Dagonderdelen beheren';
+
+        $this->load->model("personeelsfeest_model");
+        $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
 
         $this->load->model("dagonderdeel_model");
-        $data["dagonderdelen"] = $this->dagonderdeel_model->getAllWherePersoneelsfeestIdWithOpties(2);
+        $dagonderdelen = $this->dagonderdeel_model->getAllWherePfidWithLocaties($personeelsfeest->id);
+
+        $data["dagonderdelen"] = $dagonderdelen;
 
         $partials = array('hoofding' => 'views_admin/admin_header',
             'inhoud' => 'views_admin/admin_overzicht_dagonderdelen',
@@ -27,4 +38,6 @@ class Dagonderdelen_beheren extends CI_Controller
 
         $this->template->load('main_master', $partials, $data);
     }
+
+
 }

@@ -1,36 +1,47 @@
-<ul>
-    <?php
-        foreach($dagonderdelen as $onderdeel){
-            echo '<li>' . $onderdeel->naam . '</li>';
-            echo '<ul>';
-            foreach ($onderdeel->opties as $optie){
-                echo '<li>' . $optie->optie . '</li>';
-            }
-            echo '</ul>';
-        }
-    ?>
-</ul>
+<h3><?php echo $titel ?></h3>
 
-<div id="accordion">
-    <div class="card">
+<table class="table table-bordered col-6">
+    <thead>
+        <tr>
+            <th scope="col">Naam</th>
+            <th scope="col">Begintijd</th>
+            <th scope="col">Eindtijd</th>
+            <th scope="col">Locatie</th>
+            <th scope="col">
+                <span class="">Acties</span>
+                <span class="offset-6 col-6"><i class="fa fa-plus-square fa-2x"></i></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
 
-        <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Dagonderdeel: <?php echo "Korte activiteit 1" ?> | Begin: <?php echo "12u45" ?> - Eind: <?php echo "15u15" ?>
-                </button>
-            </h5>
-        </div>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><h5>Ping Pong</h5></li>
-                    <li class="list-group-item">&nbsp &nbsp Taak 1: Tafels opstellen</li>
+        <?php foreach($dagonderdelen as $dagonderdeel) { ?>
+            <tr>
+                <td><?php echo ucfirst($dagonderdeel->naam)  ?></td>
+                <td><?php echo date_format($dagonderdeel->begintijd, "H:i") ?></td>
+                <td><?php echo date_format($dagonderdeel->eindtijd, "H:i") ?></td>
+                <td>
+                    <?php if($dagonderdeel->locatieId != null){ ?>
+                        <?php echo ucfirst($dagonderdeel->locatie) ?>
+                    <?php } else{ ?>
+                        De locatie verschilt per optie
+                    <?php } ?>
+                </td>
+                <td class="text-center">
+                    <span class="col-4"><i class="fa fa-edit fa-2x"></i></span>
+                    <span class="col-4"><i class="fa fa-trash fa-2x"></i></span>
+                    <span class="col-4"><i class="fa fa-list-ul fa-2x"></i></span>
+                </td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<script>
+    function haalBestellingOp (naam) {
 
-                    <li class="list-group-item"><h5>Tennis</h5></li>
-                    <li class="list-group-item">&nbsp &nbsp Taak 1: Personeelsleden begleiden</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+    }
+
+    $(document).ready(function(){
+
+    });
+</script>

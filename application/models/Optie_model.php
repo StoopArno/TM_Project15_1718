@@ -7,8 +7,12 @@ class Optie_model extends CI_Model
         parent::__construct();
     }
 
-    function getAllWhereDagonderdeelidWithTaken($dagonderdeelid){
-        $this->db->where('dagonderdeelid', $dagonderdeelid);
+    /**
+     * Ophalen alle Oties en bijhorende taken en shiften van een bepaald dagonderdeel
+     */
+
+    function getAllWhereDagonderdeelidWithTaken_Shiften($dagonderdeelid){
+        $this->db->where('dagonderdeelid', $dagonderdeelid)->order_by("optie", "asc");
         $query = $this->db->get('optie');
         $opties = $query->result();
 
