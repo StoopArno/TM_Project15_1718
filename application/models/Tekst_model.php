@@ -23,7 +23,7 @@ class Tekst_model extends CI_Model
         $this->db->where('naam', $naam);
         $query = $this->db->get("tekst");
 
-        $tekst = $query->result();
+        $tekst = $query->row();
         return $tekst;
 
 }

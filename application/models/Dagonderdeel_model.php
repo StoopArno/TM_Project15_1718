@@ -20,4 +20,16 @@ class Dagonderdeel_model extends CI_Model
 
         return $dagonderdelen;
     }
+    function getAllByBegintijdWithOpties(){
+        $this->db->order_by('begintijd', 'asc');
+        $query = $this->db->get("dagonderdeel");
+        $dagonderdelen = $query->result();
+        $this->load->model("Optie_model");
+        foreach ($dagonderdelen as $onderdeel){
+            $onderdeel->opties = $this->Optie_model->getAllByDagonderdeelIdWithInschrijvingen($onderdeel->id);
+        }
+
+
+        return $dagonderdelen;
+    }
 }

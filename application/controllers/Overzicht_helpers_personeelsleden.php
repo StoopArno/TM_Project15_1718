@@ -18,18 +18,18 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
 
  public function index(){
 
-
      $data['titel'] = "Overzicht helpers en personeelsleden";
      $data['verantwoordelijke'] = 'Sander Philipsen';
-
-
+    $this->load->model('persoon_model');
+     $data['personeelsleden'] = $this->persoon_model->getAllPersoneelsleden();
+    $this->load->model('dagonderdeel_model');
+     $data['dagonderdelen'] = $this->dagonderdeel_model->getAllByBegintijdWithOpties();
      $this->load->model('tekst_model');
-     $data['teksten'] = $this->tekst_model->getByNaam('overzicht helpers en personeel');
+     $data['tekst'] = $this->tekst_model->getByNaam('Overzicht helpers en personeel');
      $partials = array('hoofding' => 'views_admin/admin_header',
          'inhoud' => 'views_admin/admin_overzicht_helpers_personeel',
          'footer' => 'main_footer',);
      $this->template->load('main_master', $partials, $data);
-
 
 
 
