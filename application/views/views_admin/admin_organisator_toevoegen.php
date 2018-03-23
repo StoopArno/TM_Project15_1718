@@ -51,7 +51,7 @@ echo pasStylesheetAan('style.css');
                                     if($admin->voornaam != "Admin") {
                                         ?>
                                         <th>Organisator verwijderen:</th>
-                                        <td><?php echo anchor('organisator_toevoegen/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger"'); ?></td>
+                                        <td><?php echo anchor('organisator_toevoegen/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger btn-organisator"'); ?></td>
                                     <?php
                                     }
                                     ?>
@@ -103,7 +103,7 @@ echo pasStylesheetAan('style.css');
                 <small id="emailHelp" class="form-text text-muted">Voer hier de GSM nummer in.</small>
             </div>
 
-            <button type="submit" class="btn btn-primary">Voeg toe</button>
+            <button type="submit" class="btn btn-primary btn-organisator">Voeg toe</button>
             </form>
         </div>
     </div>
