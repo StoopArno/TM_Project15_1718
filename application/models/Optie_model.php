@@ -23,4 +23,17 @@ class Optie_model extends CI_Model
 
         return $opties;
     }
+    function getAllByDagonderdeelIdWithInschrijvingen($dagonderdeelid){
+        $this->db->where('dagonderdeelid', $dagonderdeelid);
+
+        $query = $this->db->get('optie');
+        $opties = $query->result();
+        $this->load->model('Inschrijving_model');
+        foreach ($opties as $optie){
+
+            $optie->inschrijvingen = $this->Inschrijving_model->getAllByOptieId($optie->id);
+        }
+
+        return $opties;
+    }
 }
