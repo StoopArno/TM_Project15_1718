@@ -22,7 +22,8 @@ echo pasStylesheetAan('style.css');
             <a class="nav-item nav-link" href="#">Dagonderdelen beheren</a>
             <a class="nav-item nav-link" href="#">Fuif beheren</a>
             <a class="nav-item nav-link" href="#">Eten beheren</a>
-            <a class="nav-item nav-link" href="#">Overzicht deelnemers/helpers</a>
+            <?php echo anchor('overzicht_helpers_personeelsleden/index', 'Overzicht deelnemers/helpers ', 'class="nav-item nav-link"'); ?>
+
             <a class="nav-item nav-link" href="#">Mails</a>
             <a class="nav-item nav-link" href="#">Vervoer beheren</a>
             <?php echo anchor('aanmelden/meldAf', 'Meld af', 'class="nav-item nav-link"'); ?>
