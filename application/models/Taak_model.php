@@ -7,6 +7,10 @@ class Taak_model extends CI_Model
         parent::__construct();
     }
 
+    /**
+     * Ophalen alle taken en bijhorende hiften van een bepaalde optie
+     */
+
     function getAllWhereoptieIdWithShiften($optieid){
         $this->db->where('optieid', $optieid);
         $query = $this->db->get('taak');

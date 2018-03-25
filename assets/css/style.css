@@ -3,7 +3,7 @@ h2 {
     padding-bottom: 20px;
 }
 
-button, .btn.btn-primary {
+.btn-organisator {
     width:40%;
     margin-left:30%;
     margin-right:30%;
@@ -20,6 +20,7 @@ label {
 div.row {
     margin-bottom:15px;
 }
+<<<<<<< HEAD
 
 /*!
  * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
@@ -153,3 +154,19 @@ table.table.table-bordered > tbody > tr > th, table.table.table-bordered > tbody
     text-align:center !important;
 }
 
+=======
+.omschrijving {
+
+    border: 2px solid black;
+
+}
+.omschrijving p{
+    padding: 10px;
+}
+.omschrijving h2{
+
+}
+.omschrijvingtitel{
+border-right: 2px solid black;
+}
+>>>>>>> c177920d56605b3c8e8fdd667eba666871bd7ad7

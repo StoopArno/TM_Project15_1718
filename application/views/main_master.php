@@ -18,6 +18,9 @@
     <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
     <?php echo pasStylesheetAan("style.css"); ?>
 
+    <!--  Fontawesome css  -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <?php echo haalJavascriptOp("jquery-3.3.1.min.js"); ?>
     <?php echo haalJavascriptOp("bootstrap.js"); ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

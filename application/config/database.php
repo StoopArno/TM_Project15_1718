@@ -77,8 +77,13 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
+<<<<<<< HEAD
 	'password' => '',
 	'database' => 'project app',
+=======
+	'password' => 'usbw',
+	'database' => 'team_15',
+>>>>>>> c177920d56605b3c8e8fdd667eba666871bd7ad7
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

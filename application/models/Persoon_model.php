@@ -54,6 +54,11 @@ class Persoon_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('persoon');
     }
+    function getAllPersoneelsleden(){
+        $this->db->where('type', 'personeelslid');
+        $query = $this->db->get('persoon');
+        return $query->result();
+    }
 
 
 }
