@@ -7,6 +7,12 @@ class Persoon_model extends CI_Model
         parent::__construct();
     }
 
+
+    function get($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('persoon');
+        return $query->row();
+    }
     function getAdmin($login, $wachtwoord) {
 
         $this->db->where('type', 'organisator');
@@ -41,7 +47,6 @@ class Persoon_model extends CI_Model
         $admin->type = "organisator";
         $admin->gsm_nummer = $gsm;
         $admin->wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
-        $admin->uniekeKey = "random";
         $this->db->insert('persoon', $admin);
     }
 

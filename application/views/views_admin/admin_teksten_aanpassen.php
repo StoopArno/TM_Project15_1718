@@ -28,6 +28,7 @@ echo pasStylesheetAan('style.css');
                     <?php echo form_submit('submitTeksten', 'Opslagen', 'class="btn btn-primary"'); ?>
                 </div>
             </div>
+            <?php echo form_close(); ?>
             <?php
         }
         ?>

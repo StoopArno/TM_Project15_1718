@@ -24,9 +24,9 @@ class teksten_aanpassen extends CI_Controller
         $data['teksten'] = $this->tekst_model->getTeksten();
 
 
-        $partials = array('hoofding' => 'views_admin/admin_header',
-            'inhoud' => 'views_admin/admin_teksten_aanpassen',
-            'footer' => 'main_footer',);
+        $partials = array('hoofding' => 'views_admin/admin_navbar',
+            'sidenav' => 'views_admin/admin_sidebar',
+            'content' => 'views_admin/admin_teksten_aanpassen');
         $this->template->load('main_master', $partials, $data);
     }
 

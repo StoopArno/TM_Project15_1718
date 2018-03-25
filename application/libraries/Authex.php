@@ -19,22 +19,24 @@ class Authex {
 
 
     function getGebruikerInfo() {
-        // geef gebruiker-object als gebruiker aangemeld is
+
         $CI = & get_instance();
 
-        if (!$this->isAangemeld()) {
+        if (!$this->isAdmin()) {
             return null;
         } else {
-            $id = $CI->session->userdata('gebruiker_id');
-            return $CI->gebruiker_model->get($id);
+            $id = $CI->session->userdata('admin_id');
+
+            return $CI->persoon_model->get($id);
+
         }
     }
 
     function isAdmin() {
-        // gebruiker is aangemeld als sessievariabele gebruiker_id bestaat
+
         $CI = & get_instance();
 
-        if ($CI->session->has_userdata('admin_ok')) {
+        if ($CI->session->has_userdata('admin_id')) {
             return true;
         } else {
             return false;
@@ -53,7 +55,7 @@ class Authex {
             /*
             $CI->gebruiker_model->updateLaatstAangemeld($gebruiker->id);
             */
-            $CI->session->set_userdata('admin_ok', $admin->voornaam);
+            $CI->session->set_userdata('admin_id', $admin->id);
 
             return $admin;
         }
@@ -63,7 +65,7 @@ class Authex {
         // afmelden, dus sessievariabele wegdoen
         $CI = & get_instance();
 
-        $CI->session->unset_userdata('admin_ok');
+        $CI->session->unset_userdata('admin_id');
     }
 
     function registreer($naam, $email, $wachtwoord) {

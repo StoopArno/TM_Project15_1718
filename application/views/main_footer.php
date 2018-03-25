@@ -1,85 +1,103 @@
 <!--Footer-->
-<footer class="page-footer font-small indigo pt-0">
-
+<footer class="page-footer font-small unique-color-dark pt-0">
     <!--Footer Links-->
-    <div class="container">
+    <div class="container mt-5 mb-4 text-center text-md-left">
+        <div class="row mt-3">
 
-        <!--Grid row-->
-        <div class="row pt-3 mb-3 text-center d-flex justify-content-center">
-
-            <!--Grid column-->
-            <div class="col-md-2 mb-3">
+            <!--Second column-->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 class="text-uppercase font-weight-bold">
-                    <p>Dean Clerckx</p>
+                    <strong>Teamleden</strong>
                 </h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    Lindert Van de Poel
+                </p>
+                <p>
+                    Arno Stoop
+                </p>
+                <p>
+                    Sander Philipsen
+                </p>
+                <p>
+                    Dean Clerckx
+                </p>
+                <p>
+                    Yorben Onsia
+                </p>
             </div>
-            <!--Grid column-->
+            <!--/.Second column-->
 
-            <!--Grid column-->
-            <div class="col-md-2 mb-3">
+            <!--Fourth column-->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 class="text-uppercase font-weight-bold">
-                    <p>Yorben Onsia</p>
+                    <strong>Team</strong>
                 </h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    Team 15
+                </p>
+                <p>
+                    Whiskeypedia
+                </p>
+                <!--
+                <p>
+                    <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+                <p>
+                    <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+                    -->
             </div>
-            <!--Grid column-->
+            <!--/.Fourth column-->
 
-            <!--Grid column-->
-            <div class="col-md-2 mb-3">
-                <h6 class="text-uppercase font-weight-bold">
-                    <p>Lindert Van De Poel</p>
-                </h6>
-            </div>
-            <!--Grid column-->
 
-            <!--Grid column-->
-            <div class="col-md-2 mb-3">
-                <h6 class="text-uppercase font-weight-bold">
-                    <p>Arno Stoop</p>
-                </h6>
-            </div>
-            <!--Grid column-->
 
-            <!--Grid column-->
-            <div class="col-md-2 mb-3">
+
+
+            <!--Third column-->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 class="text-uppercase font-weight-bold">
-                    <p>Sander Philipsen</p>
+                    <strong>Opdrachtgever</strong>
                 </h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    Leerkracht Frans
+                </p>
+                <!--
+                <p>
+                    <a href="#!">Become an Affiliate</a>
+                </p>
+                <p>
+                    <a href="#!">Shipping Rates</a>
+                </p>
+                <p>
+                    <a href="#!">Help</a>
+                </p>
+                -->
             </div>
-            <!--Grid column-->
+            <!--/.Third column-->
+
+            <!--First column-->
+            <div class="col-md-4 col-lg-4 col-xl-3 mb-4">
+                <h6 class="text-uppercase font-weight-bold">
+                    <strong>Welke functionaliteit</strong>
+                </h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, consequatur culpa debitis dicta dignissimos distinctio dolorem esse facilis, fugiat impedit libero magni perferendis porro quas soluta tempore voluptatem. Harum, quaerat!</p>
+            </div>
+            <!--/.First column-->
 
         </div>
-        <!--Grid row-->
-
-        <hr class="rgba-white-light" style="margin: 0 15%;">
-            
-        
-        <div class="row pt-5 mb-3 text-center d-flex justify-content-center">
-
-            <!--Grid column-->
-            <div class="col-md-6 mb-3">               
-                <p>Eindverantwoordelijke: <?php echo $verantwoordelijke ?></p>
-            </div>
-
-            <div class="col-md-6 mb-3">
-                <p>Opdrachtgever: Natalie Smets</p>
-            </div>
-
-
-        </div>
-        
-        <hr class="rgba-white-light" style="margin: 0 15%;">
-        
-
     </div>
-    <!--/Footer Links-->
+    <!--/.Footer Links-->
 
-    <!--Copyright-->
+    <!-- Copyright-->
     <div class="footer-copyright py-3 text-center">
-        © 2018 Copyright:
-        <p>Team 15 - Whiskeypedia</p>
+        Eindverantwoordelijke:
+
+            <strong>Lindert Van de Poel</strong>
+
     </div>
-    <!--/Copyright-->
+    <!--/.Copyright -->
 
 </footer>
-<!--/Footer-->
-                     
+<!--/.Footer-->

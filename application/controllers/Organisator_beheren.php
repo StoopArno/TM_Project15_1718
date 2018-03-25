@@ -6,7 +6,7 @@
  * Time: 17:51
  */
 
-class Organisator_toevoegen extends CI_Controller
+class Organisator_beheren extends CI_Controller
 {
     public function __construct()
     {
@@ -25,9 +25,10 @@ class Organisator_toevoegen extends CI_Controller
         $this->load->model('persoon_model');
         $data['admins'] = $this->persoon_model->getAllAdmin();
 
-        $partials = array('hoofding' => 'views_admin/admin_header',
-            'inhoud' => 'views_admin/admin_organisator_toevoegen',
-            'footer' => 'main_footer',);
+        $partials = array('hoofding' => 'views_admin/admin_navbar',
+            'sidenav' => 'views_admin/admin_sidebar',
+            'content' => 'views_admin/admin_organisator_beheren',
+            'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 

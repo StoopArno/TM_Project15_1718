@@ -20,49 +20,51 @@
 
     <?php echo haalJavascriptOp("jquery-3.3.1.min.js"); ?>
     <?php echo haalJavascriptOp("bootstrap.js"); ?>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script type="text/javascript">
         var site_url = '<?php echo site_url(); ?>';
         var base_url = '<?php echo base_url(); ?>';
+
     </script>
 
 </head>
 
 <body>
 
-<!-- Navigatie -->
+<div class="eigenHoofding">
+    <?php echo $hoofding; ?>
+</div>
 
-
-<!-- Pagina inhoud -->
-<div class="col-lg-12 ">
-
-    <!-- Jumbotron Header -->
-    <header class="jumbotron hero-spacer">
-        <?php echo $hoofding; ?>
-    </header>
-
-
-    <!-- inhoud meegegeven in controller-->
-
-    <div class="row">
-        <div class="col-lg-12 hero-feature">
-            <div class="thumbnail" style="padding: 20px">
-                <div class="caption">
-                    <p>
-                        <?php echo $inhoud; ?>
-                    </p>
-                </div>
+<div class="eigenContent">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <?php echo $sidenav; ?>
+    </div>
+    <div class="col-12">
+        <div id="page-content-wrapper">
+            <div class="pagina">
+                <?php echo $content; ?>
             </div>
         </div>
     </div>
-
-
-    <footer>
-    <!-- Footer -->
-        <?php echo $footer ?>
-    </footer>
-    
 </div>
+
+<?php echo $footer; ?>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        $('.pagina').toggleClass("toggled");
+    });
+
+</script>
+
 </body>
 
 </html>

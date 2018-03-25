@@ -12,8 +12,7 @@ class Helper extends CI_Controller
 
 
         $partials = array('hoofding' => 'views_helper/helper_header',
-            'inhoud' => 'views_helper/helper_index',
-            'footer' => 'main_footer'
+            'inhoud' => 'views_helper/helper_index'
 
     );
         $this->template->load('main_master', $partials);
