@@ -58,7 +58,7 @@ echo $tekst->omschrijving;
         <span><i class="fa fa-user" aria-hidden="true"></i></span>
     </div>
     </form>
-<table class="table col-lg-11 offset-1">
+<table class="table col-lg-12 ">
 
 <tr>
     <td class="aanpasbug hidden"></td>
@@ -122,7 +122,7 @@ echo "</tr>";
   <h2>  <i id="voegpersoneelslidtoe" class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></h2>
 
 
-        <div class="voegpersoneelslidtoe hidden col-sm-12 col-md-12 col-lg-6 offset-1 ">
+        <div class="voegpersoneelslidtoe hidden col-sm-12 col-md-12 col-lg-12  ">
 
             <?php echo form_open('overzicht_helpers_personeelsleden/voegPersoneelslidToe');?>
 
