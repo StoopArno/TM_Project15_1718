@@ -32,13 +32,17 @@ class Persoon_model extends CI_Model
             return null;
         }
     }
-
+    /**
+     * Ophalen van alle personen van het type organisator
+     */
     function getAllAdmin() {
         $this->db->where('type', 'organisator');
         $query = $this->db->get('persoon');
         return $query->result();
     }
-
+    /**
+     * Het toevoegen van een persoon met het type organisator
+     */
     function organisatorToevoegen($naam, $voornaam, $email, $gsm, $wachtwoord) {
         $admin = new stdClass();
         $admin->naam = $naam;
@@ -49,11 +53,17 @@ class Persoon_model extends CI_Model
         $admin->wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
         $this->db->insert('persoon', $admin);
     }
-
+    /**
+     * Verwijderen van een persoon
+     */
     function verwijder($id) {
         $this->db->where('id', $id);
         $this->db->delete('persoon');
     }
+
+    /**
+     * Ophalen van alle personeelsleden
+     */
     function getAllPersoneelsleden(){
         $this->db->where('type', 'personeelslid');
         $query = $this->db->get('persoon');

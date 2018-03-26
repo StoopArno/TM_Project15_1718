@@ -26,8 +26,9 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
      $data['dagonderdelen'] = $this->dagonderdeel_model->getAllByBegintijdWithOpties();
      $this->load->model('tekst_model');
      $data['tekst'] = $this->tekst_model->getByNaam('Overzicht helpers en personeel');
-     $partials = array('hoofding' => 'views_admin/admin_header',
-         'inhoud' => 'views_admin/admin_overzicht_helpers_personeel',
+     $partials = array('hoofding' => 'views_admin/admin_navbar',
+         'sidenav' => 'views_admin/admin_sidebar',
+         'content' => 'views_admin/admin_overzicht_helpers_personeel',
          'footer' => 'main_footer',);
      $this->template->load('main_master', $partials, $data);
 

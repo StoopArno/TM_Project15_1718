@@ -49,6 +49,9 @@ class Dagonderdeel_model extends CI_Model
 
         return $dagonderdelen;
     }
+    /**
+     * Ophalen alle dagonderdelen en bijhorende opties met de inschrijvingen op die opties.
+     */
     function getAllByBegintijdWithOpties(){
         $this->db->order_by('begintijd', 'asc');
         $query = $this->db->get("dagonderdeel");

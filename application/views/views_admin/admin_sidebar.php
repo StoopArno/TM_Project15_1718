@@ -16,8 +16,12 @@
             <?php echo anchor('teksten_aanpassen/index', '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp; Teksten aanpassen'); ?>
         </li>
         <li>
+            <?php echo anchor('Overzicht_helpers_personeelsleden/index', '<span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span> &nbsp; Inschrijvingen beheren'); ?>
+        </li>
+        <li>
             <?php echo anchor('aanmelden/meldAf', '<span class="glyphicon glyphicon-off" aria-hidden="true"></span> &nbsp; Meld Af'); ?>
         </li>
+
         <!--
         <li>
             <a href="#"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistic</a>

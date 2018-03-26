@@ -23,6 +23,9 @@ class Optie_model extends CI_Model
 
         return $opties;
     }
+    /**
+     * Ophalen van alle opties met bijhorende inschrijvingen op die opties
+     */
     function getAllByDagonderdeelIdWithInschrijvingen($dagonderdeelid){
         $this->db->where('dagonderdeelid', $dagonderdeelid);
 

@@ -6,6 +6,9 @@ class Inschrijving_model extends CI_Model
     {
         parent::__construct();
     }
+    /**
+     * Ophalen van alle inschrijvingen van een meegeven optie.
+     */
     function getAllByOptieId($optieid){
         $this->db->where('optieid', $optieid);
 
