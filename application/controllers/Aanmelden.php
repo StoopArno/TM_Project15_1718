@@ -37,7 +37,11 @@ class Aanmelden extends CI_Controller
     public function home() {
         if($this->authex->isAdmin()) {
             $data['verantwoordelijke'] = 'Lindert Van de Poel';
+
             $data['titel'] ='Homepagina';
+
+            $data['functionaliteit'] = "Geen functionaliteit. Dit is de homepagina.";
+
             $data['admin'] = $this->authex->getGebruikerInfo();
 
             $partials = array('hoofding' => 'views_admin/admin_navbar',

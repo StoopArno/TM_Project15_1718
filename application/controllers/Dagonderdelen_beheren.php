@@ -22,6 +22,8 @@ class Dagonderdelen_beheren extends CI_Controller
     public function index(){
         $data['verantwoordelijke'] = 'Arno Stoop';
         $data['titel'] = 'Dagonderdelen beheren';
+        $data['functionaliteit'] = "Dagonderdelen beheren. Hier kan je als organisator nieuwe dagonderdelen toevoegen,
+        oude verwijderen of aanpassen en hun bijhorende taken te zien krijgen";
 
         $this->load->model("personeelsfeest_model");
         $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
@@ -31,8 +33,10 @@ class Dagonderdelen_beheren extends CI_Controller
 
         $data["dagonderdelen"] = $dagonderdelen;
 
-        $partials = array('hoofding' => 'views_admin/admin_header',
-            'inhoud' => 'views_admin/admin_overzicht_dagonderdelen'
+        $partials = array('hoofding' => 'views_admin/admin_navbar',
+            'content' => 'views_admin/admin_overzicht_dagonderdelen',
+            'sidenav' => 'views_admin/admin_sidebar',
+            'footer' => 'main_footer'
         );
 
         $this->template->load('main_master', $partials, $data);

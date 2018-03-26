@@ -15,7 +15,7 @@ echo pasStylesheetAan('style.css');
         foreach($teksten as $tekst) {
             ?>
             <?php echo form_open('teksten_aanpassen/pasTekstAan/' . $tekst->id); ?>
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-sm-12 col-md-3 col-lg-3">
                     <label for="<?php echo $tekst->id;?>"><?php echo $tekst->naam; ?></label>
                 </div>
@@ -25,7 +25,7 @@ echo pasStylesheetAan('style.css');
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-3 col-lg-3">
-                    <?php echo form_submit('submitTeksten', 'Opslagen', 'class="btn btn-primary"'); ?>
+                    <p class="centerKnop"><?php echo form_submit('submitTeksten', 'Opslagen', 'class="btn btn-primary knop"'); ?></p>
                 </div>
             </div>
             <?php echo form_close(); ?>

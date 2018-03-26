@@ -167,7 +167,10 @@ echo pasStylesheetAan('style.css');
                         <input type="number" min="0" class="form-control" id="gsm" aria-describedby="emailHelp" placeholder="GSM Nummer" name="gsm">
                         <small id="emailHelp" class="form-text text-muted">Voer hier de GSM nummer in.</small>
                     </div>
-                    <button type="submit" class="btn btn-primary">Voeg toe</button>
+                    <div class="col-12">
+                        <p class="centerKnop"><button type="submit" class="btn btn-primary knop">Voeg toe</button></p>
+                    </div>
+
                     </form>
                 </div>
 

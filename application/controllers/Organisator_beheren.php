@@ -21,6 +21,8 @@ class Organisator_beheren extends CI_Controller
     public function organisatorToevoegen() {
         $data['titel'] = "Aanmelden - Login";
         $data['verantwoordelijke'] = 'Lindert Van de Poel';
+        $data['functionaliteit'] = "Organisatoren beheren (in de analysefase organisator toevoegen). Hier kan je als
+        organisator/admin een extra admin toevoegen en/of verwijderen. Je kan hier ook de nodige info raadplegen";
 
         $this->load->model('persoon_model');
         $data['admins'] = $this->persoon_model->getAllAdmin();
