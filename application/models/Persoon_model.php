@@ -69,6 +69,15 @@ class Persoon_model extends CI_Model
         $query = $this->db->get('persoon');
         return $query->result();
     }
+    function personeelslidToevoegen($naam, $voornaam, $email, $gsm) {
+        $personeelslid = new stdClass();
+        $personeelslid->naam = $naam;
+        $personeelslid->voornaam = $voornaam;
+        $personeelslid->email = $email;
+        $personeelslid->type = "personeelslid";
+        $personeelslid->gsm_nummer = $gsm;
 
+        $this->db->insert('persoon', $personeelslid);
+    }
 
 }

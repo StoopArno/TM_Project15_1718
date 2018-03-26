@@ -12,11 +12,11 @@
     <title>Project 15_1718</title>
 
     <!-- Bootstrap Core CSS -->
-
+    <?php echo pasStylesheetAan("style.css"); ?>
     <?php echo pasStylesheetAan("bootstrap.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-grid.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
-    <?php echo pasStylesheetAan("style.css"); ?>
+
 
     <!--  Fontawesome css  -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">

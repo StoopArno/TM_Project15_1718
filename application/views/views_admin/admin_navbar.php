@@ -5,7 +5,7 @@
 
     <a class="navbar-brand pull-left" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
 
-    <a><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log Out</a>
+    <a class="text-white"> <?php echo $titel ?> </a>
 
     </div>
 </nav>

@@ -1,10 +1,8 @@
+
+
+
+
 <?php
-/**
- * Created by PhpStorm.
- * User: sande
- * Date: 23/03/2018
- * Time: 11:21
- */
 
 class Overzicht_helpers_personeelsleden extends CI_Controller
 {
@@ -16,16 +14,21 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
 
     }
 
- public function index(){
-
-     $data['titel'] = "Overzicht helpers en personeelsleden";
-     $data['verantwoordelijke'] = 'Sander Philipsen';
+ public function index($filter =null){
+    if( $filter== null){
+    $data['titel'] = "Overzicht helpers en personeelsleden";
+    $data['verantwoordelijke'] = 'Sander Philipsen';
     $this->load->model('persoon_model');
-     $data['personeelsleden'] = $this->persoon_model->getAllPersoneelsleden();
+    $data['personeelsleden'] = $this->persoon_model->getAllPersoneelsleden();
     $this->load->model('dagonderdeel_model');
-     $data['dagonderdelen'] = $this->dagonderdeel_model->getAllByBegintijdWithOpties();
-     $this->load->model('tekst_model');
-     $data['tekst'] = $this->tekst_model->getByNaam('Overzicht helpers en personeel');
+    $data['dagonderdelen'] = $this->dagonderdeel_model->getAllByBegintijdWithOpties();
+    $this->load->model('tekst_model');
+    $data['tekst'] = $this->tekst_model->getByNaam('Overzicht helpers en personeel');
+}
+else{
+
+}
+
      $partials = array('hoofding' => 'views_admin/admin_navbar',
          'sidenav' => 'views_admin/admin_sidebar',
          'content' => 'views_admin/admin_overzicht_helpers_personeel',
@@ -35,5 +38,28 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
 
 
  }
+ public function verwijderPersoneelslid($id){
+
+     $this->load->model('persoon_model');
+     $this->persoon_model->verwijder($id);
+
+     $this->index();
+
+ }
+    public function voegPersoneelslidToe(){
+
+
+        $this->load->model('persoon_model');
+        $naam = $this->input->post('familienaam');
+        $voornaam = $this->input->post('voornaam');
+        $email = $this->input->post('email');
+        $gsm = $this->input->post('gsm');
+
+        $this->persoon_model->personeelslidToevoegen($naam, $voornaam, $email, $gsm);
+     $this->index();
+
+
+
+    }
 
 }
