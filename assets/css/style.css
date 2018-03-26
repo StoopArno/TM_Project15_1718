@@ -20,7 +20,7 @@ label {
 div.row {
     margin-bottom:15px;
 }
-<<<<<<< HEAD
+
 
 /*!
  * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
@@ -96,13 +96,14 @@ div.row {
 
 .sidebar-nav li a:hover {
     background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    color:#EDEDED !important;
     text-decoration: none;
 }
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
+
 }
 
 .sidebar-nav > .sidebar-brand {
@@ -141,9 +142,12 @@ div.row {
 }
 
 .navbar-brand.pull-left {
-    color:#EDEDED;
+    color:#fff !important;
 }
 
+.navbar-brand:hover, .navbar-brand:active {
+    color:#EDEDED !important;
+}
 
 div.page-content-wrapper {
    margin-top:50px;
@@ -154,7 +158,7 @@ table.table.table-bordered > tbody > tr > th, table.table.table-bordered > tbody
     text-align:center !important;
 }
 
-=======
+
 .omschrijving {
 
     border: 2px solid black;
@@ -169,4 +173,63 @@ table.table.table-bordered > tbody > tr > th, table.table.table-bordered > tbody
 .omschrijvingtitel{
 border-right: 2px solid black;
 }
->>>>>>> c177920d56605b3c8e8fdd667eba666871bd7ad7
+
+footer {
+    background-color: #2B2B2B;
+}
+
+footer {
+    color: #EDEDED;
+    margin-top:35px;
+}
+
+.hr1 {
+    width:74px;
+}
+
+.hr2 {
+    width:34px;
+}
+
+.hr3 {
+    width:110px;
+}
+
+.hr4 {
+    width:155px;
+}
+
+
+div.eigenContent {
+    margin-top:60px;
+    margin-bottom: 60px;
+}
+
+.knop {
+    background-color:#555555;
+    border:0px transparent;
+    width:150px;
+    height: 35px;
+    margin: 0 auto;
+}
+
+.knop:hover, .knop:active {
+    background-color:#2B2B2B;
+    border:0px transparent;
+    width:150px;
+    height: 35px;
+    margin: 0 auto;
+}
+
+p.centerKnop {
+    text-align:center;
+}
+
+div.footer-copyright.py-3.text-center {
+    background-color: #555555;
+}
+
+a.list-group-item.list-group-item-action.active {
+    background-color: #555555;
+    border:none;
+}

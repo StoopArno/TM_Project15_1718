@@ -93,8 +93,6 @@ echo "<tr><td> ".$personeelslid->voornaam . " " . $personeelslid->naam . "</td><
 <?php
 
 
-print_r($dagonderdelen);
-
 
 ?>
 </div>

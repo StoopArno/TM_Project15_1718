@@ -20,13 +20,16 @@ class teksten_aanpassen extends CI_Controller
     public function index() {
         $data['verantwoordelijke'] = "Lindert Van de Poel";
         $data['titel'] = "Teksten aanpassen";
+        $data['functionaliteit'] = "Teksten aanpassen. Hier kan de organisator de teksten aanpassen die op de applicatie
+        zichtbaar zijn voor de helpers en/of personeelsleden.";
         $this->load->model('tekst_model');
         $data['teksten'] = $this->tekst_model->getTeksten();
 
 
         $partials = array('hoofding' => 'views_admin/admin_navbar',
             'sidenav' => 'views_admin/admin_sidebar',
-            'content' => 'views_admin/admin_teksten_aanpassen');
+            'content' => 'views_admin/admin_teksten_aanpassen',
+            'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 
