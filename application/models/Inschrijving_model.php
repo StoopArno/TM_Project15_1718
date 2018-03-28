@@ -18,5 +18,8 @@ class Inschrijving_model extends CI_Model
         return $inschrijvingen;
 
     }
+function getAllByPersoonId($personeelslidid){
+
+}
 }
 

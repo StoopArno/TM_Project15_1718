@@ -64,8 +64,11 @@ class Persoon_model extends CI_Model
     /**
      * Ophalen van alle personeelsleden
      */
-    function getAllPersoneelsleden(){
+    function getAllPersoneelsleden($zoekstring){
         $this->db->where('type', 'personeelslid');
+        if ($zoekstring!=null) {
+            $this->db->like('naam', $zoekstring, 'after');
+        }
         $query = $this->db->get('persoon');
         return $query->result();
     }
@@ -79,5 +82,20 @@ class Persoon_model extends CI_Model
 
         $this->db->insert('persoon', $personeelslid);
     }
+function getpersoneelslid($id){
+    $this->db->where('id', $id);
+    $query = $this->db->get('persoon');
+    return $query->row();
+}
+function getAllPersoneelsledenWhereOptieId($id){
+    $this->db->where('type', 'personeelslid');
+    $query = $this->db->get('personen');
+    $personeelsleden = $query->result();
+    foreach ($personeelsleden as $personeelslid){
+
+        $personeelslid->inschrijvingen = $this->Inschrijving_model->getAllByPersoonId($personeelslid->id);
+    }
+    return $query->result();
+}
 
 }
