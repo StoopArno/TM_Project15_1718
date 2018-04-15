@@ -21,11 +21,17 @@ label {
     text-align:center;
     line-height: 150%;
     font-size:18px;
+
+}
+.filter{
+    font-size: 15px;
+    font-weight: normal;
 }
 
 div.row {
     margin-bottom:15px;
 }
+
 
 /*!
  * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)

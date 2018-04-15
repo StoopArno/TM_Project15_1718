@@ -116,5 +116,16 @@ class Optie_model extends CI_Model
         return $opties;
     }
 
+    function getAllOptiesWithDagonderdeel(){
+        $query = $this->db->get('optie');
+        $opties = $query->result();
+        $this->load->model('Dagonderdeel_model');
+        foreach ($opties as $optie){
 
+            $optie->dagonderdeel = $this->Dagonderdeel_model->getByDagonderdeelId($optie->dagonderdeelId);
+        }
+        return $opties;
+    }
 }
+
+
