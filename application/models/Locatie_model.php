@@ -17,4 +17,15 @@ class Locatie_model extends CI_Model
 
         return $query->row();
     }
+
+    /**
+     * Ophalen alle locaties
+     * @return mixed
+     */
+
+    function getAll(){
+        $query = $this->db->get("locatie");
+
+        return $query->result();
+    }
 }

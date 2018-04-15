@@ -18,8 +18,11 @@
         </li>
 
         <li>
-
             <?php echo anchor('dagonderdelen_beheren/index', '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> &nbsp; Dagonderdelen beheren'); ?>
+        </li>
+
+        <li>
+            <?php echo anchor('TakenENShiften_beheren/index', '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> &nbsp; Taken en shiften beheren'); ?>
         </li>
 
         <li>
