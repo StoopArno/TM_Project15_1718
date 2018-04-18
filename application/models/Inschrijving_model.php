@@ -21,5 +21,12 @@ class Inschrijving_model extends CI_Model
 function getAllByPersoonId($personeelslidid){
 
 }
+function schrijfIn($persoonid,$optieid){
+    $inschrijving = new stdClass();
+    $inschrijving->persoonid = $persoonid;
+    $inschrijving->optieid = $optieid;
+
+    $this->db->insert('inschrijving', $inschrijving);
+}
 }
 

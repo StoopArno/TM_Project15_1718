@@ -25,4 +25,25 @@ class Shift_model extends CI_Model
 
         return $shiften;
     }
+    function  getAllShiftUren(){
+        $this->db->distinct('beginuur','einduur');
+
+        $query = $this->db->get('shift');
+        $shiften = $query->result();
+        return $shiften;
+    }
+function getAllWhereTaakidWithInschrijvingen($taakid){
+    $this->db->where('taakid', $taakid);
+    $query = $this->db->get('shift');
+    $shiften = $query->result();
+    $this->load->model('Shiftinschrijving_model');
+    foreach($shiften as $shift){
+        $shift->inschrijvingen = $this->Shiftinschrijving_model->getAllInschrijvingenWhereShiftId($shift->id);;
+
+    }
+    return $shiften;
+
+}
+
+
 }

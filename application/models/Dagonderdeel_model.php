@@ -64,6 +64,7 @@ class Dagonderdeel_model extends CI_Model
 
         return $dagonderdelen;
     }
+
     function getByDagonderdeelId($id){
         $this->db->where("id", $id);
         $this->db->order_by("id", "asc");

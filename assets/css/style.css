@@ -15,7 +15,21 @@ h2 {
 
 }
 
+tr.table-kleur {
+    background-color: #2B2B2B !important;
+    color:white;
+}
 
+.glyphicon-pencil{
+    color: black !important;
+
+}
+.zwart{
+    color: black ; !important
+}
+.zwart:visited{
+    color: red;
+}
 label {
     display:block;
     text-align:center;

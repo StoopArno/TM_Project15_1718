@@ -40,8 +40,9 @@ class Optie_model extends CI_Model
         return $opties;
     }
     function getAllOptiesWithDagonderdeel(){
-
+        $this->db->order_by('dagonderdeelid', 'desc');
         $query = $this->db->get('optie');
+
         $opties = $query->result();
         $this->load->model('Dagonderdeel_model');
         foreach ($opties as $optie){
@@ -51,5 +52,13 @@ class Optie_model extends CI_Model
 
         return $opties;
 
+        }
+
+        function getAllOpties(){
+            $query = $this->db->get('optie');
+
+            $opties = $query->result();
+
+            return $opties;
         }
     }
