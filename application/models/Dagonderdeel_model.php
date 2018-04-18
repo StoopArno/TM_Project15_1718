@@ -118,8 +118,8 @@ class Dagonderdeel_model extends CI_Model
         return $dagonderdelen;
     }
 
-<<<<<<< HEAD
-=======
+
+
 
     /**
      * Ophalen alle dagonderdelen van een bepaald personeelsfeest waarvan het locatieId niet null is.
@@ -144,7 +144,7 @@ class Dagonderdeel_model extends CI_Model
         return $query->result();
     }
 
->>>>>>> bfb509c0b0c54d94ddcd9e6c3d513b9f0accf390
+
     function getByDagonderdeelId($id){
         $this->db->where("id", $id);
         $this->db->order_by("id", "asc");

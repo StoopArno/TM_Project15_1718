@@ -63,7 +63,7 @@ class Taak_model extends CI_Model
 
         return $taken;
     }
-<<<<<<< HEAD
+
         function getAllwithshiften(){
 
             $query = $this->db->get('taak');
@@ -77,7 +77,7 @@ class Taak_model extends CI_Model
 
 
 }
-=======
+
 
     /**
      * Ophalen alle taken en bijhorende shiften van een bepaald dagonderdeel.
@@ -118,6 +118,5 @@ class Taak_model extends CI_Model
         return $taken;
     }
 
-
->>>>>>> bfb509c0b0c54d94ddcd9e6c3d513b9f0accf390
+    
 }
