@@ -8,9 +8,48 @@ class Shift_model extends CI_Model
     }
 
     /**
-     * Ophalen alle Shiften van een bepaalde shift
+     * Ophalen van een bepaalde shift.
+     * @param $id
+     * @return mixed
      */
+    function get($id){
+        $this->db->where("id", $id);
+        $query = $this->db->get("shift");
+        return $query->row();
+    }
 
+    /**
+     * Updaten van een shift.
+     * @param $shift
+     */
+    function update($shift){
+        $this->db->where("id", $shift->id);
+        $this->db->update("shift", $shift);
+    }
+
+    /**
+     * Toevoegen van een nieuwe shift.
+     * @param $shift
+     */
+    function insert($shift){
+        $this->db->insert("shift", $shift);
+    }
+
+    /**
+     * verwijderen van een bepaalde shift.
+     * @param $id
+     */
+    function delete($id){
+        $this->db->where("id", $id);
+        $this->db->delete("shift");
+    }
+
+
+    /**
+     * Ophalen alle Shiften van een bepaalde taak
+     * @param $taakid
+     * @return mixed
+     */
     function getAllWhereTaakid($taakid){
         $this->db->where('taakid', $taakid);
         $query = $this->db->get('shift');

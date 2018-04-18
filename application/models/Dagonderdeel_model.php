@@ -8,9 +8,60 @@ class Dagonderdeel_model extends CI_Model
     }
 
     /**
-     * Ophalen alle dagonderdelen en bijhorende locaties van een bepaald personeelsfeest
+     * Ophalen specifiek dagonderdeel.
+     * @param $id
+     * @return mixed
      */
+    function get($id){
+        $this->db->where("id", $id);
+        $query = $this->db->get("dagonderdeel");
+        return $query->row();
+    }
 
+    /**
+     * Updaten van een dagonderdeel
+     * @param $dagonderdeel
+     */
+    function update($dagonderdeel){
+        $this->db->where("id", $dagonderdeel->id);
+        $this->db->update("dagonderdeel", $dagonderdeel);
+    }
+
+    /**
+     * Toevoegen van een nieuw dagonderdeel
+     * @param $dagonderdeel
+     */
+    function insert($dagonderdeel){
+        $this->db->insert("dagonderdeel", $dagonderdeel);
+    }
+
+    /**
+     * Verwijderen van een dagonderdeel
+     * @param $id
+     */
+    function delete($id){
+        $this->db->where("id", $id);
+        $this->db->delete("dagonderdeel");
+    }
+
+
+    /**
+     * Ophalen alle dagonderdelen van een bepaald personeelsfeest.
+     * @param $personeelsfeestid
+     * @return mixed
+     */
+    function getAllWherePfid($personeelsfeestid){
+        $this->db->where("personeelsfeestid", $personeelsfeestid);
+        $query = $this->db->get("dagonderdeel");
+
+        return $query->result();
+    }
+
+    /**
+     * Ophalen alle dagonderdelen en bijhorende locaties van een bepaald personeelsfeest.
+     * @param $personeelsfeestid
+     * @return mixed
+     */
     function getAllWherePfidWithLocaties($personeelsfeestid){
         $this->db->where("personeelsfeestid", $personeelsfeestid);
         $query = $this->db->get("dagonderdeel");
@@ -30,13 +81,13 @@ class Dagonderdeel_model extends CI_Model
 
     /**
      * Ophalen alle dagonderdelen en bijhorende opties, taken en shiften van een bepaald personeelsfeest
+     * @param $personeelsfeestId
+     * @return mixed
      */
-
     function getAllWherePfIdWithOpties_Taken_Shiften($personeelsfeestId){
         $this->db->where("personeelsfeestid", $personeelsfeestId);
         $query = $this->db->get("dagonderdeel");
         $dagonderdelen = $query->result();
-
 
         $this->load->model("Optie_model");
         foreach ($dagonderdelen as $dagonderdeel){
@@ -49,8 +100,10 @@ class Dagonderdeel_model extends CI_Model
 
         return $dagonderdelen;
     }
+
     /**
      * Ophalen alle dagonderdelen en bijhorende opties met de inschrijvingen op die opties.
+     * @return mixed
      */
     function getAllByBegintijdWithOpties(){
         $this->db->order_by('begintijd', 'asc');
@@ -65,6 +118,33 @@ class Dagonderdeel_model extends CI_Model
         return $dagonderdelen;
     }
 
+<<<<<<< HEAD
+=======
+
+    /**
+     * Ophalen alle dagonderdelen van een bepaald personeelsfeest waarvan het locatieId niet null is.
+     * @return mixed
+     */
+    function getAllWherePfIdAndLocatieIdIsNotNull($personeelsfeestId){
+        $this->db->where("personeelsfeestId", $personeelsfeestId);
+        $this->db->where("locatieId !=", null);
+        $query = $this->db->get("dagonderdeel");
+        return $query->result();
+    }
+
+    /**
+     * Ophalen alle dagonderdelen van een bepaald personeelsfeest waarvan het locatieId wel null is.
+     * @param $personeelsfeestId
+     * @return mixed
+     */
+    function getAllWherePfIdAndLocatieIdIsNull($personeelsfeestId){
+        $this->db->where("personeelsfeestId", $personeelsfeestId);
+        $this->db->where("locatieId =", null);
+        $query = $this->db->get("dagonderdeel");
+        return $query->result();
+    }
+
+>>>>>>> bfb509c0b0c54d94ddcd9e6c3d513b9f0accf390
     function getByDagonderdeelId($id){
         $this->db->where("id", $id);
         $this->db->order_by("id", "asc");
@@ -72,7 +152,5 @@ class Dagonderdeel_model extends CI_Model
         return $query->row();
 
     }
-
-
 
 }
