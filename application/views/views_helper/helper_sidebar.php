@@ -6,7 +6,7 @@
         </li>
 
         <li>
-            <?php echo anchor('aanmelden/home', '<span class="glyphicon glyphicon-home" aria-hidden="true"></span> &nbsp; Home'); ?>
+            <?php echo anchor('Helper', '<span class="glyphicon glyphicon-home" aria-hidden="true"></span> &nbsp; Home'); ?>
         </li>
 
     </ul>

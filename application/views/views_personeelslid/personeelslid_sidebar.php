@@ -6,7 +6,11 @@
         </li>
 
         <li>
-            <?php echo anchor('aanmelden/home', '<span class="glyphicon glyphicon-home" aria-hidden="true"></span> &nbsp; Home'); ?>
+            <?php echo anchor('Personeelslid', '<span class="glyphicon glyphicon-home" aria-hidden="true"></span> &nbsp; Home'); ?>
+        </li>
+
+        <li>
+            <?php echo anchor('Inschrijven_optie', '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp; Inschrijven'); ?>
         </li>
 
     </ul>
