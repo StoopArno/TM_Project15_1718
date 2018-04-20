@@ -66,12 +66,18 @@ class Persoon_model extends CI_Model
      */
     function getAllPersoneelsleden($zoekstring){
         $this->db->where('type', 'personeelslid');
-        if ($zoekstring!=null) {
+
             $this->db->like('naam', $zoekstring, 'after');
-        }
+
         $query = $this->db->get('persoon');
         return $query->result();
     }
+    function getAllHelpers(){
+        $this->db->where('type', 'helper');
+        $query = $this->db->get('persoon');
+        return $query->result();
+}
+
     function personeelslidToevoegen($naam, $voornaam, $email, $gsm) {
         $personeelslid = new stdClass();
         $personeelslid->naam = $naam;
@@ -82,11 +88,27 @@ class Persoon_model extends CI_Model
 
         $this->db->insert('persoon', $personeelslid);
     }
+    function helperToevoegen($naam, $voornaam, $email, $gsm) {
+        $personeelslid = new stdClass();
+        $personeelslid->naam = $naam;
+        $personeelslid->voornaam = $voornaam;
+        $personeelslid->email = $email;
+        $personeelslid->type = "helper";
+        $personeelslid->gsm_nummer = $gsm;
+
+        $this->db->insert('persoon', $personeelslid);
+    }
 function getpersoneelslid($id){
     $this->db->where('id', $id);
     $query = $this->db->get('persoon');
     return $query->row();
 }
+    function getByNaam($naam,$voornaam){
+        $this->db->where('naam', $naam);
+        $this->db->where('voornaam', $voornaam);
+        $query = $this->db->get('persoon');
+        return $query->row();
+    }
 function getAllPersoneelsledenWhereOptieId($id){
     $this->db->where('type', 'personeelslid');
     $query = $this->db->get('personen');

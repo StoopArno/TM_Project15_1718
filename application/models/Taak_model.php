@@ -51,6 +51,7 @@ class Taak_model extends CI_Model
      * @return mixed
      */
     function getAllWhereoptieIdWithShiften($optieid){
+
         $this->db->where('optieid', $optieid);
         $query = $this->db->get('taak');
         $taken = $query->result();
@@ -62,6 +63,21 @@ class Taak_model extends CI_Model
 
         return $taken;
     }
+
+        function getAllwithshiften(){
+
+            $query = $this->db->get('taak');
+            $taken = $query->result();
+
+            $this->load->model('Shift_model');
+            foreach ($taken as $taak){
+                $taak->shiften = $this->Shift_model->getAllWhereTaakidWithInschrijvingen($taak->id);
+            }
+            return $taken;
+
+
+}
+
 
     /**
      * Ophalen alle taken en bijhorende shiften van een bepaald dagonderdeel.
@@ -102,5 +118,5 @@ class Taak_model extends CI_Model
         return $taken;
     }
 
-
+    
 }
