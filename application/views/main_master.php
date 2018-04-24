@@ -35,7 +35,6 @@
 </head>
 
 <body>
-
 <div class="eigenHoofding">
     <?php echo $hoofding; ?>
 </div>

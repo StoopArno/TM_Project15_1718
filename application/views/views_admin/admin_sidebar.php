@@ -18,16 +18,21 @@
         </li>
 
         <li>
-            <?php echo anchor('Admin/Dagonderdelen_beheren/index', '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> &nbsp; Dagonderdelen beheren'); ?>
+            <?php echo anchor('Dagonderdelen_beheren/index', '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> &nbsp; Dagonderdelen beheren'); ?>
         </li>
 
         <li>
-            <?php echo anchor('Admin/TakenEnShiften_beheren/index', '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> &nbsp; Taken en shiften beheren'); ?>
+            <?php echo anchor('TakenEnShiften_beheren/index', '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> &nbsp; Taken en shiften beheren'); ?>
         </li>
 
         <li>
 
             <?php echo anchor('Overzicht_helpers_personeelsleden/index', '<span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span> &nbsp; Inschrijvingen beheren'); ?>
+        </li>
+
+        <li>
+
+            <?php echo anchor('Foto_Beheren', '<span class="	glyphicon glyphicon-picture" aria-hidden="true"></span> &nbsp; Foto\'s beheren'); ?>
         </li>
 
         <li>
