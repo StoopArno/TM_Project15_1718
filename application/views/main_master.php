@@ -26,6 +26,7 @@
     <?php echo haalJavascriptOp("bootstrap.js"); ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
     <script type="text/javascript">
         var site_url = '<?php echo site_url(); ?>';
         var base_url = '<?php echo base_url(); ?>';
@@ -35,7 +36,6 @@
 </head>
 
 <body>
-
 <div class="eigenHoofding">
     <?php echo $hoofding; ?>
 </div>

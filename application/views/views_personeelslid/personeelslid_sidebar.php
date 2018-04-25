@@ -1,0 +1,17 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <br>
+        </li>
+
+        <li>
+            <?php echo anchor('Personeelslid', '<span class="glyphicon glyphicon-home" aria-hidden="true"></span> &nbsp; Home'); ?>
+        </li>
+
+        <li>
+            <?php echo anchor('Inschrijven_optie', '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp; Inschrijven'); ?>
+        </li>
+
+    </ul>
+</div>

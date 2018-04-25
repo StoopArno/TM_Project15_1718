@@ -15,7 +15,21 @@ h2 {
 
 }
 
+tr.table-kleur {
+    background-color: #2B2B2B !important;
+    color:white;
+}
 
+.glyphicon-pencil{
+    color: black !important;
+
+}
+.zwart{
+    color: black ; !important
+}
+.zwart:visited{
+    color: red;
+}
 label {
     display:block;
     text-align:center;
@@ -247,6 +261,27 @@ a.list-group-item.list-group-item-action.active {
 
 
 
-.dagonderdeelActie:hover, .taakActie:hover, .shiftActie:hover{
+.dagonderdeelActie:hover, .taakActie:hover, .shiftActie:hover, #NewFoto:hover{
     cursor: pointer;
+}
+
+.foto-item{
+    max-width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.deleteImg{
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+}
+
+.fileName{
+    margin-top:10px;
+}
+
+.fotoBtn{
+    margin-top: 10px;
 }
