@@ -18,6 +18,17 @@ class Personeelsfeest_aanmaken extends CI_Controller
     }
 
     public function index() {
-        echo "fail";
+        $data['titel'] = "Personeelsfeest aanmaken";
+        $data['verantwoordelijke'] = 'Dean Clerckx';
+        $data['functionaliteit'] = "Personeelsfeest aanmaken (in de analysefase organisator toevoegen). Hier kan je als
+        organisator/admin een personeelsfeest aanmaken";
+
+        
+
+        $partials = array('hoofding' => 'views_admin/admin_navbar',
+            'sidenav' => 'views_admin/admin_sidebar',
+            'content' => 'views_admin/admin_personeelsfeest_aanmaken',
+            'footer' => 'main_footer');
+        $this->template->load('main_master', $partials, $data);
     }
 }

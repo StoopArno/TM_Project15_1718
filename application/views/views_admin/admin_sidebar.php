@@ -29,6 +29,10 @@
 
             <?php echo anchor('Overzicht_helpers_personeelsleden/index', '<span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span> &nbsp; Inschrijvingen beheren'); ?>
         </li>
+        <li>
+
+            <?php echo anchor('personeelsfeest_aanmaken/index', '<span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span> &nbsp; Personeelsfeest aanmaken'); ?>
+        </li>
 
         <li>
 

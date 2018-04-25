@@ -20,6 +20,7 @@
 
     <!--  Fontawesome css  -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
 
     <?php echo haalJavascriptOp("jquery-3.3.1.min.js"); ?>
     <?php echo haalJavascriptOp("bootstrap.js"); ?>
