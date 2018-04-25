@@ -13,5 +13,9 @@
             <?php echo anchor('Inschrijven_optie', '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp; Inschrijven'); ?>
         </li>
 
+        <li>
+            <?php echo anchor('Foto_bekijken', '<span class="glyphicon glyphicon-picture" aria-hidden="true"></span> &nbsp; Foto\'s bekijken'); ?>
+        </li>
+
     </ul>
 </div>
