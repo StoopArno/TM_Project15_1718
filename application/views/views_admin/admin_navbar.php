@@ -5,6 +5,36 @@
 
 
     <a class="text-white"> <?php echo $titel ?> </a>
+    
+     <button type="button" class="butt">?</button>
 
+
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content"> <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
     </div>
+</div>
+    
+    
+<style>
+    .butt {
+        color: black;
+        background-color: white;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+        position: absolute;
+        right: 30px;
+    }
+    
+    .butt:hover {
+        background-color: #2B2B2B;
+        color: white;
+    }
+</style>
+
 </nav>
