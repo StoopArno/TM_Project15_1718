@@ -44,5 +44,21 @@ class Personeelsfeest_model extends CI_Model
         return $query->row();
     }
 
+    function maakPersoneelsfeest($datum) {
+        $personeelsfeest = new stdClass();
+        $personeelsfeest->datum = $datum;
+        $this->db->insert('personeelsfeest', $personeelsfeest);
+    }
+
+    function getPersoneelsfeesten() {
+        $query = $this->db->get('personeelsfeest');
+        return $query->result();
+    }
+
+    function delete($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('personeelsfeest');
+    }
+
 
 }
