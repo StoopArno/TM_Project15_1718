@@ -64,6 +64,12 @@ class Taak_model extends CI_Model
         return $taken;
     }
 
+    function getAllByOptieId($optieId) {
+        $this->db->where('optieId', $optieId);
+        $query = $this->db->get('taak');
+        return $query->result();
+    }
+
         function getAllwithshiften(){
 
             $query = $this->db->get('taak');

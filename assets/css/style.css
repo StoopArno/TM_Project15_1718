@@ -1,3 +1,6 @@
+body {
+    width:100%;
+}
 h2 {
     text-align:center;
     padding-bottom: 20px;
@@ -282,11 +285,18 @@ a.list-group-item.list-group-item-action.active {
     margin-top:10px;
 }
 
-.fotoBtn{
+.fotoBtn {
     margin-top: 10px;
 }
+
 
 .inschrijfitem{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+img.user {
+    width:75px;
+    vertical-align: top;
+}
+

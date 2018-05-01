@@ -27,33 +27,24 @@
         <table id="personeelsfeestTable">
             <thead>
             <tr>
-                <th colspan="2">Personeelsfeest</th>
-                <th></th>
-                <th></th>
-                <th>Actie</th>
+                <th colspan="2">Personeelsfeesten</th>
+
             </tr>
             </thead>
             <tbody>
 
             <?php
             foreach($personeelsfeesten as $pf) {
-            echo "<tr>";
-            echo "<td>";
-
-            echo $pf->datum;
-            echo "</td>";
-            ?>
-            <td colspan="2">
-                <?php
-                echo anchor('personeelsfeest_aanmaken/verwijder/' . $pf->id, 'Verwijder');
+                echo "<tr>";
+                echo "<td>";
+                echo $pf->datum . "&nbsp;" . anchor('personeelsfeest_aanmaken/verwijder/' . $pf->id, 'Verwijder');
                 echo "</td>";
                 echo "</tr>";
-                }
-
-                ?>
+            }
+            ?>
             </tbody>
         </table>
     </div>
-
-
+    <div class="col-sm-12 col-md-6">
+    </div>
 </div>

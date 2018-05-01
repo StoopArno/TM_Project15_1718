@@ -78,25 +78,26 @@ class Persoon_model extends CI_Model
         return $query->result();
 }
 
-    function personeelslidToevoegen($naam, $voornaam, $email, $gsm) {
+    function personeelslidToevoegen($naam, $voornaam, $email, $gsm, $hashcode) {
         $personeelslid = new stdClass();
         $personeelslid->naam = $naam;
         $personeelslid->voornaam = $voornaam;
         $personeelslid->email = $email;
-        $personeelslid->type = "personeelslid";
         $personeelslid->gsm_nummer = $gsm;
-
+        $personeelslid->type = "personeelslid";
+        $personeelslid->hashcode = $hashcode;
         $this->db->insert('persoon', $personeelslid);
     }
-    function helperToevoegen($naam, $voornaam, $email, $gsm) {
-        $personeelslid = new stdClass();
-        $personeelslid->naam = $naam;
-        $personeelslid->voornaam = $voornaam;
-        $personeelslid->email = $email;
-        $personeelslid->type = "helper";
-        $personeelslid->gsm_nummer = $gsm;
+    function helperToevoegen($naam, $voornaam, $email, $gsm, $hashcode) {
+        $helper = new stdClass();
+        $helper->naam = $naam;
+        $helper->voornaam = $voornaam;
+        $helper->email = $email;
+        $helper->gsm_nummer = $gsm;
+        $helper->type = "helper";
+        $helper->hashcode = $hashcode;
 
-        $this->db->insert('persoon', $personeelslid);
+        $this->db->insert('persoon', $helper);
     }
 function getpersoneelslid($id){
     $this->db->where('id', $id);
@@ -118,6 +119,13 @@ function getAllPersoneelsledenWhereOptieId($id){
         $personeelslid->inschrijvingen = $this->Inschrijving_model->getAllByPersoonId($personeelslid->id);
     }
     return $query->result();
+}
+
+function getPersoon($hashcode) {
+    $this->db->where('type', 'helper');
+    $this->db->where('hashcode', $hashcode);
+    $query = $this->db->get('persoon');
+    return $query->row();
 }
 
 }

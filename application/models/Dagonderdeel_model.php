@@ -51,7 +51,7 @@ class Dagonderdeel_model extends CI_Model
      * @return mixed
      */
     function getAllWherePfid($personeelsfeestid){
-        $this->db->where("personeelsfeestid", $personeelsfeestid);
+        $this->db->where("personeelsfeestId", $personeelsfeestid);
         $query = $this->db->get("dagonderdeel");
 
         $dagonderdelen = $query->result();

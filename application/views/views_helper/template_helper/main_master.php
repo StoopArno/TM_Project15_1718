@@ -12,7 +12,7 @@
     <title>Project 15_1718</title>
 
     <!-- Bootstrap Core CSS -->
-
+    <?php echo pasStylesheetAan("mdb.min.css"); ?>
     <?php echo pasStylesheetAan("bootstrap.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-grid.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
@@ -25,7 +25,9 @@
     <?php echo haalJavascriptOp("jquery-3.3.1.min.js"); ?>
     <?php echo haalJavascriptOp("bootstrap.js"); ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <?php echo pasStylesheetAan("style.css"); ?>
+    <?php echo pasStylesheetAan("helper.css"); ?>
 
     <script type="text/javascript">
         var site_url = '<?php echo site_url(); ?>';
@@ -42,10 +44,7 @@
 </div>
 
 <div class="eigenContent">
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <?php echo $sidenav; ?>
-    </div>
+
     <div class="col-12">
         <div id="page-content-wrapper">
             <div class="pagina">
