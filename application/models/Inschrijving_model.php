@@ -18,8 +18,13 @@ class Inschrijving_model extends CI_Model
         return $inschrijvingen;
 
     }
-function getAllByPersoonId($personeelslidid){
+function getAllByPersoonId($persoonid){
+    $this->db->where('persoonid', $persoonid);
 
+    $query = $this->db->get('inschrijving');
+
+    $inschrijvingen = $query->result();
+    return $inschrijvingen;
 }
 function schrijfIn($persoonid,$optieid){
     $inschrijving = new stdClass();

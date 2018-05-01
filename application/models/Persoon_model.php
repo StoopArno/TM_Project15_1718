@@ -119,5 +119,27 @@ function getAllPersoneelsledenWhereOptieId($id){
     }
     return $query->result();
 }
+function getByIdWithInschrijvingen($id){
+    $this->db->where('id', $id);
+    $query = $this->db->get('persoon');
+    return $query->row();
+}
+
+    function updatePersoon($id,$voornaam,$naam,$email,$gsm){
+        $this->db->where('id', $id);
+        $persoon = new stdClass();
+        $persoon->naam = $naam;
+        $persoon->voornaam = $voornaam;
+        $persoon->email = $email;
+        $persoon->gsm_nummer = $gsm;
+
+        $this->db->update("persoon", $persoon);
+
+
+
+    }
+
+
+
 
 }

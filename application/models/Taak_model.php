@@ -118,5 +118,5 @@ class Taak_model extends CI_Model
         return $taken;
     }
 
-    
+
 }

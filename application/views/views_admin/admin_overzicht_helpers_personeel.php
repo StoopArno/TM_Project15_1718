@@ -19,7 +19,35 @@
 
 
         });
+        $("#printpersoneel").click(function () {
+            $("#printhelper").hide();
+            $("#voegpersoneelslidtoe").hide();
+            $("#personeelh2").hide();
+            $(".page-footer").hide();
+            print();
+            $("#printhelper").show();
+            $("#personeelh2").show();
+            $(".page-footer").show();
 
+            $("#voegpersoneelslidtoe").show();
+
+        });
+        $("#printhelpers").click(function () {
+            $("#printpers").hide();
+            $("#personeelh2").hide();
+            $("#voegpersoneelslidtoe").hide();
+            $("#voeghelpertoe").hide();
+            $("#helpersh2").hide();
+            $(".page-footer").hide();
+            print();
+            $("#printpers").show();
+
+            $(".page-footer").show();
+            $("#voeghelpertoe").show();
+            $("#voegpersoneelslidtoe").show();
+            $("#personeelh2").show();
+            $("#helpersh2").show();
+        });
         $("#edithelper").click(function () {
             if ($("#edithelper").hasClass("glyphicon-pencil")) {
                 $(".edithelper").removeClass("hidden");
@@ -49,12 +77,10 @@
 
             $(".voegpersoneelslidtoe").removeClass("hidden");
 
-
         });
         $(".editpersoneelslid").click(function () {
 
             $(".voegpersoneelslidtoe").removeClass("hidden");
-
 
         });
         $("#annuleer").click(function () {
@@ -63,18 +89,17 @@
         $("#annuleerhelper").click(function () {
             $(".voeghelpertoe").addClass("hidden");
         });
-
     });
 </script>
 <div>
-
-
 </div>
-<div class="col-lg-12">
-    <h2>Personeel <i id="editpersoneel" class="glyphicon glyphicon-pencil" aria-hidden="true"></i></h2>
+<div class="personeel col-lg-12">
+
+    <h2 id="personeelh2">Personeel <i id="editpersoneel" class="glyphicon glyphicon-pencil" aria-hidden="true"></i><i id="printpersoneel" class="glyphicon glyphicon-print"></i></h2>
 
 
-    <table class="table text-center col-lg-12 ">
+
+    <table id="printpers"class="personeeltabel table text-center col-lg-12 ">
 
         <tr class="table-kleur">
             <td class="aanpasbug hidden"></td>
@@ -98,7 +123,7 @@
             foreach ($personeelsleden as $personeelslid) {
 
                 echo "<tr><td class='edit hidden' >";
-                echo anchor('Overzicht_helpers_personeelsleden/index/' . $personeelslid->id, ' ', ' class="glyphicon text-dark glyphicon-pencil editpersoneelslid"');
+                echo anchor('Overzicht_helpers_personeelsleden/editPersoneelslid/' . $personeelslid->id, ' ', ' class="glyphicon text-dark glyphicon-pencil editpersoneelslid"');
                 echo anchor('Overzicht_helpers_personeelsleden/verwijderPersoneelslid/' . $personeelslid->id, ' ', 'class=" text-dark  glyphicon glyphicon-trash verwijderpersoneelslid"') . "</td>";
 
                 echo " <td> " . $personeelslid->naam . " " . $personeelslid->voornaam . "</td>";
@@ -215,38 +240,16 @@ if ($lid == "") {
 </div>
 
 
-<div class="hidden">
-    <h2>Filter op</h2>
-
-    <?php
-    echo form_open('Overzicht_helpers_personeelsleden/filter');
-    $dagonderdeelidoud = "";
-    foreach ($opties as $optie) {
-        $dagonderdeelid = $optie->dagonderdeelId;
-        if ($dagonderdeelid != $dagonderdeelidoud) {
-            echo '<h4>' . $optie->dagonderdeel->naam . '</h4>';
-        }
-        echo '<p ><input class="custom-radio" type="radio" value="' . $optie->id . '" id="' . $optie->id . '" > &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <label class="filter form-check-label" for="' . $optie->id . '">' . $optie->optie . '
-        </label></p>';
-
-
-        $dagonderdeelidoud = $dagonderdeelid;
-    }
-    echo form_submit('filter', 'filter');
-    echo form_close();
-    ?>
-
-
-</div>
 
 
 
 
-<div class="col-lg-12">
-    <h2>Helpers <i id="edithelper" class="glyphicon glyphicon-pencil" aria-hidden="true"></i></h2>
+
+<div id="printhelper" class="col-lg-12">
+    <h2 id="helpersh2">Helpers <i id="edithelper" class="glyphicon glyphicon-pencil" aria-hidden="true"></i> <i id="printhelpers" class="glyphicon glyphicon-print"></i></h2>
 
 
-    <table class="table text-center col-lg-12 ">
+    <table class="table  text-center col-lg-12 ">
     <tr class="table-kleur">
         <td class="aanpasbug3 hidden"></td>
         <td>Naam</td>
@@ -266,7 +269,7 @@ if ($lid == "") {
 
         foreach ($helpers as $helper){
      echo '<tr>  <td class=" edithelper hidden">';
-            echo anchor('Overzicht_helpers_personeelsleden/index/' . $helper->id, ' ', ' class="glyphicon text-dark glyphicon-pencil edithelper"');
+            echo anchor('Overzicht_helpers_personeelsleden/editPersoneelslid/' . $helper->id, ' ', ' class="glyphicon text-dark glyphicon-pencil edithelper"');
             echo anchor('Overzicht_helpers_personeelsleden/verwijderHelper/' . $helper->id, ' ', 'class=" text-dark  glyphicon glyphicon-trash verwijderhelper"') . "</td>";
 
             echo '<td> ' . $helper->naam . " " . $helper->voornaam . '</td>';
