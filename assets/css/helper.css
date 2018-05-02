@@ -31,7 +31,7 @@ table thead th {
     background-color: #E73E16 !important;
 }
 
-.btn.btn-warning, .btn.btn-success {
+.btn.btn-warning, .btn.btn-success, .btn.btn-danger {
     width:120px;
 }
 .btn.btn-warning {
@@ -42,3 +42,28 @@ table thead th {
     background-color: #0091A6 !important;
 }
 
+.btn.btn-danger {
+    background-color: #d13f38 !important;
+}
+
+div.modal.fade#helperDialog {
+  margin: auto auto;
+}
+
+div.limiter {
+    position:relative;
+    top:-20px;
+}
+
+article {
+    text-align:center;
+}
+div.btn-group {
+    position:relative;
+    top:-75px;
+    margin:0px auto !important;
+}
+
+div.btn-group button.btn.btn-primary {
+width:80px;
+}

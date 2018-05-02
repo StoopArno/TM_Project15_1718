@@ -1,128 +1,4 @@
-<!--
-<div class="container">
-    <div>
-        <h2 class="inschrijfHeader">Schrijf je hier in om te komen helpen</h2>
 
-    </div>
-    <table class="tableInschrijvingen">
-<tbody>
--->
-<?php
-/*
-foreach($dagonderdelen as $dag) {
-    ?>
-    <tr>
-        <th class="mainTh"><?php echo $dag->naam; ?></th>
-        <?php
-        if($dag->opties != null) {
-            ?>
-            <td>
-                <table class="">
-                    <?php
-                    foreach($dag->opties as $dagOptie) {
-                        if($dagOptie->helper_nodig == "ja") {
-                            ?>
-                            <tr>
-                                <th class="optieTh"><?php echo $dagOptie->optie; ?></th>
-                                <?php
-                                if($dagOptie->taken != null) {
-                                    ?>
-                                    <td>
-                                        <table class="">
-                                            <?php
-                                            foreach($dagOptie->taken as $taak) {
-                                                ?>
-                                                <tr>
-                                                    <th class="taakTh"><?php echo $taak->naam; ?></th>
-                                                    <?php
-                                                    if($taak->shiften != null) {
-                                                        ?>
-                                                        <td>
-                                                            <table class="">
-                                                                <?php
-                                                                foreach($taak->shiften as $taakShift) {
-                                                                    ?>
-                                                                    <tr>
-                                                                        <td class="tdShift"><?php echo $taakShift->omschrijving; ?></td>
-                                                                        <td><?php echo date_format($taakShift->beginuur, "H:i"); ?>-<?php echo date_format($taakShift->einduur, "H:i"); ?></td>
-                                                                        <?php
-                                                                        $checker = false;
-                                                                        foreach($ingeschreven as $ig) {
-                                                                            if($ig->shiftid == $taakShift->id) {
-                                                                                $checker = true;
-                                                                            }
-                                                                        }
-                                                                        if($checker == true) {
-                                                                            ?>
-                                                                            <td><?php echo anchor('inschrijven_helper/schrijfUit/' . $taakShift->id . '/' . $helper->hashcode, 'Uitschrijven', 'class="btn btn-warning"') ?></td>
-
-                                                                            <?php
-                                                                        } else {
-                                                                            ?>
-                                                                            <td><?php echo anchor('inschrijven_helper/schrijfIn/' . $taakShift->id . '/' . $helper->hashcode, 'Inschrijven', 'class="btn btn-success"') ?></td>
-                                                                            <?php
-                                                                        }
-                                                                        ?>
-                                                                        <td><?php echo $taakShift->aantalHelpers; ?>/<?php echo $taakShift->maxAantalHelpers; ?></td>
-                                                                    </tr>
-                                                                    <?php
-                                                                }
-                                                                ?>
-                                                            </table>
-                                                        </td>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
-                                        </table>
-                                    </td>
-                                    <?php
-                                }
-
-                                ?>
-                            </tr>
-
-                            <?php
-
-                        }
-
-                    }
-                    ?>
-                </table>
-            </td>
-            <?php
-        }
-        ?>
-    </tr>
-    <?php
-}
-*/
-?>
-<!--
-</tbody>
-
-    </table>
-</div>
--->
-
-
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------->
-<?php
-echo haalJavascriptOp("jquery-3.3.1.min.js");
-echo haalJavascriptOp("popper.js");
-echo haalJavascriptOp("select2.min.js");
-echo haalJavascriptOp("perfect-scrollbar.min.js");
-echo haalJavascriptOp("main.js");
-echo pasStylesheetAan("animate.css");
-echo pasStylesheetAan("select2.min.css");
-echo pasStylesheetAan("perfect-scrollbar.css");
-echo pasStylesheetAan("main.css");
-echo pasStylesheetAan("font-awesome.min.css");
-?>
 <script>
     $('.js-pscroll').each(function(){
         var ps = new PerfectScrollbar(this);
@@ -132,8 +8,27 @@ echo pasStylesheetAan("font-awesome.min.css");
         })
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('.klikHelpers').click(function() {
+            haalHelpersOp($(this).attr('id'));
+            $('#helperDialoog').modal('show');
+        });
+    });
 
-<!-- Eigen -->
+    function haalHelpersOp(shiftId) {
+        $.ajax({type: "GET",
+            url: site_url + "/inschrijven_helper/haalHelpersOp",
+            data: {shiftId: shiftId},
+            success: function (result) {
+            $('#resultaat').html(result);
+            },
+            error: function (xhr, status, error) {
+                alert ("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+            }
+        });
+    }
+</script>
 
 <div class="limiter">
     <div class="container-table100">
@@ -171,7 +66,10 @@ echo pasStylesheetAan("font-awesome.min.css");
                                                          <tr class="row100 body">
                                                                 <td class="cell100 column1"><?php echo $dag->naam; ?></td>
                                                                 <td class="cell100 column2"><?php echo $dagOptie->optie; ?></td>
-                                                                <td class="cell100 column3"><?php echo $taak->naam; ?></td>
+                                                                <td class="cell100 column3">
+                                                                    <span data-tooltip="<?php echo $taak->omschrijving; ?>">?</span>
+                                                                    <?php echo $taak->naam; ?>
+                                                                </td>
                                                                 <td class="cell100 column4"><?php echo $taakShift->omschrijving; ?> - <?php echo date_format($taakShift->beginuur, "H:i"); ?>-<?php echo date_format($taakShift->einduur, "H:i"); ?></td>
 
                                                              <td class="cell100 column5">
@@ -182,19 +80,24 @@ echo pasStylesheetAan("font-awesome.min.css");
                                                                          $checker = true;
                                                                      }
                                                                  }
-                                                                 if($checker == true) {
-                                                                     ?>
-                                                                     <?php echo anchor('inschrijven_helper/schrijfUit/' . $taakShift->id . '/' . $helper->hashcode, 'Uitschrijven', 'class="btn btn-warning"') ?>
 
-                                                                     <?php
-                                                                 } else {
-                                                                     ?>
-                                                                     <?php echo anchor('inschrijven_helper/schrijfIn/' . $taakShift->id . '/' . $helper->hashcode, 'Inschrijven', 'class="btn btn-success"') ?>
-                                                                     <?php
-                                                                 }
+                                                                     if($checker == true) {
+                                                                         ?>
+                                                                         <?php echo anchor('inschrijven_helper/schrijfUit/' . $taakShift->id . '/' . $helper->hashcode, 'Uitschrijven', 'class="btn btn-warning"') ?>
+
+                                                                         <?php
+                                                                     } else {
+                                                                         if($taakShift->aantalHelpers == $taakShift->maxAantalHelpers) {
+                                                                                ?>
+                                                                                    <button class="btn btn-danger">Volzet</button>
+                                                                                <?php
+                                                                         } else {
+                                                                             echo anchor('inschrijven_helper/schrijfIn/' . $taakShift->id . '/' . $helper->hashcode, 'Inschrijven', 'class="btn btn-success"');
+                                                                         }
+                                                                     }
                                                                  ?>
                                                                     &nbsp;
-                                                                 <?php echo $taakShift->aantalHelpers; ?>/<?php echo $taakShift->maxAantalHelpers; ?>
+                                                                 <a id="<?php echo $taakShift->id; ?>" class="klikHelpers"><?php echo $taakShift->aantalHelpers; ?>/<?php echo $taakShift->maxAantalHelpers; ?></a>
                                                              </td>
                                                           </tr>
                                                                 <?php
@@ -208,10 +111,18 @@ echo pasStylesheetAan("font-awesome.min.css");
                                 }
                            }
                         ?>
-
                         </tbody>
                     </table>
                 </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="helperDialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="resultaat">
 
             </div>
         </div>

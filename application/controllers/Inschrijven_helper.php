@@ -11,6 +11,7 @@ class Inschrijven_helper extends CI_Controller
      *  Testen zonder email:
      *  index:
      *  http://localhost:81/project15_1718/index.php/inschrijven_helper/index/fe751ada57b4dc95db43d67fa430d7e8
+     * http://localhost:81/project15_1718/index.php/inschrijven_helper/inschrijfPagina/30ba315b4ffb9f3431b38b94cec1ac7c
      *  schrijfIn:
      *  http://localhost:81/project15_1718/index.php/inschrijven_helper/schrijfIn/.../fe751ada57b4dc95db43d67fa430d7e8
      *  Helper 1
@@ -32,6 +33,7 @@ class Inschrijven_helper extends CI_Controller
     }
 
     public function inschrijfPagina($hashcode) {
+
         $helper = $this->getPersoon($hashcode);
         $data['helper'] = $helper;
         $this->load->model('shiftinschrijving_model');
@@ -116,5 +118,77 @@ class Inschrijven_helper extends CI_Controller
     public function getPersoon($hashcode) {
         $this->load->model('persoon_model');
         return $this->persoon_model->getPersoon($hashcode);
+    }
+
+    public function haalHelpersOp() {
+
+        $shiftId = $this->input->get('shiftId');
+        $this->load->model('shift_model');
+        $shift = $this->shift_model->get($shiftId);
+        $data['shift'] = $shift;
+        $this->load->model('shiftinschrijving_model');
+        $shiftInschrijvingen = $this->shiftinschrijving_model->getAllInschrijvingenWhereShiftId($shiftId); // geeft persoonids
+
+        $this->load->model('persoon_model');
+        foreach($shiftInschrijvingen as $SI) {
+            $SI->persoon = $this->persoon_model->get($SI->persoonid);
+        }
+
+        $data['shiftInschrijvingen'] = $shiftInschrijvingen;
+        $this->load->view('views_helper/helperDialog', $data);
+    }
+
+    public function fotoPagina($hashcode) {
+        $helper = $this->getPersoon($hashcode);
+        $data['helper'] = $helper;
+        $this->load->model("foto_model");
+        $this->load->model('personeelsfeest_model');
+        $personeelsfeesten = $this->personeelsfeest_model->getAllOrderByDatum();
+        $data['personeelsfeesten'] = $personeelsfeesten;
+        $data['personeelsfeestId'] = $personeelsfeesten[0]->id;
+        $data["fotos"] = $this->foto_model->getAllWherePfId($personeelsfeesten[0]->id);
+
+        $data['titel'] = "Foto's voorbije personeelsfeesten";
+        $data['verantwoordelijke'] = 'Lindert Van de Poel';
+        $data['functionaliteit'] = "Haal leuke herinneringen op en bekijk enkele foto's van voorbije jaren.";
+
+        $partials = array('hoofding' => 'views_helper/helper_navbar',
+            'content' => 'views_helper/helper_fotos_raadplegen',
+            'footer' => 'views_helper/template_helper/main_footer');
+        $this->template->load('views_helper/template_helper/main_master', $partials, $data);
+    }
+
+    public function haalFotosOp($hashcode, $personeelsfeestId) {
+        $helper = $this->getPersoon($hashcode);
+        $data['helper'] = $helper;
+        $this->load->model("foto_model");
+        $this->load->model('personeelsfeest_model');
+        $personeelsfeesten = $this->personeelsfeest_model->getAllOrderByDatum();
+        $data['personeelsfeesten'] = $personeelsfeesten;
+        $data["fotos"] = $this->foto_model->getAllWherePfId($personeelsfeestId);
+
+        $data['titel'] = "Foto's voorbije personeelsfeesten";
+        $data['verantwoordelijke'] = 'Lindert Van de Poel';
+        $data['functionaliteit'] = "Haal leuke herinneringen op en bekijk enkele foto's van voorbije jaren.";
+
+        $partials = array('hoofding' => 'views_helper/helper_navbar',
+            'content' => 'views_helper/helper_fotos_raadplegen',
+            'footer' => 'views_helper/template_helper/main_footer');
+        $this->template->load('views_helper/template_helper/main_master', $partials, $data);
+
+    }
+
+    public function faq($hashcode) {
+        $helper = $this->getPersoon($hashcode);
+        $data['helper'] = $helper;
+
+        $data['titel'] = "Frequently Asked Questions";
+        $data['verantwoordelijke'] = 'Dean Clerckx';
+        $data['functionaliteit'] = "Hier geeft men een antwoord op enkele vragen die voor de hand liggend zijn..";
+
+        $partials = array('hoofding' => 'views_helper/helper_navbar',
+            'content' => 'views_helper/faq_helper',
+            'footer' => 'views_helper/template_helper/main_footer');
+        $this->template->load('views_helper/template_helper/main_master', $partials, $data);
     }
 }
