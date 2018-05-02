@@ -42,13 +42,12 @@ class Organisator_beheren extends CI_Controller
         $gsm = $this->input->post('gsm');
         $wachtwoord = $this->input->post('wachtwoord');
         $this->persoon_model->organisatorToevoegen($naam, $voornaam, $email, $gsm, $wachtwoord);
-        redirect('organisator_toevoegen/organisatorToevoegen');
+        redirect('organisator_beheren/organisatorToevoegen');
     }
 
     public function verwijderOrganisator($id) {
         $this->load->model('persoon_model');
         $this->persoon_model->verwijder($id);
         $this->organisatorToevoegen();
-
     }
 }

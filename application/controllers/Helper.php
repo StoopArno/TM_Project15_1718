@@ -10,11 +10,16 @@ class Helper extends CI_Controller
 
     public function index(){
 
+        $data["titel"] = "Homepagina";
+        $data["verantwoordelijke"] = "Arno Stoop";
+        $data["functionaliteit"] = "Geen functionaliteit, dit is de homepagina";
 
-        $partials = array('hoofding' => 'views_helper/helper_header',
-            'inhoud' => 'views_helper/helper_index'
+        $partials = array('hoofding' => 'views_helper/helper_navbar',
+            'content' => 'views_helper/home',
+            'sidenav' => 'views_helper/helper_sidebar',
+            'footer' => 'main_footer'
+        );
 
-    );
-        $this->template->load('main_master', $partials);
+        $this->template->load('main_master', $partials, $data);
     }
 }

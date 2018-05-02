@@ -1,10 +1,27 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        </div>
-    <a class="navbar-brand pull-left" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#"></a>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inschrijven</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Foto's afgelopen jaren</a>
+            </li>
 
 
-    <a class="text-white"> Test </a>
-
+        </ul>
     </div>
 </nav>
+<!--/.Navbar-->

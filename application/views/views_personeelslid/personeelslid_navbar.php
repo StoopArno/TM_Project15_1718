@@ -4,7 +4,7 @@
     <a class="navbar-brand pull-left" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
 
 
-    <a class="text-white"> Test </a>
+    <a class="text-white"> <?php echo $titel ?> </a>
 
     </div>
 </nav>

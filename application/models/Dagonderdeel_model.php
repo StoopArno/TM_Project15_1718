@@ -51,10 +51,16 @@ class Dagonderdeel_model extends CI_Model
      * @return mixed
      */
     function getAllWherePfid($personeelsfeestid){
-        $this->db->where("personeelsfeestid", $personeelsfeestid);
+        $this->db->where("personeelsfeestId", $personeelsfeestid);
         $query = $this->db->get("dagonderdeel");
 
-        return $query->result();
+        $dagonderdelen = $query->result();
+        foreach($dagonderdelen as $dagonderdeel){
+            $dagonderdeel->begintijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->begintijd);
+            $dagonderdeel->eindtijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->eindtijd);
+        }
+
+        return $dagonderdelen;
     }
 
     /**

@@ -1,0 +1,44 @@
+footer strong {
+    color:white;
+}
+
+footer h5 {
+
+    font-weight:bold;
+    font-size:16px;
+}
+
+div.collapse.navbar-collapse#basicExampleNav ul.navbar-nav.mr-auto li a.nav-link {
+    font-size:17px;
+}
+
+footer p {
+    font-size:15px;
+}
+
+nav.navbar.navbar-expand-lg.navbar-dark.primary-color {
+  /*  background-color: #E73E16 !important;*/
+    background-color: #0091A6 !important;
+}
+
+footer.page-footer.font-small.stylish-color-dark.pt-4.mt-4 {
+   /* background-color: #E73E16 !important;*/
+    background-color: #0091A6 !important;
+}
+
+table thead th {
+    /*background-color: #0091A6 !important;*/
+    background-color: #E73E16 !important;
+}
+
+.btn.btn-warning, .btn.btn-success {
+    width:120px;
+}
+.btn.btn-warning {
+    background-color:#E73E16 !important;
+}
+
+.btn.btn-success {
+    background-color: #0091A6 !important;
+}
+

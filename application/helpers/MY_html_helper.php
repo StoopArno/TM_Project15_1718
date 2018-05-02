@@ -7,6 +7,14 @@ function toonAfbeelding($afbeelding, $attributen = '') {
             "\"" . _stringify_attributes($attributen) . " />";
 }
 
+function toonSavedAfbeelding($afbeelding, $attributen = ''){
+    $CI = & get_instance();
+    $CI->load->helper('url');
+
+    return "<img src=\"" . base_url("uploads/" . $afbeelding) .
+        "\"" . _stringify_attributes($attributen) . " />";
+}
+
 function haalJavascriptOp($js) {
     $CI = & get_instance();
     $CI->load->helper('url');

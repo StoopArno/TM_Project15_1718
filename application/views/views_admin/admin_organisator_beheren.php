@@ -114,7 +114,7 @@ echo pasStylesheetAan('style.css');
                                         <?php
                                         if($admin->voornaam != "Admin") {
                                             ?>
-                                            <td><?php echo anchor('organisator_toevoegen/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger"'); ?></td>
+                                            <td><?php echo anchor('organisator_beheren/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger"'); ?></td>
                                             <?php
                                         }
                                         ?>
@@ -141,7 +141,7 @@ echo pasStylesheetAan('style.css');
             </div>
             <div class="row">
                 <div class="col-12">
-                    <?php echo form_open('organisator_toevoegen/voegToe');?>
+                    <?php echo form_open('organisator_beheren/voegToe');?>
                     <div class="form-group">
                         <label for="familienaam">Familienaam</label>
                         <input type="text" class="form-control" placeholder="Familienaam" name="familienaam" required>

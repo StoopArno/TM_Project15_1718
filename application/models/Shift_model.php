@@ -27,6 +27,22 @@ class Shift_model extends CI_Model
         $this->db->update("shift", $shift);
     }
 
+    function updateHelperAantal($id) {
+        $shift = $this->get($id);
+        $nieuwAantal = $shift->aantalHelpers + 1;
+        $data = array('aantalHelpers' => $nieuwAantal);
+        $this->db->where('id', $id);
+        $this->db->update('shift', $data);
+    }
+
+    function updateHelperAantalMin($id) {
+        $shift = $this->get($id);
+        $nieuwAantal = $shift->aantalHelpers - 1;
+        $data = array('aantalHelpers' => $nieuwAantal);
+        $this->db->where('id', $id);
+        $this->db->update('shift', $data);
+    }
+
     /**
      * Toevoegen van een nieuwe shift.
      * @param $shift

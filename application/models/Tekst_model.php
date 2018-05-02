@@ -19,7 +19,7 @@ class Tekst_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('tekst', $data);
     }
-    function  getByNaam($naam){
+    function getByNaam($naam){
         $this->db->where('naam', $naam);
         $query = $this->db->get("tekst");
 
