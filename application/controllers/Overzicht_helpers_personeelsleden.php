@@ -128,7 +128,10 @@ public function editPersoneelslid($personeelslidid){
     $data['functionaliteit'] = "Overzicht helpers en personeelsleden";
     $this->load->model('persoon_model');
     $data['persoon'] = $this->persoon_model->getByIdWithInschrijvingen($personeelslidid);
-
+    $this->load->model('inschrijving_model');
+    $data['inschrijvingen'] = $this->inschrijving_model->getInschrijvingenByPersoonId($personeelslidid);
+    $this->load->model('optie_model');
+    $data['opties'] = $this->optie_model->getAllOptiesWithDagonderdeel();
     $partials = array('hoofding' => 'views_admin/admin_navbar',
         'sidenav' => 'views_admin/admin_sidebar',
         'content' => 'views_admin/admin_wijzig_persoon',
