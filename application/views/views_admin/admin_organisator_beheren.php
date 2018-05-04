@@ -153,7 +153,7 @@ echo pasStylesheetAan('style.css');
                         <small class="form-text text-muted">Voer hier de voornaam in.</small>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email address</label>
+                        <label for="email">Email adres</label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" name="email" required>
                         <small id="emailHelp" class="form-text text-muted">Voer hier de email in.</small>
                     </div>
@@ -163,7 +163,7 @@ echo pasStylesheetAan('style.css');
                         <input type="password" class="form-control" id="wachtwoord" placeholder="Wachtwoord" name="wachtwoord" required>
                     </div>
                     <div class="form-group">
-                        <label for="number">GSM Nummer</label>
+                        <label for="number">GSM</label>
                         <input type="number" min="0" class="form-control" id="gsm" aria-describedby="emailHelp" placeholder="GSM Nummer" name="gsm">
                         <small id="emailHelp" class="form-text text-muted">Voer hier de GSM nummer in.</small>
                     </div>

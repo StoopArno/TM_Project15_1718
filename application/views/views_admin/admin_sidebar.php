@@ -42,7 +42,7 @@
         </li>
 
         <li>
-            <?php echo anchor('aanmelden/meldAf', '<span class="glyphicon glyphicon-off" aria-hidden="true"></span> &nbsp; Meld Af'); ?>
+            <?php echo anchor('aanmelden/meldAf', '<span class="glyphicon glyphicon-off" aria-hidden="true"></span> &nbsp; Afmelden'); ?>
         </li>
 
 
