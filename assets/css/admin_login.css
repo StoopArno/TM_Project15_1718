@@ -11,14 +11,14 @@ div.footerLogin {
 }
 .loginBox {
     position:absolute;
-    top:40%;
+    top:35%;
     left:50%;
     transform: translate(-50%, -50%);
     width:350px;
     min-height:200px;
     background-color: #fff;
     border-radius:10px;
-    padding: 40px;
+    padding: 30px;
     box-sizing:border-box;
     z-index:1;
     margin-bottom:200px;
