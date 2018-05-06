@@ -6,7 +6,7 @@
 ?>
 <div class="row">
     <h4 class="col-5">Dagonderdelen</h4>
-    <h4 class="col-7 text-right "><a href="TakenEnShiften_beheren" class="">Taken en shiften<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
+    <h4 class="col-7 text-right "><a href="<?php echo base_url() ?>/index.php/TakenEnShiften_beheren" class="">Taken en shiften<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
 </div>
 
 <div class="table-responsive">
@@ -71,7 +71,7 @@
         var combobox = "<select name='locatieId' class='form-control " + soortId + "Id" + id + "' size=1 form='" + soortId + "Form" + id + "'>";
 
         $.ajax({
-            url: "Dagonderdelen_beheren/getLocaties",
+            url: "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getLocaties",
             dataType: 'json',
             async : false,
             success: function (data) {
@@ -90,7 +90,7 @@
 
     function haalOptiesOp(dagonderdeelId){
         $.ajax({
-            url: "Dagonderdelen_beheren/haalAjaxOp_dagonderdeelDetails/" + dagonderdeelId,
+            url: "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/haalAjaxOp_dagonderdeelDetails/" + dagonderdeelId,
             success: function (data) {
                 $(".optieDetails").append(data);
             }

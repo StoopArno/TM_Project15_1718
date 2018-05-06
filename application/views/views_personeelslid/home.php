@@ -1,11 +1,7 @@
-<?php
-echo pasStylesheetAan('style.css');
-?>
-
 <div class="container">
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="col-12">
-            <h2>Welkom personeelslid</h2>
+            <h2>Welkom <?php echo $personeelslid->voornaam ?></h2>
         </div>
         <div class="col-12 ">
             <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium debitis eaque facilis in iusto
@@ -66,23 +62,5 @@ echo pasStylesheetAan('style.css');
 
         </div>
     </div>
-    <!--
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="form-group has-feedback">
-            <label class="control-label" for="date">Datum</label>
-            <input id="datepicker" width="276" name="date" placeholder="dd-mm-yyyy"/>
-        </div>
-
-
-        <script>
-            $(document).ready(function () {
-                $('#datepicker').datepicker({
-                    uiLibrary: 'bootstrap4',
-                    format: 'dd-mm-yyyy',
-                    language: 'nl'
-                });
-            });
-        </script>
-        -->
 </div>
 </div>

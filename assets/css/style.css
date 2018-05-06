@@ -289,10 +289,29 @@ a.list-group-item.list-group-item-action.active {
     margin-top: 10px;
 }
 
+.optieMiddleInschrijfItem{
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+}
 
-.inschrijfitem{
-    margin-top: 20px;
-    margin-bottom: 20px;
+.optieLastInschrijfItem{
+    border: none;
+}
+
+P.optieInschrijfItem{
+    margin: 0; !important;
+    padding: 0; !important;
+}
+
+.optieInschrijfItem label{
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.optieRow td{
+    margin-right: 5px; !important;
+    margin-left: 5px; !important;
 }
 
 img.user {

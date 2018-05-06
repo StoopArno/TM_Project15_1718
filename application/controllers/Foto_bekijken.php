@@ -7,6 +7,10 @@ class Foto_bekijken extends CI_Controller
         parent::__construct();
     }
 
+    /**
+     * Toont een overzicht van alle foto's van het laatste jaar.
+     * Met de mogelijkheid om andere jaren te selecteren.
+     */
     public function index(){
         $data["titel"] = "Foto's bekijken";
         $data["verantwoordelijke"] = "Arno Stoop";

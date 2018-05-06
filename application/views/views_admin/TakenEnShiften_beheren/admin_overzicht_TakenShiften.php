@@ -16,7 +16,7 @@
 
 <div class="row">
     <h4 class="col-5">Taken en shiften</h4>
-    <h4 class="col-7 text-right "><a href="Dagonderdelen_beheren" class="">Dagonderdelen<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
+    <h4 class="col-7 text-right "><a href="<?php echo base_url() ?>/index.php/Dagonderdelen_beheren" class="">Dagonderdelen<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
 </div>
 
 <div class="table-responsive">
@@ -81,7 +81,7 @@
     function getComboBoxDagonderdelen(taakId){
         var combobox = "<select name='dagonderdeelId' class='form-control taakId'" + taakId + " size=1 form='taakForm'" + taakId + ">"
         $.ajax({
-            url : "Dagonderdelen_beheren/getDagonderdelenLocatieNotNull",
+            url : "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getDagonderdelenLocatieNotNull",
             dataType: 'json',
             async: false,
             success: function(data){
@@ -97,7 +97,7 @@
     function getComboBoxOpties(taakId){
         var combobox = "<select name='optieId' class='form-control taakId" + taakId + "' size=1 form='taakForm" + taakId + "'>"
         $.ajax({
-            url : "Dagonderdelen_beheren/getOptiesWithTaken",
+            url : "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getOptiesWithTaken",
             dataType: 'json',
             async: false,
             success: function(data){
@@ -117,7 +117,7 @@
     function haalShiftenOp(taakId){
         var retValue = "";
         $.ajax({
-            url:"TakenEnShiften_beheren/haalAjaxOp_TaakDetails/" + taakId,
+            url:"<?php echo base_url() ?>/index.php/TakenEnShiften_beheren/haalAjaxOp_TaakDetails/" + taakId,
             async : false,
             success: function( data ){
                 retValue = data;

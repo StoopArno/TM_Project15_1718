@@ -7,6 +7,16 @@ class Persoon_model extends CI_Model
         parent::__construct();
     }
 
+    /**
+     * Ophalen bepaalde persoon adhv hashcode.
+     * @param $hashcode
+     * @return mixed|null de persson die bij de hashcode hoort of null als de hashcode niet bestaat.
+     */
+    function getPersoonWhereHashcode($hashcode){
+        $this->db->where('hashcode', $hashcode);
+        $query = $this->db->get('persoon');
+        return $query->row();
+    }
 
     function get($id) {
         $this->db->where('id', $id);

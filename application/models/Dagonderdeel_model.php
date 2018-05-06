@@ -48,7 +48,7 @@ class Dagonderdeel_model extends CI_Model
     /**
      * Ophalen alle dagonderdelen van een bepaald personeelsfeest.
      * @param $personeelsfeestid
-     * @return mixed
+     * @return mixed array van dagonderdelen.
      */
     function getAllWherePfid($personeelsfeestid){
         $this->db->where("personeelsfeestId", $personeelsfeestid);
@@ -58,6 +58,26 @@ class Dagonderdeel_model extends CI_Model
         foreach($dagonderdelen as $dagonderdeel){
             $dagonderdeel->begintijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->begintijd);
             $dagonderdeel->eindtijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->eindtijd);
+        }
+
+        return $dagonderdelen;
+    }
+
+    /**
+     * Ophalen alle dagonderdelen van een bepaald personeelsfeest met bijhorende opties.
+     * @param $personeelsfeestid
+     * @return mixed array van dagonderdelen.
+     */
+    function getAllWherePfidWithOpties($personeelsfeestid){
+        $this->db->where("personeelsfeestId", $personeelsfeestid);
+        $query = $this->db->get("dagonderdeel");
+
+        $this->load->model("optie_model");
+        $dagonderdelen = $query->result();
+        foreach($dagonderdelen as $dagonderdeel){
+            $dagonderdeel->begintijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->begintijd);
+            $dagonderdeel->eindtijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->eindtijd);
+            $dagonderdeel->opties = $this->optie_model->getAllWhereDagonderdeelid($dagonderdeel->id);
         }
 
         return $dagonderdelen;

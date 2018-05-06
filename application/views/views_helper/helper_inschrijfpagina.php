@@ -1,4 +1,3 @@
-
 <script>
     $('.js-pscroll').each(function(){
         var ps = new PerfectScrollbar(this);
