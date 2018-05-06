@@ -307,6 +307,18 @@ P.optieInschrijfItem{
 .optieInschrijfItem label{
     font-size: 20px;
     font-weight: normal;
+    margin: auto; !important;
+}
+
+.optieOnlyInschrijfItem{
+    position: absolute; !important;
+    top: 50%; !important;
+    transform: translateY(-50%); !important;
+}
+
+.cellOpties{
+    position: relative;
+    height: 100%;
 }
 
 .optieRow td{

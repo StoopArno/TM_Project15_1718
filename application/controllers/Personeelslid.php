@@ -20,7 +20,7 @@ class Personeelslid extends CI_Controller
 
         $persoon = $this->bepaalGebruiker($hashcode);
         if($persoon != null){
-            $this->session->set_userdata("personeeelslid", $persoon);
+            $this->session->set_userdata("personeelslid", $persoon);
             $data["personeelslid"] = $persoon;
 
             $partials = array('hoofding' => 'views_personeelslid/personeelslid_navbar',
