@@ -10,7 +10,7 @@
         </li>
 
         <li>
-            <?php echo anchor('Inschrijven_personeelslid', '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp; Inschrijven'); ?>
+            <?php echo anchor('Inschrijven_personeelslid', '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> &nbsp; Inschrijven'); ?>
         </li>
 
         <li>

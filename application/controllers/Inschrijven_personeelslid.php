@@ -29,8 +29,6 @@ class Inschrijven_personeelslid extends CI_Controller
             $partials['content'] = 'views_personeelslid/personeelslid_inschrijven';
             $personeelslid = $this->session->userdata('personeelslid');
 
-
-
             $this->load->model("personeelsfeest_model");
             $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
             $this->load->model("dagonderdeel_model");
@@ -77,7 +75,6 @@ class Inschrijven_personeelslid extends CI_Controller
                 $opmerking = $this->input->post('opmerking');
             }
             $dagonderdeelKey = $this->input->post('dagonderdeelKey');
-            //echo $dagonderdeelKey; exit;
             $optieid = $this->input->post($dagonderdeelKey);
             $inschrijvingId = $this->input->post('inschrijvingId');
             $this->load->model('inschrijving_model');

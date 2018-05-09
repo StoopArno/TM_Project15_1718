@@ -5,7 +5,10 @@
             <th scope="col" class="">Dagonderdeel</th>
             <th scope="col" class="">Uur</th>
             <th scope="col" class="">Opties</th>
-            <th scope="col" class="">Commentaar</th>
+            <th scope="col" class="">
+                Commentaar
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Hier kan je opmerkingen meegeven die de organisator zou moeten weten. Bijvoorbeeld allergieën en eventuele beperkingen?"></i>
+            </th>
             <th scope="col" class="">Inschrijven</th>
         </tr>
         </thead>
@@ -34,7 +37,8 @@
                             echo form_close();
                             ?>
                         </td>
-                        <td class="align-middle"><?php echo date_format($dagonderdeel->begintijd, "H:m") ?> -> <?php echo date_format($dagonderdeel->eindtijd, "H:m") ?></td>
+                        <td class="align-middle"><?php echo date_format($dagonderdeel->begintijd, "H:m") ?>
+                            <i class="fa fa-arrow-right"></i> <?php echo date_format($dagonderdeel->eindtijd, "H:m") ?></td>
                         <td class="align-middle row opties<?php echo $formnaam ?>">
                             <?php foreach($dagonderdeel->opties as $optie){
                                 $teller++;
@@ -46,9 +50,21 @@
                                         <p class="optieMiddleInschrijfItem optieInschrijfItem row col-12">
                                     <?php } ?>
 
-                                    <?php //Name komt overeen met de dagonderdeelKey die in een hidden veld staat.
-                                        echo form_radio(array("name" => "dagonderdeelKey" . $dagonderdeel->id, "id" => "optie" . $optie->id, "class" => "col-2", "form" => $formnaam), $optie->id) ?>
-                                    <?php echo form_label(ucfirst($optie->optie), "optie" . $optie->id, array("class" => "col-10 text-left")) ?>
+                                    <?php
+                                    $attributenRadio = null;
+                                    $attributenRadio["name"] = "dagonderdeelKey" . $dagonderdeel->id;
+                                    $attributenRadio["id"] = "optie" . $optie->id;
+                                    $attributenRadio["class"] = "col-2";
+                                    $attributenRadio["form"] = $formnaam;
+                                    //Bepalen of er nog ingeschreven kan worden adhv aantal inschrijvingen.
+                                    //Name komt overeen met de dagonderdeelKey die in een hidden veld staat.
+                                    if($optie->aantalInschrijvingen >= $optie->maxAantalInschrijvingen){
+                                        $attributenRadio["disabled"] = "true";
+                                    }
+                                     echo form_radio($attributenRadio, $optie->id);
+
+                                     echo form_label(ucfirst($optie->optie), "optie" . $optie->id, array("class" => "col-8 text-left")) ?>
+                                    <span class="col-2"><?php echo $optie->aantalInschrijvingen . "/" . $optie->maxAantalInschrijvingen ?></span>
                                     </p>
                                 <?php } ?>
                             <?php } ?>
@@ -91,19 +107,26 @@
                                     <?php } ?>
 
                                     <?php //Name komt overeen met de dagonderdeelKey die in een hidden veld staat.
+                                    $attributenRadio = null;
+                                    $attributenRadio["name"] = "dagonderdeelKey" . $dagonderdeel->id;
+                                    $attributenRadio["id"] = "optie" . $optie->id;
+                                    $attributenRadio["class"] = "col-2";
+                                    $attributenRadio["form"] = $formnaam;
                                     if($optie->id == $dagonderdeel->inschrijving->optieid){
-                                        echo form_radio(array("name" => "dagonderdeelKey" . $dagonderdeel->id, "id" => "optie" . $optie->id, "class" => "col-2", "form" => $formnaam, "checked" => "true"), $optie->id);
-                                    } else{
-                                        echo form_radio(array("name" => "dagonderdeelKey" . $dagonderdeel->id, "id" => "optie" . $optie->id, "class" => "col-2", "form" => $formnaam), $optie->id);
+                                        $attributenRadio["checked"] = "true";
                                     }
-                                    echo form_label(ucfirst($optie->optie), "optie" . $optie->id, array("class" => "col-10 text-left")); ?>
+                                    if($optie->aantalInschrijvingen >= $optie->maxAantalInschrijvingen){
+                                        $attributenRadio["disabled"] = "true";
+                                    }
+                                    echo form_radio($attributenRadio, $optie->id);
+                                    echo form_label(ucfirst($optie->optie), "optie" . $optie->id, array("class" => "col-8 text-left")); ?>
+                                    <span class="col-2"><?php echo $optie->aantalInschrijvingen . "/" . $optie->maxAantalInschrijvingen ?></span>
                                     </p>
                                 <?php } ?>
                             <?php } ?>
                         </td>
                         <?php $rows = 3;
-                        if($opties > 3){$rows = $opties;}
-                                ?>
+                        if($opties > 3){$rows = $opties;}?>
                         <td class="align-middle"><?php echo form_textarea(array("rows" => $rows, "form" => $formnaam, "class" => "form-control", "name" => "opmerking", "value" => $dagonderdeel->inschrijving->opmerking)) ?></td>
                         <td class="align-middle">
                             <p><?php echo form_submit("", "Inschrijving wijzigen", array("class" => "btn btn-primary ", "form" => $formnaam)) ?></p>
@@ -141,5 +164,7 @@
                 window.location = "<?php echo base_url() ?>index.php/Inschrijven_personeelslid/uitschrijven/" + dagonderdeel;
             }
         })
+
+        $('[data-toggle="tooltip"]').tooltip();
     })
 </script>

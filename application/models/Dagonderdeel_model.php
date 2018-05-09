@@ -84,6 +84,7 @@ class Dagonderdeel_model extends CI_Model
 
             $dagonderdeel->heeftInschrijving = false;
             foreach($dagonderdeel->opties as $optie){
+                $optie->aantalInschrijvingen = $this->inschrijving_model->getAantalInschrijvingenPerOptie($optie->id);
                 $inschrijving = $this->inschrijving_model->getWherePersoonIdAndOptieId($persoonid, $optie->id);
                 if($inschrijving != null){
                     $dagonderdeel->heeftInschrijving = true;

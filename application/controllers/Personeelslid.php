@@ -34,7 +34,6 @@ class Personeelslid extends CI_Controller
 
     }
 
-
     /**
      * Bepaal de persoon adhv de hashcode. Toon een foutmelding als deze persoon geen personeelslid is.
      * Geeft het persoon object terug enkel als de persoon een personeelslid is.

@@ -86,6 +86,18 @@ class Inschrijving_model extends CI_Model
         return $inschrijvingen;
 
     }
+
+    /**
+     * Geeft het aantal inschrjvingen voor een bepaalde optie.
+     * @param $optieid
+     * @return int aantal inschrijvingen
+     */
+    function getAantalInschrijvingenPerOptie($optieid){
+        $this->db->where('optieid', $optieid);
+        $this->db->from('inschrijving');
+        return $this->db->count_all_results();
+    }
+
 function getAllByPersoonId($personeelslidid){
 
 }
