@@ -33,7 +33,7 @@
                             $formnaam = "dagonderdeelForm" . $dagonderdeel->id;
                             echo form_open("Inschrijven_personeelslid/inschrijven", array("method" => "post", "name" => $formnaam, "id" => $formnaam));
                             //Bepaalt welke key de radiobutton zal teruggeven in post
-                            echo form_hidden("dagonderdeelKey", $dagonderdeel->naam . $dagonderdeel->id);
+                            echo form_hidden("dagonderdeelKey", "dagonderdeelKey" . $dagonderdeel->id);
                             echo form_close();
                             ?>
                         </td>
