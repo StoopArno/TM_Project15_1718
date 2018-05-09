@@ -8,9 +8,12 @@
         $dagonderdeelDropdown[$dagonderdeel->id] = ucfirst($dagonderdeel->naam);
     }
     $optieDropdown = array();
-    //var_dump($optieDropdown);
-    foreach($opties as $optie){
-        $optieDropdown[$optie->id] = ucfirst($optie->optie . " - " . $optie->dagonderdeel);
+    if($opties != null){
+        foreach($opties as $optie){
+            $optieDropdown[$optie->id] = ucfirst($optie->optie . " - " . $optie->dagonderdeel);
+        }
+    } else{
+        $optieDropdown = null;
     }
 ?>
 
@@ -69,7 +72,7 @@
                     <?php } ?>
                 </td>
                 <td class="text-center"><i class="fa fa-edit fa-2x taakActie taakEdit" data-taakid="<?php echo $taak->id ?>"></i></td>
-                <td class="text-center"><a href="TakenEnShiften_beheren/taakVerwijderen/<?php echo $taak->id ?>"><i class="fa fa-trash fa-2x taakActie taakDelete text-dark"></i></a></td>
+                <td class="text-center"><a href="<?php echo base_url() ?>index.php/TakenEnShiften_beheren/taakVerwijderen/<?php echo $taak->id ?>"><i class="fa fa-trash fa-2x taakActie taakDelete text-dark"></i></a></td>
                 <td class="text-center"><i class="fa fa-list-ul fa-2x taakActie taakDetails text-dark" id="taakDetails<?php echo $taak->id ?>" data-taakid="<?php echo $taak->id ?>"></i></td>
             </tr>
         <?php } ?>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="col-12">
-            <h2>Welkom <?php echo $personeelslid->voornaam ?></h2>
+            <h2>Welkom <?php echo ucfirst($personeelslid->voornaam) ?></h2>
         </div>
         <div class="col-12 ">
             <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium debitis eaque facilis in iusto

@@ -36,13 +36,22 @@ class Aanmelden extends CI_Controller
 
     public function home() {
         if($this->authex->isAdmin()) {
-            $data['verantwoordelijke'] = 'Lindert Van de Poel';
-
+            $data['verantwoordelijke'] = 'Lindert Van de Poel & Arno Stoop';
             $data['titel'] ='Homepagina';
-
             $data['functionaliteit'] = "Geen functionaliteit. Dit is de homepagina.";
 
             $data['admin'] = $this->authex->getGebruikerInfo();
+
+            $this->load->model('personeelsfeest_model');
+            if($this->session->has_userdata('actiefPersoneelsfeest')){
+                $actiefPersoneelsfeest = $this->session->userdata('actiefPersoneelsfeest');
+            } else{
+                $actiefPersoneelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
+            }
+            $data["actiefPersoneelsfeest"] = $actiefPersoneelsfeest;
+
+            $feesten = $this->personeelsfeest_model->getAllOrderByDatum();
+            $data['feesten'] = $feesten;
 
             $partials = array('hoofding' => 'views_admin/admin_navbar',
                 'sidenav' => 'views_admin/admin_sidebar',
@@ -58,6 +67,14 @@ class Aanmelden extends CI_Controller
     public function meldAf() {
         $this->authex->meldAf();
         redirect(base_url());
+    }
+
+    public function VeranderPersoneeelsfeest(){
+        $pfId = $this->input->post('feestId');
+        $this->load->model('personeelsfeest_model');
+        $personeelsfeest = $this->personeelsfeest_model->get($pfId);
+        $this->session->set_userdata('actiefPersoneelsfeest', $personeelsfeest);
+        redirect(base_url() . "index.php/Aanmelden");
     }
 
 

@@ -1,5 +1,9 @@
 <?php
 echo pasStylesheetAan('style.css');
+$feestDropDown = array();
+foreach($feesten as $personeelsfeest){
+    $feestDropDown[$personeelsfeest->id] = "Jaar " . date_format($personeelsfeest->datum, "Y");
+}
 ?>
 
 <div class="container">
@@ -35,32 +39,23 @@ echo pasStylesheetAan('style.css');
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="col-12">
-            <h2>Dummy tekst</h2>
+            <h2>Actief personeelsfeest</h2>
         </div>
         <div class="col-12">
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi aut consectetur corporis culpa eaque
-                earum ex facere iure minus molestiae nostrum placeat repellendus, repudiandae tempora ullam unde
-                voluptate voluptatum?
+            <div>
+                Hier kunt u het personeelsfeest kiezen dat voor u, in uw sessie, actief is.
+                Dit verandert niets aan wat de helpers en personeelsleden te zien krijgen.
+                Zij krijgen nog steeds het laatste nieuwe personeelsfeest te zien met bijhorende dagonderdelen, opties, enz.
             </div>
-            <div>Ab accusamus adipisci, amet aperiam architecto aspernatur assumenda aut commodi dolore eaque earum eius
-                enim est hic, id illo incidunt magnam maxime, minus nesciunt nihil quos repellat velit veritatis vero!
+            <br>
+            <div>
+                <?php
+                    echo form_open(base_url() . "index.php/Aanmelden/VeranderPersoneeelsfeest", array("method" => 'post'));
+                    echo form_dropdown("feestId", $feestDropDown, array($actiefPersoneelsfeest->id), array("class" => "form-control", "size" => 1, "onchange" => "this.form.submit()"));
+                    echo form_close();
+                ?>
             </div>
-            <div>Consequuntur cupiditate dolore earum illo in iusto labore laudantium maiores maxime odio odit, optio
-                perferendis quas quasi sequi veritatis voluptas. Accusantium amet in ipsa, iusto nostrum officia porro
-                quas sit?
-            </div>
-            <div>Architecto aspernatur, consequatur corporis cum delectus deserunt ducimus eius eligendi est id illum
-                incidunt ipsa ipsum iste iusto, laboriosam natus placeat possimus provident, quae reprehenderit sequi
-                suscipit veniam vero voluptatem!
-            </div>
-            <div>Ab, accusantium amet beatae corporis cumque, dolore exercitationem itaque magni maxime quaerat quas
-                sequi temporibus totam veritatis vero! Animi dolorem explicabo quam sed vero. Commodi doloribus nobis
-                quae sint vitae!
-            </div>
-            <div>Ad alias aliquid consectetur consequuntur dolorum eius excepturi exercitationem harum hic, illo,
-                maiores modi mollitia natus nostrum nulla numquam obcaecati quae quaerat quam qui quidem repellendus
-                similique velit voluptas voluptates!
-            </div>
+
         </div>
         <div class="col-12 ">
 

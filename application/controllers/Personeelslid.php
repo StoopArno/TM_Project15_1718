@@ -18,7 +18,12 @@ class Personeelslid extends CI_Controller
         $data["verantwoordelijke"] = "Arno Stoop";
         $data["functionaliteit"] = "Geen functionaliteit, dit is de homepagina";
 
-        $persoon = $this->bepaalGebruiker($hashcode);
+        if($this->session->has_userdata("personeelslid")){
+            $persoon = $this->session->userdata('personeelslid');
+        } else{
+            $persoon = $this->bepaalGebruiker($hashcode);
+        }
+
         if($persoon != null){
             $this->session->set_userdata("personeelslid", $persoon);
             $data["personeelslid"] = $persoon;

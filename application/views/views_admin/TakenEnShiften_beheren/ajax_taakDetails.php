@@ -24,7 +24,7 @@
                     <td><?php echo form_input(array("type" => "time", "name" => "shiftBegin", "class" => "form-control shiftId" . $shift->id, "disabled" => "true", "form" => $shiftFormNaam), date_format($shift->beginuur, "H:i")); ?></td>
                     <td><?php echo form_input(array("type" => "time", "name" => "shiftEind", "class" => "form-control shiftId" . $shift->id, "disabled" => "true", "form" => $shiftFormNaam), date_format($shift->einduur, "H:i")); ?></td>
                     <td class="text-center"><i class="fa fa-edit fa-2x shiftActie shiftEdit" data-shiftid="<?php echo $shift->id ?>"></i></td>
-                    <td class="text-center"><a href="TakenEnShiften_beheren/shiftVerwijderen/<?php echo $shift->id ?>"><i class="fa fa-trash fa-2x shiftActie shiftDelete text-dark"></i></a></td>
+                    <td class="text-center"><a href="<?php echo base_url() ?>index.php/TakenEnShiften_beheren/shiftVerwijderen/<?php echo $shift->id ?>"><i class="fa fa-trash fa-2x shiftActie shiftDelete text-dark"></i></a></td>
                 </tr>
             <?php } ?>
         </tbody>

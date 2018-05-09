@@ -59,7 +59,7 @@
                         <i class="fa fa-edit fa-2x dagonderdeelActie optieEdit" data-optieid="<?php echo $optie->id ?>"></i>
                     </td>
                     <td class="text-center">
-                        <a href="Dagonderdelen_beheren/optieVerwijderen/<?php echo $optie->id ?>" class="text-dark"><i class="fa fa-trash fa-2x dagonderdeelActie optieDel" data-optieid="<?php echo $optie->id ?>"></i></a>
+                        <a href="<?php echo base_url() ?>index.php/Dagonderdelen_beheren/optieVerwijderen/<?php echo $optie->id ?>" class="text-dark"><i class="fa fa-trash fa-2x dagonderdeelActie optieDel" data-optieid="<?php echo $optie->id ?>"></i></a>
                     </td>
                 </tr>
             <?php } ?>

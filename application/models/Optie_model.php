@@ -61,19 +61,23 @@ class Optie_model extends CI_Model
      * Ophalen alle opties voor een array van dagonderdelen.
      * De naam van de dagonderdelen zelf wordt ook gereturned.
      * @param $dagonderdeelIds
-     * @return mixed
+     * @return mixed|null
      */
     function getAllWhereDagonderdeeidsWithDagonderdelen($dagonderdeelIds){
-        $this->db->where("dagonderdeelId", $dagonderdeelIds[0]);
-        for ($i = 1; $i < count($dagonderdeelIds); $i++) {
-            $this->db->or_where("dagonderdeelId", $dagonderdeelIds[$i]);
-        }
-        $this->db->order_by("dagonderdeelId", "asc");
-        $query = $this->db->get("optie");
-        $opties = $query->result();
-        $this->load->model("dagonderdeel_model");
-        foreach($opties as $optie){
-            $optie->dagonderdeel = $this->dagonderdeel_model->get($optie->dagonderdeelId)->naam;
+        if($dagonderdeelIds == null){
+            $opties = null;
+        } else{
+            $this->db->where("dagonderdeelId", $dagonderdeelIds[0]);
+            for ($i = 1; $i < count($dagonderdeelIds); $i++) {
+                $this->db->or_where("dagonderdeelId", $dagonderdeelIds[$i]);
+            }
+            $this->db->order_by("dagonderdeelId", "asc");
+            $query = $this->db->get("optie");
+            $opties = $query->result();
+            $this->load->model("dagonderdeel_model");
+            foreach($opties as $optie){
+                $optie->dagonderdeel = $this->dagonderdeel_model->get($optie->dagonderdeelId)->naam;
+            }
         }
 
         return $opties;

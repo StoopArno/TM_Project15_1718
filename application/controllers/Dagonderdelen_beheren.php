@@ -21,8 +21,12 @@ class Dagonderdelen_beheren extends CI_Controller
         $data['functionaliteit'] = "Dagonderdelen beheren. Hier kan je als organisator nieuwe dagonderdelen toevoegen,
         oude verwijderen of aanpassen en hun bijhorende taken te zien krijgen";
 
-        $this->load->model("personeelsfeest_model");
-        $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
+        if($this->session->has_userdata('actiefPersoneelsfeest')){
+            $personeelsfeest = $this->session->userdata("actiefPersoneelsfeest");
+        } else{
+            $this->load->model("personeelsfeest_model");
+            $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
+        }
 
         $this->load->model("dagonderdeel_model");
         $dagonderdelen = $this->dagonderdeel_model->getAllWherePfidWithLocaties($personeelsfeest->id);
@@ -84,8 +88,14 @@ class Dagonderdelen_beheren extends CI_Controller
     public function dagonderdeelToevoegen(){
         $dagonderdeel = $this->newDagonderdeel();
 
-        $this->load->model("personeelsfeest_model");
-        $dagonderdeel->personeelsfeestId = $this->personeelsfeest_model->getLastPersoneelsfeest()->id;
+        if($this->session->has_userdata('actiefPersoneelsfeest')){
+            $personeelsfeest = $this->session->userdata("actiefPersoneelsfeest");
+        } else{
+            $this->load->model("personeelsfeest_model");
+            $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
+        }
+
+        $dagonderdeel->personeelsfeestId = $personeelsfeest->id;
 
         $this->load->model("dagonderdeel_model");
         $this->dagonderdeel_model->insert($dagonderdeel);
@@ -242,8 +252,13 @@ class Dagonderdelen_beheren extends CI_Controller
      * Toont een JSON object met alle dagonderdelen van een bepaald personeelsfeest en waarvan de locatie niet null is.
      */
     public function getDagonderdelenLocatieNotNull(){
-        $this->load->model("personeelsfeest_model");
-        $pfId = $this->personeelsfeest_model->getLastPersoneelsfeest()->id;
+        if($this->session->has_userdata('actiefPersoneelsfeest')){
+            $personeelsfeest = $this->session->userdata("actiefPersoneelsfeest");
+        } else{
+            $this->load->model("personeelsfeest_model");
+            $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
+        }
+        $pfId = $personeelsfeest->id;
         $this->load->model("dagonderdeel_model");
         $dagonderdelen = $this->dagonderdeel_model->getAllWherePfIdAndLocatieIdIsNotNull($pfId);
 
@@ -255,8 +270,13 @@ class Dagonderdelen_beheren extends CI_Controller
      * De namen van de bijhorende dagonderdelen worden ook weergegeven.
      */
     public function getOptiesWithTaken(){
-        $this->load->model("personeelsfeest_model");
-        $pfId = $this->personeelsfeest_model->getLastPersoneelsfeest()->id;
+        if($this->session->has_userdata('actiefPersoneelsfeest')){
+            $personeelsfeest = $this->session->userdata("actiefPersoneelsfeest");
+        } else{
+            $this->load->model("personeelsfeest_model");
+            $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
+        }
+        $pfId = $personeelsfeest->id;
 
         $this->load->model("dagonderdeel_model");
         $dagonderdelen = $this->dagonderdeel_model->getAllWherePfIdAndLocatieIdIsNull($pfId);

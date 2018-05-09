@@ -55,7 +55,7 @@
 
                 </td>
                 <td class="text-center"><i class="fa fa-edit fa-2x dagonderdeelActie dagonderdeelEdit" data-onderdeelid="<?php echo $dagonderdeel->id ?>"></i></td>
-                <td class="text-center"><a href="Dagonderdelen_beheren/dagonderdeelVerwijderen/<?php echo $dagonderdeel->id ?>"><i class="fa fa-trash fa-2x dagonderdeelActie dagonderdeelDelete text-dark"></i></a></td>
+                <td class="text-center"><a href="<?php echo base_url() ?>index.php/Dagonderdelen_beheren/dagonderdeelVerwijderen/<?php echo $dagonderdeel->id ?>"><i class="fa fa-trash fa-2x dagonderdeelActie dagonderdeelDelete text-dark"></i></a></td>
                 <td class="text-center"><i class="fa fa-list-ul fa-2x dagonderdeelActie dagonderdeelDetails text-dark" id="dagonderdeelDetails<?php echo $dagonderdeel->id ?>" data-onderdeelid="<?php echo $dagonderdeel->id ?>"></i></td>
             </tr>
 
