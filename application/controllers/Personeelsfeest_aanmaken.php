@@ -46,4 +46,5 @@ class Personeelsfeest_aanmaken extends CI_Controller
         $this->personeelsfeest_model->delete($id);
         redirect('personeelsfeest_aanmaken/index');
     }
+
 }
