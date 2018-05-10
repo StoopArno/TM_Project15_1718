@@ -46,6 +46,10 @@ table thead th {
     background-color: #d13f38 !important;
 }
 
+.btn.btn-secondary {
+    background-color: pink !important;
+}
+
 div.modal.fade#helperDialog {
   margin: auto auto;
 }

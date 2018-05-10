@@ -100,5 +100,12 @@ function getAllWhereTaakidWithInschrijvingen($taakid){
 
 }
 
+function getAllShiftenByPersoonId($persoonId) {
+        $this->db->where('persoonid', $persoonId);
+        $query = $this->db->get('shiftinschrijving');
+        return $query->result();
+
+}
+
 
 }

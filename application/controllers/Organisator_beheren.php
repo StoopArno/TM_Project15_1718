@@ -45,9 +45,12 @@ class Organisator_beheren extends CI_Controller
         redirect('organisator_beheren/organisatorToevoegen');
     }
 
-    public function verwijderOrganisator($id) {
+    public function verwijderOrganisator() {
+        $id = $this->input->get('id');
         $this->load->model('persoon_model');
         $this->persoon_model->verwijder($id);
-        $this->organisatorToevoegen();
+        $data['admins'] = $this->persoon_model->getAllAdmin();
+        $this->load->view('views_admin/organisator_ajax', $data);
+
     }
 }

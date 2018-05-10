@@ -8,59 +8,85 @@ echo pasStylesheetAan('style.css');
             <h2>Welkom <?php echo $admin->voornaam; ?></h2>
         </div>
         <div class="col-12 ">
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium debitis eaque facilis in iusto
-                laudantium magni mollitia, nam officia pariatur quisquam reiciendis ut vero? Aliquid facilis magni
-                minima porro sapiente.
+            <div>
+                Welkom! Deze applicatie laat je toe om jaarlijks het personeelsfeest van Thomas More in goede banen te leiden.
             </div>
-            <div>Autem dicta hic illo perferendis rem sed vero? Dolorum ea itaque laborum quod voluptas! Ducimus, fuga
-                impedit ipsa ipsum iusto libero nihil non nostrum, nulla possimus vel veniam voluptates voluptatum!
+            <div>
+                Navigeer a.d.h.v. van het menu of door de snelkoppelingen op de homepagina.
             </div>
-            <div>Architecto delectus ducimus, exercitationem, impedit iure nam neque numquam officia quasi quia ratione
-                sint vero. Aliquam aut blanditiis est explicabo ipsum nemo nihil nobis repellat soluta tempore?
-                Laudantium, quasi, tenetur.
-            </div>
-            <div>Ea eos est eum expedita explicabo facilis id impedit iure mollitia nisi possimus provident quae quaerat
-                quis quisquam, recusandae reprehenderit saepe tenetur ut, voluptates! Ad autem eveniet odit provident
-                voluptas.
-            </div>
-            <div>Accusamus amet asperiores assumenda atque autem, beatae culpa dolor, explicabo id ipsa itaque labore
-                maiores obcaecati officia possimus praesentium repudiandae vero! Cumque error ex harum iste modi
-                molestias mollitia similique?
-            </div>
-            <div>Et excepturi iure laboriosam magnam provident vero. A alias assumenda at debitis eligendi ipsum
-                molestias, officiis quis quisquam vel. Cupiditate eaque eius expedita ipsum, magnam maxime perferendis
-                possimus quasi tempore.
-            </div>
+            <br>
+            <p>
+                <strong>Personeelsfeest aanmaken:</strong> Hier maak je een nieuw personeelsfeest aan.
+            </p>
+            <p>
+                <strong>Organisatoren beheren:</strong> Hier kan je andere organisatoren toevoegen aan de applicatie.
+            </p>
+            <p>
+                <strong>Helpers &amp; personeelsleden:</strong> Hier kan je helpers en organisatoren toevoegen die een email zullen ontvangen.
+            </p>
+            <p>
+                <strong>Teksten aanpassen:</strong> Hier kan je de teksten aanpassen die de helpers en organisatoren te zien krijgen.
+            </p>
+            <p>
+                <strong>Dagonderdelen beheren:</strong> Hier kan je de verschillende dagonderdelen instellen en zo het personeelsfeest samenstellen.
+            </p>
+            <p>
+                <strong>Taken en shiften beheren:</strong> Hier kan je de shiften indelen zodat er een vlotte werken is tijdens het personeelsfeest.
+            </p>
+            <p>
+                <strong>Inschrijvingen beheren:</strong> Hier kan je zien wie er van de personeelsleden &amp; helpers ingeschreven is. Hier kan je ook altijd wijzigingen aanbrengen.
+            </p>
+            <p>
+                <strong>Foto's beheren:</strong> Hier kan je foto's toevoegen en verwijderen van personeelsfeesten.
+            </p>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="col-12">
-            <h2>Dummy tekst</h2>
+            <h2>Navigatie homepagina</h2>
         </div>
         <div class="col-12">
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi aut consectetur corporis culpa eaque
-                earum ex facere iure minus molestiae nostrum placeat repellendus, repudiandae tempora ullam unde
-                voluptate voluptatum?
-            </div>
-            <div>Ab accusamus adipisci, amet aperiam architecto aspernatur assumenda aut commodi dolore eaque earum eius
-                enim est hic, id illo incidunt magnam maxime, minus nesciunt nihil quos repellat velit veritatis vero!
-            </div>
-            <div>Consequuntur cupiditate dolore earum illo in iusto labore laudantium maiores maxime odio odit, optio
-                perferendis quas quasi sequi veritatis voluptas. Accusantium amet in ipsa, iusto nostrum officia porro
-                quas sit?
-            </div>
-            <div>Architecto aspernatur, consequatur corporis cum delectus deserunt ducimus eius eligendi est id illum
-                incidunt ipsa ipsum iste iusto, laboriosam natus placeat possimus provident, quae reprehenderit sequi
-                suscipit veniam vero voluptatem!
-            </div>
-            <div>Ab, accusantium amet beatae corporis cumque, dolore exercitationem itaque magni maxime quaerat quas
-                sequi temporibus totam veritatis vero! Animi dolorem explicabo quam sed vero. Commodi doloribus nobis
-                quae sint vitae!
-            </div>
-            <div>Ad alias aliquid consectetur consequuntur dolorum eius excepturi exercitationem harum hic, illo,
-                maiores modi mollitia natus nostrum nulla numquam obcaecati quae quaerat quam qui quidem repellendus
-                similique velit voluptas voluptates!
-            </div>
+
+               <p class="btn btn-primary">
+                   <?php echo anchor('aanmelden/home', '<span class="glyphicon glyphicon-home" aria-hidden="true"></span> &nbsp; Home'); ?>
+               </p>
+               <p class="btn btn-primary">
+
+                   <?php echo anchor('personeelsfeest_aanmaken/index', '<span class="	glyphicon glyphicon-gift" aria-hidden="true"></span> &nbsp; Personeelsfeest aanmaken'); ?>
+               </p>
+
+               <p class="btn btn-primary">
+                   <?php echo anchor('organisator_beheren/organisatorToevoegen', '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp; Organisatoren beheren'); ?>
+               </p>
+               <p class="btn btn-primary">
+
+                   <?php echo anchor('helpers_personeelsleden_toevoegen/index', '<span class="	glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp; Helpers & Personeelsleden'); ?>
+               </p>
+               <p class="btn btn-primary">
+                   <?php echo anchor('teksten_aanpassen/index', '<span class="glyphicon glyphicon-font" aria-hidden="true"></span> &nbsp; Teksten aanpassen'); ?>
+               </p>
+
+               <p class="btn btn-primary">
+                   <?php echo anchor('Dagonderdelen_beheren/index', '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> &nbsp; Dagonderdelen beheren'); ?>
+               </p>
+
+               <p class="btn btn-primary">
+                   <?php echo anchor('TakenEnShiften_beheren/index', '<span class="glyphicon glyphicon-time" aria-hidden="true"></span> &nbsp; Taken en shiften beheren'); ?>
+               </p>
+
+               <p class="btn btn-primary">
+
+                   <?php echo anchor('Overzicht_helpers_personeelsleden/index', '<span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span> &nbsp; Inschrijvingen beheren'); ?>
+               </p>
+               <p class="btn btn-primary">
+
+                   <?php echo anchor('Foto_Beheren', '<span class="	glyphicon glyphicon-picture" aria-hidden="true"></span> &nbsp; Foto\'s beheren'); ?>
+               </p>
+
+               <p class="btn btn-primary">
+                   <?php echo anchor('aanmelden/meldAf', '<span class="glyphicon glyphicon-off" aria-hidden="true"></span> &nbsp; Afmelden'); ?>
+               </p>
+
         </div>
         <div class="col-12 ">
 

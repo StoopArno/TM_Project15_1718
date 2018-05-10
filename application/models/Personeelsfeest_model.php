@@ -60,5 +60,10 @@ class Personeelsfeest_model extends CI_Model
         $this->db->delete('personeelsfeest');
     }
 
+    function wijzig($id, $date) {
+        $data = array('datum' => $date);
+        $this->db->where('id', $id);
+        $this->db->update('personeelsfeest', $data);
+    }
 
 }

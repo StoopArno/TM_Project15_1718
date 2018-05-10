@@ -1,4 +1,4 @@
-git <?php
+<?php
 
 class Inschrijven_helper extends CI_Controller
 {
@@ -169,7 +169,7 @@ class Inschrijven_helper extends CI_Controller
 
         $data['titel'] = "Foto's voorbije personeelsfeesten";
         $data['verantwoordelijke'] = 'Lindert Van de Poel';
-        $data['functionaliteit'] = "Haal leuke herinneringen op en bekijk enkele foto's van voorbije jaren.";
+        $data['functionaliteit'] = "Gallerij bekijken. Haal leuke herinneringen op en bekijk enkele foto's van voorbije jaren.";
 
         $partials = array('hoofding' => 'views_helper/helper_navbar',
             'content' => 'views_helper/helper_fotos_raadplegen',
