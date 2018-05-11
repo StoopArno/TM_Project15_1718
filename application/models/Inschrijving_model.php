@@ -86,9 +86,13 @@ class Inschrijving_model extends CI_Model
         return $inschrijvingen;
 
     }
-function getAllByPersoonId($personeelslidid){
 
-}
+
+    /**
+     * Schrijft een persoon in voor een bepaalde optie.
+     * @param $persoonid
+     * @param $optieid
+     */
 function schrijfIn($persoonid,$optieid){
     $inschrijving = new stdClass();
     $inschrijving->persoonid = $persoonid;
