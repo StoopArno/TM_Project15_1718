@@ -28,7 +28,7 @@ class Personeelslid extends CI_Controller
                 'footer' => 'main_footer'
             );
 
-            $this->template->load('main_master', $partials, $data);
+            $this->template->load('main_master_personeelslid', $partials, $data);
         }
 
     }
@@ -86,6 +86,6 @@ class Personeelslid extends CI_Controller
             'content' => $viewpad,
             'footer' => 'main_footer'
         );
-        $this->template->load('main_master', $partials, $data);
+        $this->template->load('main_master_personeelslid', $partials, $data);
     }
 }

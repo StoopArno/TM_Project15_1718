@@ -37,7 +37,7 @@ class Inschrijven_personeelslid extends CI_Controller
             $data["dagonderdelen"] = $dagonderdelen;
         }
 
-        $this->template->load('main_master', $partials, $data);
+        $this->template->load('main_master_personeelslid', $partials, $data);
     }
 
     /**

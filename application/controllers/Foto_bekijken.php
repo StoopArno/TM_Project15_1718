@@ -23,11 +23,10 @@ class Foto_bekijken extends CI_Controller
 
         $partials = array('hoofding' => 'views_personeelslid/personeelslid_navbar',
             'content' => 'views_personeelslid/foto_bekijken/fotos_bekijken',
-            'sidenav' => 'views_personeelslid/personeelslid_sidebar',
             'footer' => 'main_footer'
         );
 
-        $this->template->load('main_master', $partials, $data);
+        $this->template->load('main_master_personeelslid', $partials, $data);
     }
 
     /**
