@@ -26,6 +26,7 @@
     <?php echo haalJavascriptOp("bootstrap.js"); ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <?php echo pasStylesheetAan("style.css"); ?>
+    <?php echo pasStylesheetAan("personeelslid.css"); ?>
 
     <script type="text/javascript">
         var site_url = '<?php echo site_url(); ?>';
@@ -42,10 +43,7 @@
 </div>
 
 <div class="eigenContent">
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <?php echo $sidenav; ?>
-    </div>
+
     <div class="col-12">
         <div id="page-content-wrapper">
             <div class="pagina">
@@ -57,6 +55,7 @@
 
 
 <?php echo $footer; ?>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

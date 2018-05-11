@@ -25,7 +25,6 @@ class Personeelslid extends CI_Controller
 
             $partials = array('hoofding' => 'views_personeelslid/personeelslid_navbar',
                 'content' => 'views_personeelslid/home',
-                'sidenav' => 'views_personeelslid/personeelslid_sidebar',
                 'footer' => 'main_footer'
             );
 
@@ -85,7 +84,6 @@ class Personeelslid extends CI_Controller
 
         $partials = array('hoofding' => 'views_personeelslid/personeelslid_navbar',
             'content' => $viewpad,
-            'sidenav' => 'views_personeelslid/personeelslid_sidebar',
             'footer' => 'main_footer'
         );
         $this->template->load('main_master', $partials, $data);

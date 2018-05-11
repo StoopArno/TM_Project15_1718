@@ -17,7 +17,6 @@ class Inschrijven_personeelslid extends CI_Controller
 
         $partials = array('hoofding' => 'views_personeelslid/personeelslid_navbar',
             'content' => '',
-            'sidenav' => 'views_personeelslid/personeelslid_sidebar',
             'footer' => 'main_footer'
         );
 
@@ -106,7 +105,6 @@ class Inschrijven_personeelslid extends CI_Controller
         $data["functionaliteit"] = "Foutmelding!";
         $partials = array('hoofding' => 'views_personeelslid/personeelslid_navbar',
             'content' => 'views_personeelslid/foutpaginas/fout_general',
-            'sidenav' => 'views_personeelslid/personeelslid_sidebar',
             'footer' => 'main_footer'
         );
     }
