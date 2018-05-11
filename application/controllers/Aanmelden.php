@@ -9,6 +9,12 @@ class Aanmelden extends CI_Controller
 
     }
 
+
+    /**
+     * Kijkt na of je al aangemeld bent als administrator. Indien dit niet is dan stuurt deze functie
+     * je door naar de aanmeldpagina.
+     */
+
     public function index() {
         if(!$this->authex->isAdmin()){
             $data['titel'] = 'Admin - Login';
@@ -19,6 +25,10 @@ class Aanmelden extends CI_Controller
 
     }
 
+    /**
+     * Haalt de loginnaam en wachtwoord op, kijkt of dit overeenkomt met de admins in de database.
+     * Indien dit overeenkomt meldt hij aan, anders krijg je een error message.
+     */
     public function meldAan() {
 
         $login = $_POST['admin_login'];
@@ -34,6 +44,10 @@ class Aanmelden extends CI_Controller
         }
     }
 
+    /**
+     * Hier kom je terecht als je aangemeld bent.
+     * Dit is de homepagina van de administrators.
+     */
     public function home() {
         if($this->authex->isAdmin()) {
             $data['verantwoordelijke'] = 'Lindert Van de Poel';
@@ -55,6 +69,9 @@ class Aanmelden extends CI_Controller
         }
     }
 
+    /**
+     * Hier kun je mee afmelden
+     */
     public function meldAf() {
         $this->authex->meldAf();
         redirect(base_url());

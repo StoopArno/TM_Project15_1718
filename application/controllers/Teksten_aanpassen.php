@@ -17,6 +17,10 @@ class teksten_aanpassen extends CI_Controller
         }
     }
 
+    /**
+     * Deze functie brengt je naar de pagina om teksten aan te passen. Deze teksten zijn de teksten die de personeelsleden en helpers
+     * te zien krijgen als ze via de inschrijflink naar de applicatie gaan.
+     */
     public function index() {
         $data['verantwoordelijke'] = "Lindert Van de Poel";
         $data['titel'] = "Teksten aanpassen";
@@ -33,6 +37,10 @@ class teksten_aanpassen extends CI_Controller
         $this->template->load('main_master', $partials, $data);
     }
 
+    /**
+     * Deze functie past de tekst effectief aan in de database.
+     * @param $id
+     */
     public function pasTekstAan($id) {
         $omschrijving = $this->input->post($id);
 
