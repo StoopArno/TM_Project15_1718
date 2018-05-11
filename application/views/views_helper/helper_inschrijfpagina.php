@@ -11,7 +11,7 @@
     $(document).ready(function() {
         $('.klikHelpers').click(function() {
             haalHelpersOp($(this).attr('id'));
-            $('#helperDialoog').modal('show');
+            $('#helperDialoog').modal('toggle');
         });
     });
 

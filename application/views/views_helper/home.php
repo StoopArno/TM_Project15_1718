@@ -22,7 +22,7 @@ echo pasStylesheetAan('style.css');
             <?php echo anchor('inschrijven_helper/inschrijfPagina/' . $helper->hashcode, 'Inschrijven', 'class="btn btn-primary knop"'); ?>
         </div>
         <div class="col-12">
-            <h2>Ga naar de inschrijvingen</h2>
+            <h2>Ga naar de foto's</h2>
         </div>
         <div class="col-12 text-center">
             <?php echo anchor('inschrijven_helper/fotoPagina/' . $helper->hashcode, 'Voorbije jaren', 'class="btn btn-primary knop"') ?>

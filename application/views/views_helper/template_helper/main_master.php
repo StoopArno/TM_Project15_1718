@@ -18,7 +18,7 @@
     <?php echo pasStylesheetAan("bootstrap.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-grid.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
-    <?php echo pasStylesheetAan("style.css");
+    <?php
 
     echo pasStylesheetAan("helper.css");
 
