@@ -6,7 +6,6 @@
 
     <a class="text-white"> <?php echo $titel ?> </a>
     
-     <button type="button" class="butt">?</button>
 
 
 

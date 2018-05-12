@@ -7,6 +7,9 @@ class Helpers_personeelsleden_toevoegen extends CI_Controller
         parent::__construct();
     }
 
+    /**
+     * De pagina waar je helpers & personeelsleden kunt toevoegen.
+     */
     public function index()
     {
         $data['titel'] = "Helpers & personeelsleden toevoegen";
@@ -21,6 +24,10 @@ class Helpers_personeelsleden_toevoegen extends CI_Controller
         $this->template->load('main_master', $partials, $data);
     }
 
+    /**
+     * De functie om personeelsleden toe te voegen.
+     */
+
     public function personeelslidToevoegen() {
         $this->load->model('persoon_model');
         $naam = $this->input->post('familienaam');
@@ -32,6 +39,10 @@ class Helpers_personeelsleden_toevoegen extends CI_Controller
         redirect('helpers_personeelsleden_toevoegen/index');
     }
 
+    /**
+     * De functie om helpers toe te voegen.
+     */
+
     public function helperToevoegen() {
         $this->load->model('persoon_model');
         $naam = $this->input->post('familienaam');
@@ -42,6 +53,13 @@ class Helpers_personeelsleden_toevoegen extends CI_Controller
         $this->persoon_model->personeelslidToevoegen($naam, $voornaam, $email, $gsm, $hashcode);
         redirect('helpers_personeelsleden_toevoegen/index');
     }
+
+    /**
+     * Deze functie geeft een hashcode mee aan de controller (en later model).
+     * Hiermee weet de applicatie welke helper/organisator/personeelslid er aangemeld is.
+     * @param $len
+     * @return bool|string
+     */
 
     public function getHash($len) {
         return substr(md5(openssl_random_pseudo_bytes(20)), -$len);

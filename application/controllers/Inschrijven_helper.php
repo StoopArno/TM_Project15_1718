@@ -1,4 +1,4 @@
-git <?php
+<?php
 
 class Inschrijven_helper extends CI_Controller
 {
@@ -16,6 +16,9 @@ class Inschrijven_helper extends CI_Controller
      *  http://localhost:81/project15_1718/index.php/inschrijven_helper/schrijfIn/.../fe751ada57b4dc95db43d67fa430d7e8
      *  Helper 1
      */
+    /** Deze functie brengt je naar de homepagina van de inschrijfkant van de helpers.
+     * @param $hashcode
+     */
 
     public function index($hashcode) {
          $helper = $this->getPersoon($hashcode);
@@ -31,6 +34,12 @@ class Inschrijven_helper extends CI_Controller
             'footer' => 'views_helper/template_helper/main_footer');
         $this->template->load('views_helper/template_helper/main_master', $partials, $data);
     }
+
+    /**
+     * Deze functie brengt je naar de effectieve inschrijfpagina.
+     * Hier kan een helper zich inschrijven voor verschillende activiteiten en shiften.
+     * @param $hashcode
+     */
 
     public function inschrijfPagina($hashcode) {
 
@@ -76,6 +85,11 @@ class Inschrijven_helper extends CI_Controller
         $this->template->load('views_helper/template_helper/main_master', $partials, $data);
     }
 
+    /**
+     * Deze functie schrijft de helper effectief in op een bepaalde shift.
+     * @param $shiftId
+     * @param $hashcode
+     */
     public function schrijfIn($shiftId, $hashcode) {
         $this->load->model('shift_model');
         $this->load->model('shiftinschrijving_model');
@@ -99,6 +113,11 @@ class Inschrijven_helper extends CI_Controller
         redirect('inschrijven_helper/inschrijfPagina/' . $hashcode);
     }
 
+    /**
+     * Deze functie laat toe de helper zich steeds terug uit te schrijven.
+     * @param $shiftId
+     * @param $hashcode
+     */
     public function schrijfUit($shiftId, $hashcode) {
         $this->load->model('shift_model');
         $shift = $this->shift_model->get($shiftId);
@@ -115,11 +134,20 @@ class Inschrijven_helper extends CI_Controller
         redirect('inschrijven_helper/inschrijfPagina/' . $hashcode);
     }
 
+    /**
+     * Deze functie haalt de helper op doormiddel van de hashcode. Zo weet de applicatie over wie het gaat.
+     * @param $hashcode
+     * @return mixed
+     */
     public function getPersoon($hashcode) {
         $this->load->model('persoon_model');
         return $this->persoon_model->getPersoon($hashcode);
     }
 
+    /**
+     * Deze functie haalt alle helpers op per shift.
+     * Zo kan de helper zien wie wanneer is ingeschreven.
+     */
     public function haalHelpersOp() {
 
         $shiftId = $this->input->get('shiftId');
@@ -169,7 +197,7 @@ class Inschrijven_helper extends CI_Controller
 
         $data['titel'] = "Foto's voorbije personeelsfeesten";
         $data['verantwoordelijke'] = 'Lindert Van de Poel';
-        $data['functionaliteit'] = "Haal leuke herinneringen op en bekijk enkele foto's van voorbije jaren.";
+        $data['functionaliteit'] = "Gallerij bekijken. Haal leuke herinneringen op en bekijk enkele foto's van voorbije jaren.";
 
         $partials = array('hoofding' => 'views_helper/helper_navbar',
             'content' => 'views_helper/helper_fotos_raadplegen',

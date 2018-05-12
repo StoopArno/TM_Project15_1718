@@ -30,11 +30,10 @@ class Personeelslid extends CI_Controller
 
             $partials = array('hoofding' => 'views_personeelslid/personeelslid_navbar',
                 'content' => 'views_personeelslid/home',
-                'sidenav' => 'views_personeelslid/personeelslid_sidebar',
-                'footer' => 'main_footer'
+                'footer' => 'main_footer_personeelslid'
             );
 
-            $this->template->load('main_master', $partials, $data);
+            $this->template->load('main_master_personeelslid', $partials, $data);
         }
 
     }
@@ -89,9 +88,8 @@ class Personeelslid extends CI_Controller
 
         $partials = array('hoofding' => 'views_personeelslid/personeelslid_navbar',
             'content' => $viewpad,
-            'sidenav' => 'views_personeelslid/personeelslid_sidebar',
-            'footer' => 'main_footer'
+            'footer' => 'main_footer_personeelslid'
         );
-        $this->template->load('main_master', $partials, $data);
+        $this->template->load('main_master_personeelslid', $partials, $data);
     }
 }

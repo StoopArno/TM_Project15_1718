@@ -98,15 +98,17 @@ class Inschrijving_model extends CI_Model
         return $this->db->count_all_results();
     }
 
-function getAllByPersoonId($personeelslidid){
+    /**
+     * Schrijft een persoon in voor een bepaalde optie.
+     * @param $persoonid
+     * @param $optieid
+     */
+    function schrijfIn($persoonid,$optieid){
+        $inschrijving = new stdClass();
+        $inschrijving->persoonid = $persoonid;
+        $inschrijving->optieid = $optieid;
 
-}
-function schrijfIn($persoonid,$optieid){
-    $inschrijving = new stdClass();
-    $inschrijving->persoonid = $persoonid;
-    $inschrijving->optieid = $optieid;
-
-    $this->db->insert('inschrijving', $inschrijving);
-}
+        $this->db->insert('inschrijving', $inschrijving);
+    }
 }
 

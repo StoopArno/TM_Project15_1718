@@ -64,6 +64,11 @@ class Taak_model extends CI_Model
         return $taken;
     }
 
+    /**
+     * Deze functie haalt alle opties per ID op.
+     * @param $optieId
+     * @return mixed
+     */
     function getAllByOptieId($optieId) {
         $this->db->where('optieId', $optieId);
         $query = $this->db->get('taak');

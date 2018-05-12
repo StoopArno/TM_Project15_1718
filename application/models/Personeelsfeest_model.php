@@ -44,21 +44,43 @@ class Personeelsfeest_model extends CI_Model
         return $query->row();
     }
 
+    /**
+     * Deze functie maakt een nieuw personeelsfeest aan.
+     * @param $datum
+     */
     function maakPersoneelsfeest($datum) {
         $personeelsfeest = new stdClass();
         $personeelsfeest->datum = $datum;
         $this->db->insert('personeelsfeest', $personeelsfeest);
     }
 
+    /**
+     * Deze functie haalt alle personeelsfeesten op.
+     * @return mixed
+     */
     function getPersoneelsfeesten() {
         $query = $this->db->get('personeelsfeest');
         return $query->result();
     }
 
+    /**
+     * Deze functie laat je toe een personeelsfeest te verwijderen.
+     * @param $id
+     */
     function delete($id) {
         $this->db->where('id', $id);
         $this->db->delete('personeelsfeest');
     }
 
+    /**
+     * Deze functie laat je toe een personeelsfeest te wijzigen.
+     * @param $id
+     * @param $date
+     */
+    function wijzig($id, $date) {
+        $data = array('datum' => $date);
+        $this->db->where('id', $id);
+        $this->db->update('personeelsfeest', $data);
+    }
 
 }

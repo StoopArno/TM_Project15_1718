@@ -88,6 +88,14 @@ class Persoon_model extends CI_Model
         return $query->result();
 }
 
+    /**
+     * Deze functie laat je een personeelslid aan de database toevoegen.
+     * @param $naam
+     * @param $voornaam
+     * @param $email
+     * @param $gsm
+     * @param $hashcode
+     */
     function personeelslidToevoegen($naam, $voornaam, $email, $gsm, $hashcode) {
         $personeelslid = new stdClass();
         $personeelslid->naam = $naam;
@@ -98,6 +106,15 @@ class Persoon_model extends CI_Model
         $personeelslid->hashcode = $hashcode;
         $this->db->insert('persoon', $personeelslid);
     }
+
+    /**
+     * Deze functie laat je een helper aan de database toevoegen.
+     * @param $naam
+     * @param $voornaam
+     * @param $email
+     * @param $gsm
+     * @param $hashcode
+     */
     function helperToevoegen($naam, $voornaam, $email, $gsm, $hashcode) {
         $helper = new stdClass();
         $helper->naam = $naam;
@@ -109,17 +126,36 @@ class Persoon_model extends CI_Model
 
         $this->db->insert('persoon', $helper);
     }
+
+    /**
+     *  Deze functie haalt een bepaald personeelslid op.
+     * @param $id
+     * @return mixed
+     */
 function getpersoneelslid($id){
     $this->db->where('id', $id);
     $query = $this->db->get('persoon');
     return $query->row();
 }
+
+    /**
+     * Deze functie haalt iemand op per naam en voornaam.
+     * @param $naam
+     * @param $voornaam
+     * @return mixed
+     */
     function getByNaam($naam,$voornaam){
         $this->db->where('naam', $naam);
         $this->db->where('voornaam', $voornaam);
         $query = $this->db->get('persoon');
         return $query->row();
     }
+
+    /**
+     * Deze functie haalt personeelsleden op met een optieID.
+     * @param $id
+     * @return mixed
+     */
 function getAllPersoneelsledenWhereOptieId($id){
     $this->db->where('type', 'personeelslid');
     $query = $this->db->get('personen');
@@ -131,6 +167,11 @@ function getAllPersoneelsledenWhereOptieId($id){
     return $query->result();
 }
 
+    /**
+     * Deze functie haalt een persoon op a.d.h.v. een hashcode. Zo weet de applicatie wie er aangemeld is.
+     * @param $hashcode
+     * @return mixed
+     */
 function getPersoon($hashcode) {
     $this->db->where('type', 'helper');
     $this->db->where('hashcode', $hashcode);

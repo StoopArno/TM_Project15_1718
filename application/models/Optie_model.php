@@ -120,7 +120,10 @@ class Optie_model extends CI_Model
         return $opties;
     }
 
-
+    /**
+     * Deze functie geeft alle opties met dagonderdelen terug.
+     * @return mixed
+     */
     function getAllOptiesWithDagonderdeel(){
         $this->db->order_by('dagonderdeelid', 'desc');
         $query = $this->db->get('optie');
@@ -136,6 +139,10 @@ class Optie_model extends CI_Model
 
         }
 
+    /**
+     * Deze functie geeft alle opties terug.
+     * @return mixed
+     */
         function getAllOpties(){
             $query = $this->db->get('optie');
 

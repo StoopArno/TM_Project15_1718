@@ -5,11 +5,53 @@
 <script src="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/js/locales/bootstrap-datepicker.nl.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <link rel="stylesheet" href="../../../assets/css/style.css">
+<script>
+    $(document).ready(function() {
+        var id;
+        $('.verwijderPf').click(function() {
+             id = $(this).attr('id');
+
+            $('#Dialoog').modal('show');
+        });
+
+        $('.verwijderKnop').click(function() {
+            $('#Dialoog').modal('toggle');
+             verwijderKnop(id);
+        });
+
+        $('.annuleerKnop').click(function() {
+            $('#Dialoog').modal('toggle');
+        });
+    });
+
+    function verwijderKnop(id) {
+        $.ajax({type: "GET",
+            url: site_url + "/personeelsfeest_aanmaken/verwijder",
+            data: {id: id},
+            success: function (result) {
+                $(".table").html(result);
+            },
+            error: function (xhr, status, error) {
+                alert ("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+            }
+        });
+    }
+
+
+
+</script>
+
 
 <div class="container">
-    <h2>Personeelsfeest aanmaken</h2>
-    <br>
-    <br>
+    <div class="col-sm-12 col-md-6">
+        <h2>Personeelsfeest aanmaken</h2>
+
+        <div>
+            <p>
+                Maak hier een nieuw personeelsfeest aan.
+            </p>
+        </div>
+    </div>
     <div class="col-sm-12 col-md-6">
         <?php echo form_open('personeelsfeest_aanmaken/maakAan/'); ?>
         <div class="row">
@@ -22,13 +64,13 @@
             <input type="submit" class="btn btn-primary knop" value="Maak aan" class="col-2">
         </div>
         </form>
-    </div>
-    <div class="col-sm-12 col-md-6">
-        <table id="personeelsfeestTable">
+
+        <table class="table">
             <thead>
             <tr>
                 <th colspan="2">Personeelsfeesten</th>
-
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -37,7 +79,15 @@
             foreach($personeelsfeesten as $pf) {
                 echo "<tr>";
                 echo "<td>";
-                echo $pf->datum . "&nbsp;" . anchor('personeelsfeest_aanmaken/verwijder/' . $pf->id, 'Verwijder');
+                echo zetOmNaarDDMMYYYY($pf->datum);
+                echo "</td>";
+                echo "<td>";
+                ?>
+                <p class="verwijderPf" id="<?php echo $pf->id; ?>">Verwijder</p>
+                <?php
+                echo "</td>";
+                echo "<td>";
+                echo anchor('personeelsfeest_aanmaken/wijzigPF/' . $pf->id, 'Wijzig');
                 echo "</td>";
                 echo "</tr>";
             }
@@ -45,9 +95,21 @@
             </tbody>
         </table>
     </div>
-    <div class="col-sm-12 col-md-6">
+
+</div>
+
+<div class="modal fade" id="Dialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>Ben je zeker dat je dit personeelsfeest wilt verwijderen?</h4>
+            <div>
+                <button class="verwijderKnop btn btn-danger left">Verwijder</button>
+                <button class="annuleerKnop btn btn-primary right">Annuleer</button>
+            </div>
+        </div>
     </div>
 </div>
+<<<<<<< HEAD
 <br>
 <br>
 <br>
@@ -63,3 +125,5 @@
 <br>
 <br>
 <br>
+=======
+>>>>>>> a4d0ea96ce51249fe2b6b01debdd5fff6ec3878d

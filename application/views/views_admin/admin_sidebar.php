@@ -21,7 +21,7 @@
             <?php echo anchor('helpers_personeelsleden_toevoegen/index', '<span class="	glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp; Helpers & Personeelsleden'); ?>
         </li>
         <li>
-            <?php echo anchor('teksten_aanpassen/index', '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp; Teksten aanpassen'); ?>
+            <?php echo anchor('teksten_aanpassen/index', '<span class="glyphicon glyphicon-font" aria-hidden="true"></span> &nbsp; Teksten aanpassen'); ?>
         </li>
 
         <li>

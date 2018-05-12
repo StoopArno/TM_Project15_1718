@@ -11,7 +11,7 @@
     $(document).ready(function() {
         $('.klikHelpers').click(function() {
             haalHelpersOp($(this).attr('id'));
-            $('#helperDialoog').modal('show');
+            $('#helperDialoog').modal('toggle');
         });
     });
 
@@ -20,7 +20,7 @@
             url: site_url + "/inschrijven_helper/haalHelpersOp",
             data: {shiftId: shiftId},
             success: function (result) {
-            $('#resultaat').html(result);
+                $('#resultaat').html(result);
             },
             error: function (xhr, status, error) {
                 alert ("-- ERROR IN AJAX --\n\n" + xhr.responseText);
@@ -52,17 +52,17 @@
                     <table>
                         <tbody>
                         <?php
-                           foreach($dagonderdelen as $dag) {
-                                if($dag->opties != null) {
-                                    foreach($dag->opties as $dagOptie) {
-                                        if($dagOptie->helper_nodig == "ja") {
-                                            if($dagOptie->taken != null) {
-                                                foreach($dagOptie->taken as $taak) {
+                        foreach($dagonderdelen as $dag) {
+                            if($dag->opties != null) {
+                                foreach($dag->opties as $dagOptie) {
+                                    if($dagOptie->helper_nodig == "ja") {
+                                        if($dagOptie->taken != null) {
+                                            foreach($dagOptie->taken as $taak) {
+                                                if($taak->shiften != null) {
                                                     if($taak->shiften != null) {
-                                                        if($taak->shiften != null) {
-                                                            foreach($taak->shiften as $taakShift) {
-                                                                ?>
-                                                         <tr class="row100 body">
+                                                        foreach($taak->shiften as $taakShift) {
+                                                            ?>
+                                                            <tr class="row100 body">
                                                                 <td class="cell100 column1"><?php echo $dag->naam; ?></td>
                                                                 <td class="cell100 column2"><?php echo $dagOptie->optie; ?></td>
                                                                 <td class="cell100 column3">
@@ -71,36 +71,35 @@
                                                                 </td>
                                                                 <td class="cell100 column4"><?php echo $taakShift->omschrijving; ?> - <?php echo date_format($taakShift->beginuur, "H:i"); ?>-<?php echo date_format($taakShift->einduur, "H:i"); ?></td>
 
-                                                             <td class="cell100 column5">
-                                                                 <?php
-                                                                 $checker = false;
-                                                                 foreach($ingeschreven as $ig) {
-                                                                     if($ig->shiftid == $taakShift->id) {
-                                                                         $checker = true;
-                                                                     }
-                                                                 }
+                                                                <td class="cell100 column5">
+                                                                    <?php
+                                                                    $checker = false;
+                                                                    foreach($ingeschreven as $ig) {
+                                                                        if($ig->shiftid == $taakShift->id) {
+                                                                            $checker = true;
+                                                                        }
+                                                                    }
 
-                                                                     if($checker == true) {
-                                                                         ?>
-                                                                         <?php echo anchor('inschrijven_helper/schrijfUit/' . $taakShift->id . '/' . $helper->hashcode, 'Uitschrijven', 'class="btn btn-warning"') ?>
+                                                                    if($checker == true) {
+                                                                        ?>
+                                                                        <?php echo anchor('inschrijven_helper/schrijfUit/' . $taakShift->id . '/' . $helper->hashcode, 'Uitschrijven', 'class="btn btn-warning"') ?>
 
-                                                                         <?php
-                                                                     } else {
-                                                                         if($taakShift->aantalHelpers == $taakShift->maxAantalHelpers) {
-                                                                                ?>
-                                                                                    <button class="btn btn-danger">Volzet</button>
-                                                                                <?php
-                                                                         } else {
-                                                                             echo anchor('inschrijven_helper/schrijfIn/' . $taakShift->id . '/' . $helper->hashcode, 'Inschrijven', 'class="btn btn-success"');
-                                                                         }
-                                                                     }
-                                                                 ?>
+                                                                        <?php
+                                                                    } else {
+                                                                        if($taakShift->aantalHelpers == $taakShift->maxAantalHelpers) {
+                                                                            ?>
+                                                                            <button class="btn btn-danger">Volzet</button>
+                                                                            <?php
+                                                                        } else {
+                                                                            echo anchor('inschrijven_helper/schrijfIn/' . $taakShift->id . '/' . $helper->hashcode, 'Inschrijven', 'class="btn btn-success"');
+                                                                        }
+                                                                    }
+                                                                    ?>
                                                                     &nbsp;
-                                                                 <a id="<?php echo $taakShift->id; ?>" class="klikHelpers"><?php echo $taakShift->aantalHelpers; ?>/<?php echo $taakShift->maxAantalHelpers; ?></a>
-                                                             </td>
-                                                          </tr>
-                                                                <?php
-                                                            }
+                                                                    <a id="<?php echo $taakShift->id; ?>" class="klikHelpers"><?php echo $taakShift->aantalHelpers; ?>/<?php echo $taakShift->maxAantalHelpers; ?></a>
+                                                                </td>
+                                                            </tr>
+                                                            <?php
                                                         }
                                                     }
                                                 }
@@ -108,7 +107,8 @@
                                         }
                                     }
                                 }
-                           }
+                            }
+                        }
                         ?>
                         </tbody>
                     </table>

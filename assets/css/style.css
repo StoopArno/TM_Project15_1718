@@ -2,9 +2,9 @@ body {
     width:100%;
 }
 h2 {
-    text-align:center;
+    text-align:left;
     padding-bottom: 20px;
-    text-align: center;
+    text-align:left;
 }
 
 .btn-organisator {
@@ -35,7 +35,7 @@ tr.table-kleur {
 }
 label {
     display:block;
-    text-align:center;
+    text-align:left;
     line-height: 150%;
     font-size:18px;
 
@@ -183,7 +183,7 @@ div.page-content-wrapper {
 }
 
 table.table.table-bordered > tbody > tr > th, table.table.table-bordered > tbody > tr > td {
-    text-align:center !important;
+    text-align:left !important;
 }
 
 
@@ -250,7 +250,7 @@ div.eigenContent {
 }
 
 p.centerKnop {
-    text-align:center;
+    text-align:left;
 }
 
 div.footer-copyright.py-3.text-center {
@@ -331,3 +331,40 @@ img.user {
     vertical-align: top;
 }
 
+p.btn.btn-primary {
+    width:250px;
+    margin:5px;
+    text-align:left;
+    background-color:#2B2B2B
+}
+
+p.btn.btn-primary a {
+    color:white;
+}
+
+.btn.btn-danger {
+    color:white !important;
+}
+
+div.modal.fade#Dialog {
+    margin: auto auto;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal .modal-dialog {
+    width:500px;
+}
+.modal h4 {
+    padding-top:10px;
+    text-align:center;
+}
+.modal .btn.btn-primary, .modal .btn.btn-danger {
+    width:40%;
+    margin:4%;
+}
