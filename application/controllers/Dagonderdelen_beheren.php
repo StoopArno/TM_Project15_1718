@@ -37,7 +37,7 @@ class Dagonderdelen_beheren extends CI_Controller
         $data["dagonderdelen"] = $dagonderdelen;
         $data["locaties"] = $locaties;
 
-        //Als de pagina herladen wordt omwille van een aanpassing aan een optie, zal hetzelfde ovrezicht van opties getoond worden.
+        //Als de pagina herladen wordt omwille van een aanpassing aan een optie, zal hetzelfde overzicht van opties getoond worden.
         if($this->session->has_userdata("dagonderdeelToClick")){
             $data["dagonderdeelToClick"] = $this->session->userdata('dagonderdeelToClick');
             $this->session->unset_userdata("dagonderdeelToClick");
@@ -126,11 +126,16 @@ class Dagonderdelen_beheren extends CI_Controller
         $optie->minAantalInschrijvingen = $this->input->post("minInschrijvingen");
         $optie->maxAantalInschrijvingen = $this->input->post("maxInschrijvingen");
         $optie->dagonderdeelId = $this->input->post("dagonderdeelId");
+        if($this->input->post("helper_nodig") == "ja"){
+            $optie->helper_nodig = "ja";
+        }
+        if($this->input->post("personeel_kan_inschrijven") == "ja"){
+            $optie->personeel_kan_inschrijven = "ja";
+        }
         $locatieId = $this->input->post("optieHeeftLocatie");
         if(isset($locatieId)){
             $optie->locatieId = $this->input->post("locatieId");
         }
-
         $this->load->model("optie_model");
         $this->optie_model->update($optie);
 
@@ -214,6 +219,8 @@ class Dagonderdelen_beheren extends CI_Controller
         } else{
             $optie->locatieId = null;
         }
+        $optie->helper_nodig = "nee";
+        $optie->personeel_kan_inschrijven = "nee";
 
         return $optie;
     }

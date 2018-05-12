@@ -72,12 +72,23 @@
                     <?php } ?>
                 </td>
                 <td class="text-center"><i class="fa fa-edit fa-2x taakActie taakEdit" data-taakid="<?php echo $taak->id ?>"></i></td>
-                <td class="text-center"><a href="<?php echo base_url() ?>index.php/TakenEnShiften_beheren/taakVerwijderen/<?php echo $taak->id ?>"><i class="fa fa-trash fa-2x taakActie taakDelete text-dark"></i></a></td>
+                <td class="text-center"><i class="fa fa-trash fa-2x taakActie taakDelete text-dark" data-taakid="<?php echo $taak->id ?>"></i></td>
                 <td class="text-center"><i class="fa fa-list-ul fa-2x taakActie taakDetails text-dark" id="taakDetails<?php echo $taak->id ?>" data-taakid="<?php echo $taak->id ?>"></i></td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
+</div>
+<div class="modal fade" id="TaakDialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>Ben je zeker dat je deze taak wilt verwijderen?</h4>
+            <div>
+                <button class="verwijderKnop btn btn-danger left">Verwijder</button>
+                <button class="annuleerKnop btn btn-primary right">Annuleer</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="shiften"></div>
 <script>
@@ -129,6 +140,10 @@
         return retValue;
     }
 
+    function verwijderTaak(id){
+        window.location.href = site_url + "/TakenEnShiften_beheren/taakVerwijderen/" + id;
+    }
+
     $(document).ready(function() {
         //Maak de velden van een bepaalde taak beschikbaar of submit de taak.
         $(".taakActie.taakEdit").on("click", function(){
@@ -150,7 +165,6 @@
         $('#taakDetails<?php echo $taakToClick ?>').trigger('click');
         <?php } ?>
 
-
         $(".checkboxHeeftOptie").on("change", function(){
 
             if($(this).prop("checked")){
@@ -162,5 +176,19 @@
             }
         });
 
+        var id;
+        $('.taakDelete').click(function() {
+            id = $(this).data("taakid");
+            $('#TaakDialoog').modal('show');
+        });
+
+        $('.verwijderKnop').click(function() {
+            $('#TaakDialoog').modal('toggle');
+            verwijderTaak(id);
+        });
+
+        $('.annuleerKnop').click(function() {
+            $('#TaakDialoog').modal('toggle');
+        });
     });
 </script>

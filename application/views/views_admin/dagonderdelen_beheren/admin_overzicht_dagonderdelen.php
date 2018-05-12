@@ -55,13 +55,24 @@
 
                 </td>
                 <td class="text-center"><i class="fa fa-edit fa-2x dagonderdeelActie dagonderdeelEdit" data-onderdeelid="<?php echo $dagonderdeel->id ?>"></i></td>
-                <td class="text-center"><a href="<?php echo base_url() ?>index.php/Dagonderdelen_beheren/dagonderdeelVerwijderen/<?php echo $dagonderdeel->id ?>"><i class="fa fa-trash fa-2x dagonderdeelActie dagonderdeelDelete text-dark"></i></a></td>
+                <td class="text-center"><a ><i class="fa fa-trash fa-2x dagonderdeelActie dagonderdeelDelete text-dark" data-dagonderdeelid="<?php echo $dagonderdeel->id ?>"></i></a></td>
                 <td class="text-center"><i class="fa fa-list-ul fa-2x dagonderdeelActie dagonderdeelDetails text-dark" id="dagonderdeelDetails<?php echo $dagonderdeel->id ?>" data-onderdeelid="<?php echo $dagonderdeel->id ?>"></i></td>
             </tr>
 
         <?php } ?>
         </tbody>
     </table>
+</div>
+<div class="modal fade" id="DagonderdeelDialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>Ben je zeker dat je dit dagonderdeel wilt verwijderen?</h4>
+            <div>
+                <button class="verwijderKnop btn btn-danger left">Verwijder</button>
+                <button class="annuleerKnop btn btn-primary right">Annuleer</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row optieDetails"></div>
 <script>
@@ -97,6 +108,10 @@
         })
     };
 
+    function verwijderDagonderdeel(id){
+        window.location.href = site_url + "/Dagonderdelen_beheren/dagonderdeelVerwijderen/" + id;
+    }
+
     $(document).ready(function() {
 
         $(".dagonderdeelActie.dagonderdeelEdit").on("click", function(){
@@ -115,7 +130,7 @@
         });
 
         <?php if(isset($dagonderdeelToClick)){ ?>
-        //Trigger het click event de taak waar iets is in aangeapst.
+        //Trigger het click event op de taak waar iets is in aangepast.
         //Note: Deze code moet altijd na de code komen waarin er iets met dit click event gedaan wordt.
         $('#dagonderdeelDetails<?php echo $dagonderdeelToClick ?>').trigger('click');
         <?php } ?>
@@ -127,6 +142,21 @@
                 console.log("Checked");
                 $("#dropdownCell" + $(this).data("onderdeelid")).empty().append(getCombobox("dagonderdeel", $(this).data("onderdeelid")));
             }
+        });
+
+        var id;
+        $(".dagonderdeelDelete").on('click', function(){
+            id = $(this).data("dagonderdeelid");
+            $('#DagonderdeelDialoog').modal('show');
+        })
+
+        $('.verwijderKnop').click(function() {
+            $('#DagonderdeelDialoog').modal('toggle');
+            verwijderDagonderdeel(id);
+        });
+
+        $('.annuleerKnop').click(function() {
+            $('#DagonderdeelDialoog').modal('toggle');
         });
     });
 </script>

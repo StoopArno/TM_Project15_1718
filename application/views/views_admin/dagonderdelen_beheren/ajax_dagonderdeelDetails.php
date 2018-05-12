@@ -17,6 +17,8 @@
                 <th>Min inschrijvingen</th>
                 <th>Max inschrijvingen</th>
                 <th>Locatie</th>
+                <th class="text-center">Heeft helpers nodig</th>
+                <th class="text-center">Personeelsleden kunnen inschrijven</th>
                 <th class="text-center">Specifieke locatie nodig</th>
                 <th colspan="2" class="text-center"><a class="btn-primary btn" id="newOptie" href="Dagonderdelen_beheren/optieToevoegen/<?php echo $dagonderdeelId ?>" role="button">Nieuwe optie</a></th>
             </tr>
@@ -49,6 +51,24 @@
                         <?php } ?>
                     </td>
                     <td class="text-center">
+                        <?php
+                        if($optie->helper_nodig == "nee"){
+                            echo form_input(array("type" => "checkbox", "name" => "helper_nodig", "value" => "ja", "class" => "optieId" . $optie->id, "data-optieid" => $optie->id, "disabled" => "true", "form" => $optieFormNaam));
+                        } else{
+                            echo form_input(array("type" => "checkbox", "name" => "helper_nodig", "value" => "ja", "class" => "optieId" . $optie->id, "data-optieid" => $optie->id, "disabled" => "true", "form" => $optieFormNaam, "checked" => "true"));
+                        }
+                        ?>
+                    </td>
+                    <td class="text-center">
+                        <?php
+                        if($optie->personeel_kan_inschrijven == "nee"){
+                            echo form_input(array("type" => "checkbox", "name" => "personeel_kan_inschrijven", "value" => "ja", "class" => "optieId" . $optie->id, "data-optieid" => $optie->id, "disabled" => "true", "form" => $optieFormNaam));
+                        } else{
+                            echo form_input(array("type" => "checkbox", "name" => "personeel_kan_inschrijven", "value" => "ja", "class" => "optieId" . $optie->id, "data-optieid" => $optie->id, "disabled" => "true", "form" => $optieFormNaam, "checked" => "true"));
+                        }
+                        ?>
+                    </td>
+                    <td class="text-center">
                         <?php if($optie->locatieId == null){ ?>
                             <?php echo form_input(array("type" => "checkbox", "name" => "optieHeeftLocatie", "class" => "checkboxOptielocatie optieId" . $optie->id, "data-optieid" => $optie->id, "disabled" => "true", "form" => $optieFormNaam));?>
                         <?php } else{ ?>
@@ -59,14 +79,24 @@
                         <i class="fa fa-edit fa-2x dagonderdeelActie optieEdit" data-optieid="<?php echo $optie->id ?>"></i>
                     </td>
                     <td class="text-center">
-                        <a href="<?php echo base_url() ?>index.php/Dagonderdelen_beheren/optieVerwijderen/<?php echo $optie->id ?>" class="text-dark"><i class="fa fa-trash fa-2x dagonderdeelActie optieDel" data-optieid="<?php echo $optie->id ?>"></i></a>
+                        <a  class="text-dark"><i class="fa fa-trash fa-2x dagonderdeelActie optieDel" data-optieid="<?php echo $optie->id ?>"></i></a>
                     </td>
                 </tr>
             <?php } ?>
             </tbody>
         </table>
     </div>
-
+</div>
+<div class="modal fade" id="OptieDialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>Ben je zeker dat je deze optie wilt verwijderen?</h4>
+            <div>
+                <button class="verwijderKnop btn btn-danger left">Verwijder</button>
+                <button class="annuleerKnop btn btn-primary right">Annuleer</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     $(document).ready(function() {
@@ -88,5 +118,24 @@
                 $("#optieDropDownCell" + $(this).data("optieid")).empty().append("De locatie wordt gedefinieerd bij het dagonderdeel");
             }
         });
+
+        var id;
+        $('.optieDel').click(function() {
+            id = $(this).data("optieid");
+            $('#OptieDialoog').modal('show');
+        });
+
+        $('.verwijderKnop').click(function() {
+            $('#OptieDialoog').modal('toggle');
+            verwijderOptie(id);
+        });
+
+        $('.annuleerKnop').click(function() {
+            $('#OptieDialoog').modal('toggle');
+        });
     });
+
+    function verwijderOptie(id){
+        window.location.href = site_url + "/Dagonderdelen_beheren/optieVerwijderen/" + id;
+    }
 </script>

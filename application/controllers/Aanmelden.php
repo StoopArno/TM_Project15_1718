@@ -14,7 +14,6 @@ class Aanmelden extends CI_Controller
      * Kijkt na of je al aangemeld bent als administrator. Indien dit niet is dan stuurt deze functie
      * je door naar de aanmeldpagina.
      */
-
     public function index() {
         if(!$this->authex->isAdmin()){
             $data['titel'] = 'Admin - Login';
@@ -86,6 +85,9 @@ class Aanmelden extends CI_Controller
         redirect(base_url());
     }
 
+    /**
+     * Verandert het actieve personeelsfeest door deze in sessie te zetten.
+     */
     public function VeranderPersoneeelsfeest(){
         $pfId = $this->input->post('feestId');
         $this->load->model('personeelsfeest_model');

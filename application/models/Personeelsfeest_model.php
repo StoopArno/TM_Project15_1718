@@ -20,6 +20,26 @@ class Personeelsfeest_model extends CI_Model
     }
 
     /**
+     * Deze functie laat je toe een personeelsfeest te wijzigen.
+     * @param $id
+     * @param $date
+     */
+    function wijzig($id, $date) {
+        $data = array('datum' => $date);
+        $this->db->where('id', $id);
+        $this->db->update('personeelsfeest', $data);
+    }
+
+    /**
+     * Deze functie laat je toe een personeelsfeest te verwijderen.
+     * @param $id
+     */
+    function delete($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('personeelsfeest');
+    }
+
+    /**
      * Ophalen alle personeelsfeesten
      * @return mixed
      */
@@ -62,25 +82,4 @@ class Personeelsfeest_model extends CI_Model
         $query = $this->db->get('personeelsfeest');
         return $query->result();
     }
-
-    /**
-     * Deze functie laat je toe een personeelsfeest te verwijderen.
-     * @param $id
-     */
-    function delete($id) {
-        $this->db->where('id', $id);
-        $this->db->delete('personeelsfeest');
-    }
-
-    /**
-     * Deze functie laat je toe een personeelsfeest te wijzigen.
-     * @param $id
-     * @param $date
-     */
-    function wijzig($id, $date) {
-        $data = array('datum' => $date);
-        $this->db->where('id', $id);
-        $this->db->update('personeelsfeest', $data);
-    }
-
 }
