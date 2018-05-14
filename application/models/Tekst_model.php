@@ -1,7 +1,13 @@
 <?php
-
+/**
+ * @class Tekst_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Tekst'.
+ */
 class Tekst_model extends CI_Model
 {
+    /**
+     * Tekst_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

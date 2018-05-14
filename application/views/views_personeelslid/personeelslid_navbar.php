@@ -1,3 +1,11 @@
+<?php
+/**
+ * @file views_personeelslid/personeelslid_navbar.php
+ *
+ * View die de navbar specifiek voor personeelsleden bevat.
+ */
+?>
+
 <nav class="navbar navbar-expand-lg navbar-dark default-color-dark fixed-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>

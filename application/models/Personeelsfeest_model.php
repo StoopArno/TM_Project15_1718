@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Personeelsfeest_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Personeelsfeest'.
+ */
 class Personeelsfeest_model extends CI_Model
 {
+    /**
+     * Personeelsfeest_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

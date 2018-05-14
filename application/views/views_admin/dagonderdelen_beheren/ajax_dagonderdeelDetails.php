@@ -1,4 +1,14 @@
 <?php
+/**
+ * @file views_admin/dagonderdelen_beheren/ajax_dagonderdeelDetails.php
+ *
+ * View wordt opgehaald vanuit de view admin_overzicht_dagonderdelen.php wanneer de admin de opties van een dagonderdeel wilt zien en eventueel aanpassen.
+ *      - Krijgt een lovatie-array binnen.
+ *      - krijgt een optie-array binnen.
+ */
+?>
+
+<?php
     foreach($locaties as $locatie){
         $locatieDropdown = array();
         foreach($locaties as $locatie){

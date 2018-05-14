@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @class Shift_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Shift'.
+ */
 class Shift_model extends CI_Model
 {
     function __construct()

@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Persoon_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Persoon'.
+ */
 class Persoon_model extends CI_Model
 {
+    /**
+     * Persoon_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

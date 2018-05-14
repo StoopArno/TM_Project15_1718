@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Foto_beheren
+ * @brief Controller-klasse voor Foto_beheren.
+ *
+ * Controller-klasse met alle methoden i.v.m. het beheren van foto's van de voorbije jaren.
+ */
 class Foto_beheren extends CI_Controller
 {
+    /**
+     * Foto_beheren constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -14,6 +23,8 @@ class Foto_beheren extends CI_Controller
     /**
      * Toont een overzicht van alle jaren met de bijhorende foto's.
      * Er is ook de optie een foto toe te voegen of te verwijderen.
+     * @see Personeelsfeest_model::getAllOrderByDatum()
+     * @see views_admin/fotos_beheren/admin_fotos_beheren.php
      */
     public function index(){
         $data["titel"] = "Foto's beheren";
@@ -53,6 +64,7 @@ class Foto_beheren extends CI_Controller
      * Toevoegen van een nieuwe foto.
      * Alle details van de foto worden via POST en FILES opgehaald.
      * In de sessie wordt het jaar gezet waartoe de foto behoort zodat dit jaar bij het herladen aangeklikt kan worden.
+     * @see Foto_model::insert()
      */
     public function fotoToevoegen(){
         $pfId = $this->input->post('personeelsfeestId');
@@ -65,9 +77,6 @@ class Foto_beheren extends CI_Controller
         if ( ! $this->upload->do_upload('userImage'))
         {
             $error = array('error' => $this->upload->display_errors());
-            echo var_dump($error);
-
-            exit;
         }
         else
         {
@@ -93,6 +102,8 @@ class Foto_beheren extends CI_Controller
      * Verwijderen van een bepaalde foto.
      * In de sessie wordt het jaar gezet waartoe de foto behoorde zodat dit jaar bij het herladen aangeklikt kan worden.
      * @param $id
+     * @see Foto_model::get()
+     * @see Foto_model::delete()
      */
     public function fotoVerwijderen($id){
         $this->load->model('foto_model');
@@ -106,6 +117,7 @@ class Foto_beheren extends CI_Controller
     /**
      * Returned de view van een bepaald jaar.
      * @param $id
+     * @see Foto_model::getAllWherePfId()
      */
     public function haalAjaxOp_Foto($id){
         $this->load->model("foto_model");

@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Shiftinschrijving_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Shiftinschrijving'.
+ */
 class Shiftinschrijving_model extends CI_Model
 {
+    /**
+     * Shiftinschrijving_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

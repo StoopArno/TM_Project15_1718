@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Optie_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Optie'.
+ */
 class Optie_model extends CI_Model
 {
+    /**
+     * Optie_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

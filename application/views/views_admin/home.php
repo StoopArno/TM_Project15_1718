@@ -1,4 +1,12 @@
 <?php
+/**
+ * @file views_admin/home.php
+ *
+ * View waar de admin/organisator opkomt na het aanmelden.
+ * Hier staat uitleg over alle links, er is ook de mogelijkheid tot het kiezen van het 'actieve' personeelsfeest.
+ *      - Krijgt een admin/persoon-object binnen.
+ *      - Krijgt een personeelsfeest-object binnen.
+ */
 echo pasStylesheetAan('style.css');
 $feestDropDown = array();
 if($feesten != null){

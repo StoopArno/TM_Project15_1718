@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Inschrijving_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Inschrijving'.
+ */
 class Inschrijving_model extends CI_Model
 {
+    /**
+     * Inschrijving_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

@@ -1,3 +1,12 @@
+<?php
+/**
+ * @file views_admin/TakenEnShiften_beheren/ajax_taakDetails.php
+ *
+ * View dat wordt opgehaald in admin_overzicht_TakenShiften.php voor het tonen van shiften specifiek voor een taak.
+ *      - Krijgt een shiften-array binnen.
+ */
+?>
+
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>

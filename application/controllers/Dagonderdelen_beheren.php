@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Dagonderdelen_beheren
+ * @brief Controller-klasse voor Dagonderdelen_beheren.
+ *
+ * Controller-klasse met alle methoden i.v.m. het beheren van de dagonderdelen en zijn bijhorende opties .
+ */
 class Dagonderdelen_beheren extends CI_Controller
 {
+    /**
+     * Dagonderdelen_beheren constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -14,6 +23,9 @@ class Dagonderdelen_beheren extends CI_Controller
 
     /**
      * Toont een overzicht van alle dagonderdelen
+     * @see Dagonderdeel_model::getAllWherePfidWithLocaties()
+     * @see Locatie_model::getAll()
+     * @see views_admin/dagonderdelen_beheren/admin_overzicht_dagonderdelen.php
      */
     public function index(){
         $data['verantwoordelijke'] = 'Arno Stoop';
@@ -55,6 +67,7 @@ class Dagonderdelen_beheren extends CI_Controller
     /**
      * Wijzigen van een dagonderdeel.
      * De pagina wordt opnieuw geladen.
+     * @see Dagonderdeel_model::update()
      */
     public function dagonderdeelWijzigen(){
         $dagonderdeel = $this->newDagonderdeel();
@@ -84,6 +97,7 @@ class Dagonderdelen_beheren extends CI_Controller
     /**
      * Toevoegen van een nieuw dagonderdeel.
      * De pagina wordt opnieuw geladen.
+     * @see Dagonderdeel_model::insert()
      */
     public function dagonderdeelToevoegen(){
         $dagonderdeel = $this->newDagonderdeel();
@@ -107,6 +121,7 @@ class Dagonderdelen_beheren extends CI_Controller
      * Verwijderen van een dagonderdeel.
      * De pagina wordt opnieuw geladen.
      * @param $id
+     * @see Dagonderdeel_model::delete()
      */
     public function dagonderdeelVerwijderen($id){
         $this->load->model("dagonderdeel_model");
@@ -118,6 +133,7 @@ class Dagonderdelen_beheren extends CI_Controller
     /**
      * Wijzigen van een dagonderdeel.
      * De pagina wordt opnieuw geladen.
+     * @see Optie_model::update()
      */
     public function optieWijzigen(){
         $optie = $this->newOptie($this->input->post("optieHeeftLocatie"));
@@ -148,6 +164,8 @@ class Dagonderdelen_beheren extends CI_Controller
     /**
      * Toevoegen van een nieuwe optie.
      * @param $dagonderdeelId Zodat in de view naar het juiste dagonderdeel verwezen kan worden.
+     * @see Dagonderdeel_model::get()
+     * @see Optie_model::insert()
      */
     public function optieToevoegen($dagonderdeelId){
         $this->load->model("dagonderdeel_model");
@@ -173,6 +191,8 @@ class Dagonderdelen_beheren extends CI_Controller
     /**
      * Verwijderen van een optie.
      * @param $id
+     * @see Optie_model::get()
+     * @see Optie_model::delete()
      */
     public function optieVerwijderen($id){
         $this->load->model("optie_model");
@@ -230,6 +250,9 @@ class Dagonderdelen_beheren extends CI_Controller
      * Return view met de details van een dagonderdeel.
      * View verschilt als de taken aan de shiften gekoppeld zijn of niet.
      * @param $id
+     * @see Locatie_model::getAll()
+     * @see Optie_model::getAllWhereDagonderdeelid()
+     * @see views_admin/dagonderdelen_beheren/ajax_dagonderdeelDetails.php
      */
     public function haalAjaxOp_dagonderdeelDetails($id){
         $data["dagonderdeelId"] = $id;
@@ -247,6 +270,7 @@ class Dagonderdelen_beheren extends CI_Controller
 
     /**
      * Toont een JSON object met alle locaties
+     * @see Locatie_model::getAll()
      */
     public function getLocaties(){
         $this->load->model("locatie_model");
@@ -257,6 +281,8 @@ class Dagonderdelen_beheren extends CI_Controller
 
     /**
      * Toont een JSON object met alle dagonderdelen van een bepaald personeelsfeest en waarvan de locatie niet null is.
+     * @see Personeelsfeest_model::getLastPersoneelsfeest()
+     * @see Dagonderdeel_model::getAllWherePfIdAndLocatieIdIsNotNull()
      */
     public function getDagonderdelenLocatieNotNull(){
         if($this->session->has_userdata('actiefPersoneelsfeest')){
@@ -275,6 +301,9 @@ class Dagonderdelen_beheren extends CI_Controller
     /**
      * Toont een JSON object van alle opties die taken hebben. Maw waarvan het dagonderdeel geen locatieId heeft.
      * De namen van de bijhorende dagonderdelen worden ook weergegeven.
+     * @see Personeelsfeest_model::getLastPersoneelsfeest()
+     * @see Dagonderdeel_model::getAllWherePfIdAndLocatieIdIsNull()
+     * @see Optie_model::getAllWhereDagonderdeeidsWithDagonderdelen()
      */
     public function getOptiesWithTaken(){
         if($this->session->has_userdata('actiefPersoneelsfeest')){

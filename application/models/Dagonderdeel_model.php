@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Dagonderdeel_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Dagonderdeel'.
+ */
 class Dagonderdeel_model extends CI_Model
 {
+    /**
+     * Dagonderdeel_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

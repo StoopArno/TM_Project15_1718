@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Taak_model
+ * @brief Bevar alle CRUD-methoden voor de tabel 'Taak'.
+ */
 class Taak_model extends CI_Model
 {
+    /**
+     * Taak_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

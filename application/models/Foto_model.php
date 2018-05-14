@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Foto_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Foto'.
+ */
 class Foto_model extends CI_Model
 {
+    /**
+     * Foto_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
