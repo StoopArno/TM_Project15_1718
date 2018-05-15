@@ -3,6 +3,8 @@
 /**
  * @class Persoon_model
  * @brief Bevat alle CRUD-methoden voor de tabel 'Persoon'.
+ *
+ *Alle methoden waarmee data uit de tabel 'Persoon' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
  */
 class Persoon_model extends CI_Model
 {
@@ -25,11 +27,23 @@ class Persoon_model extends CI_Model
         return $query->row();
     }
 
+    /**
+     * Ophalen bepaalde persoon adhv id.
+     * @param $id
+     * @return mixed
+     */
     function get($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('persoon');
         return $query->row();
     }
+
+    /**
+     * Ophalen admin.
+     * @param $login
+     * @param $wachtwoord
+     * @return null
+     */
     function getAdmin($login, $wachtwoord) {
 
         $this->db->where('type', 'organisator');
@@ -57,6 +71,7 @@ class Persoon_model extends CI_Model
         $query = $this->db->get('persoon');
         return $query->result();
     }
+
     /**
      * Het toevoegen van een persoon met het type organisator
      */
@@ -89,11 +104,16 @@ class Persoon_model extends CI_Model
         $query = $this->db->get('persoon');
         return $query->result();
     }
+
+    /**
+     * Ophalen alle personen van het type 'helper'.
+     * @return mixed
+     */
     function getAllHelpers(){
         $this->db->where('type', 'helper');
         $query = $this->db->get('persoon');
         return $query->result();
-}
+    }
 
     /**
      * Deze functie laat je een personeelslid aan de database toevoegen.
@@ -139,11 +159,11 @@ class Persoon_model extends CI_Model
      * @param $id
      * @return mixed
      */
-function getpersoneelslid($id){
-    $this->db->where('id', $id);
-    $query = $this->db->get('persoon');
-    return $query->row();
-}
+    function getpersoneelslid($id){
+        $this->db->where('id', $id);
+        $query = $this->db->get('persoon');
+        return $query->row();
+    }
 
     /**
      * Deze functie haalt iemand op per naam en voornaam.
@@ -163,27 +183,27 @@ function getpersoneelslid($id){
      * @param $id
      * @return mixed
      */
-function getAllPersoneelsledenWhereOptieId($id){
-    $this->db->where('type', 'personeelslid');
-    $query = $this->db->get('personen');
-    $personeelsleden = $query->result();
-    foreach ($personeelsleden as $personeelslid){
+    function getAllPersoneelsledenWhereOptieId($id){
+        $this->db->where('type', 'personeelslid');
+        $query = $this->db->get('personen');
+        $personeelsleden = $query->result();
+        foreach ($personeelsleden as $personeelslid){
 
-        $personeelslid->inschrijvingen = $this->Inschrijving_model->getAllByPersoonId($personeelslid->id);
+            $personeelslid->inschrijvingen = $this->Inschrijving_model->getAllByPersoonId($personeelslid->id);
+        }
+        return $query->result();
     }
-    return $query->result();
-}
 
     /**
      * Deze functie haalt een persoon op a.d.h.v. een hashcode. Zo weet de applicatie wie er aangemeld is.
      * @param $hashcode
      * @return mixed
      */
-function getPersoon($hashcode) {
-    $this->db->where('type', 'helper');
-    $this->db->where('hashcode', $hashcode);
-    $query = $this->db->get('persoon');
-    return $query->row();
-}
+    function getPersoon($hashcode) {
+        $this->db->where('type', 'helper');
+        $this->db->where('hashcode', $hashcode);
+        $query = $this->db->get('persoon');
+        return $query->row();
+    }
 
 }

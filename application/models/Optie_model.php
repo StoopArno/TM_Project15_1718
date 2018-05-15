@@ -3,6 +3,8 @@
 /**
  * @class Optie_model
  * @brief Bevat alle CRUD-methoden voor de tabel 'Optie'.
+ *
+ * Alle methoden waarmee data uit de tabel 'Optie' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
  */
 class Optie_model extends CI_Model
 {
@@ -69,6 +71,7 @@ class Optie_model extends CI_Model
      * De naam van de dagonderdelen zelf wordt ook gereturned.
      * @param $dagonderdeelIds
      * @return mixed|null
+     * @see Dagonderdeel_model::get()
      */
     function getAllWhereDagonderdeeidsWithDagonderdelen($dagonderdeelIds){
         if($dagonderdeelIds == null){
@@ -94,6 +97,7 @@ class Optie_model extends CI_Model
      * Ophalen alle Opties en bijhorende taken en shiften van een bepaald dagonderdeel
      * @param $dagonderdeelid
      * @return mixed
+     * @see Taak_model::getAllWhereoptieIdWithShiften()
      */
     function getAllWhereDagonderdeelidWithTaken_Shiften($dagonderdeelid){
         $this->db->where('dagonderdeelid', $dagonderdeelid)->order_by("optie", "asc");
@@ -112,6 +116,7 @@ class Optie_model extends CI_Model
      * Ophalen van alle opties met bijhorende inschrijvingen op die opties.
      * @param $dagonderdeelid
      * @return mixed
+     * @see Inschrijving_model::getAllByOptieId()
      */
     function getAllByDagonderdeelIdWithInschrijvingen($dagonderdeelid){
         $this->db->where('dagonderdeelid', $dagonderdeelid);
@@ -130,6 +135,7 @@ class Optie_model extends CI_Model
     /**
      * Deze functie geeft alle opties met dagonderdelen terug.
      * @return mixed
+     * @see Dagonderdeel_model::getByDagonderdeelId()
      */
     function getAllOptiesWithDagonderdeel(){
         $this->db->order_by('dagonderdeelid', 'desc');

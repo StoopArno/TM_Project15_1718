@@ -3,6 +3,8 @@
 /**
  * @class Foto_model
  * @brief Bevat alle CRUD-methoden voor de tabel 'Foto'.
+ *
+ * Alle methoden waarmee data uit de tabel 'Foto' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
  */
 class Foto_model extends CI_Model
 {
@@ -45,6 +47,7 @@ class Foto_model extends CI_Model
     /**
      * Ophalen alle foto's met hun bihhorende personeelsfeest
      * @return mixed
+     * @see Personeelsfeest_model::get()
      */
     function getAllWithPersoneelsfeest(){
         $query = $this->db->get("foto");

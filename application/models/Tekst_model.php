@@ -2,6 +2,8 @@
 /**
  * @class Tekst_model
  * @brief Bevat alle CRUD-methoden voor de tabel 'Tekst'.
+ *
+ * Alle methoden waarmee data uit de tabel 'Tekst' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
  */
 class Tekst_model extends CI_Model
 {

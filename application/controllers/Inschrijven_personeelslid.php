@@ -4,7 +4,7 @@
  * @class Inschrijven_personeelslid
  * @brief Controller-klasse voor Inschrijven_personeelslid.
  *
- * Controller-klasse met alle methoden i.v.m. het inschrijven van een personeelslid voor een optie..
+ * Controller-klasse met alle methoden i.v.m. het inschrijven van een personeelslid voor een optie.
  */
 class Inschrijven_personeelslid extends CI_Controller
 {
@@ -113,6 +113,7 @@ class Inschrijven_personeelslid extends CI_Controller
 
     /**
      * Toont een foutmelding dat de sessie verlopen is.
+     * @see views_personeelslid/foutpaginas/fout_general.php
      */
     public function sessieverlopen(){
         $data["titel"] = "Inschrijven";

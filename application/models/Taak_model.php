@@ -3,6 +3,8 @@
 /**
  * @class Taak_model
  * @brief Bevar alle CRUD-methoden voor de tabel 'Taak'.
+ *
+ * Alle methoden waarmee data uit de tabel 'Taak' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
  */
 class Taak_model extends CI_Model
 {
@@ -56,6 +58,7 @@ class Taak_model extends CI_Model
      * Ophalen alle taken en bijhorende shiften van een bepaalde optie.
      * @param $optieid
      * @return mixed
+     * @see Shift_model::getAllWhereTaakid()
      */
     function getAllWhereoptieIdWithShiften($optieid){
 
@@ -75,6 +78,7 @@ class Taak_model extends CI_Model
      * Deze functie haalt alle opties per ID op.
      * @param $optieId
      * @return mixed
+     * @see Shift_model::getAllWhereTaakidWithInschrijvingen()
      */
     function getAllByOptieId($optieId) {
         $this->db->where('optieId', $optieId);
@@ -82,25 +86,27 @@ class Taak_model extends CI_Model
         return $query->result();
     }
 
-        function getAllwithshiften(){
-
-            $query = $this->db->get('taak');
-            $taken = $query->result();
-
-            $this->load->model('Shift_model');
-            foreach ($taken as $taak){
-                $taak->shiften = $this->Shift_model->getAllWhereTaakidWithInschrijvingen($taak->id);
-            }
-            return $taken;
-
-
-}
+    /**
+     * Ophalen alle taken met bijhorende shiften.
+     * @return mixed
+     * @see Shift_model::getAllWhereTaakidWithInschrijvingen()
+     */
+    function getAllwithshiften(){
+        $query = $this->db->get('taak');
+        $taken = $query->result();
+        $this->load->model('Shift_model');
+        foreach ($taken as $taak){
+            $taak->shiften = $this->Shift_model->getAllWhereTaakidWithInschrijvingen($taak->id);
+        }
+        return $taken;
+    }
 
 
     /**
      * Ophalen alle taken en bijhorende shiften van een bepaald dagonderdeel.
      * @param $dagonderdeelId
      * @return mixed
+     * @see Shift_model::getAllWhereTaakid()
      */
     function getAllWheredagonderdeelIdWithShiften($dagonderdeelId){
         $this->db->where("dagonderdeelId", $dagonderdeelId);
@@ -118,6 +124,8 @@ class Taak_model extends CI_Model
      * Ophalen alle taken voor een bepaald personeelsfeest met bijhorende dagonderdelen en, indoen van toepassing, bijhorende opties.
      * @param $personeelsfeestId
      * @return mixed
+     * @see Dagonderdeel_model::get()
+     * @see Optie_model::get()
      */
     function getAllWherePfIdWithDagonderdelen_Opties($personeelsfeestId){
         $this->db->where("personeelsfeestId", $personeelsfeestId);
