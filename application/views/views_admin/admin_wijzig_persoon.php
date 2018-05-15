@@ -1,9 +1,10 @@
-<?php echo form_open('overzicht_helpers_personeelsleden/wijzigpersoon');?>
+<?php echo form_open('overzicht_helpers_personeelsleden/wijzigpersoon');
+
+ ?>
 <div class="col-sm-12 col-md-6 col-lg-6">
     <h2>Persoon wijzigen</h2>
 
     <div class="form-group hidden">
-
         <input type="text" class="form-control" value="<?php echo $persoon->id ?>" name="id">
 
     </div>
@@ -30,7 +31,7 @@
         <small id="emailHelp" class="form-text text-muted">Voer hier de GSM nummer in.</small>
     </div>
 
-    <button type="submit" class="col-lg-6 btn btn-primary btn-organisator">Opslaan</button>
+
 
 
 </div>
@@ -39,34 +40,44 @@
     <div class="col-sm-12 col-md-6 col-lg-6">
 
         <?php
-        $dagonderdeelidoud = "";
-        $total = count($opties);
+        $dagonderdeeloud = "";
+        $aantal = count($opties);
         $tel = 0;
+        $dagonderdeel="";
         foreach ($opties as $optie) {
             $tel++;
-            if ($total / 2 < $tel) {
-                echo "</div><div class='col-lg-6'>";
-                $tel = 0;
+            if ($aantal / 2 < $tel) {
+                echo "</div><div class='col-lg-6 col-md-6 col-sm-12'>";
+                $tel=0;
             }
-            $dagonderdeelid = $optie->dagonderdeelId;
-            if ($dagonderdeelid != $dagonderdeelidoud) {
-                echo '<h4>' . $optie->dagonderdeel->naam . '</h4>';
+            $dagonderdeel = $optie->dagonderdeel->naam;
+            if ($dagonderdeel != $dagonderdeeloud) {
+                echo '<h3>' .$dagonderdeel . '</h3>';
             }
-                foreach ($inschrijvingen as $inschrijving){
-                echo '<p>'. $inschrijving->optieid .'</p>';
-                if ($inschrijving->optieid= $optie->id){
-
+            $hulp = 0;
+            foreach ($inschrijvingen as $inschrijving) {
+                if ($inschrijving->optieid == $optie->id) {
+                    $hulp = 1;
+                    echo '<p class="row"><input class="form-check-input" checked name="inschrijvingen[]" type="checkbox" value="' . $optie->id . '" id="' . $optie->id . '" >  &nbsp;&nbsp;&nbsp; ' . $optie->optie . '
+        </p>';
                 }
-                }
-                echo '<p ><input class="form-check-input" name="inschrijvingen[]" type="checkbox" value="' . $optie->id . '" id="' . $optie->id . '" > &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <label class="filter form-check-label" for="' . $optie->id . '">' . $optie->optie . '
-    </label></p>';
 
-            $dagonderdeelidoud = $dagonderdeelid;
-        }
-        ?>
+            }
+         if ($hulp==0){
+             echo '<p class="row"><input class="form-check-input"  name="inschrijvingen[]" type="checkbox" value="' . $optie->id . '" id="' . $optie->id . '" >  &nbsp;&nbsp;&nbsp; ' . $optie->optie . '
+        </p>';
+         }
+$dagonderdeeloud=$dagonderdeel;
+     }
+
+     ?>
+
+
+
 
 </div>
 </div>
+<button type="submit" class="col-lg-6 btn btn-primary btn-organisator">Opslaan</button>
 
 
 

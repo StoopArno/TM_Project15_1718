@@ -22,13 +22,15 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
 
         $this->load->model('optie_model');
         $this->load->model('shift_model');
+        $this->load->model('shiftinschrijving_model');
         $data['shifturen'] = $this->shift_model->getAllShiftUren();
+        $data['shiften'] = $this->shift_model->getAllShiften();
         $data['opties'] = $this->optie_model->getAllOptiesWithDagonderdeel();
+        $data['shiftinschrijvingen']= $this->shiftinschrijving_model->getAllinschrijvingen();
         $this->load->model('persoon_model');
         $this->load->model('taak_model');
-        $this->load->model('shiftinschrijving_model');
-        $data['inschrijvingenshiften'] = $this->taak_model->getAllwithshiften();
-        $data['shiftinschrijvingen'] = $this->shiftinschrijving_model->getAllinschrijvingen();
+
+
         $data['personeelsleden'] = $this->persoon_model->getAllPersoneelsleden($zoekstring);
 
         $data['helpers'] = $this->persoon_model->getAllHelpers();
@@ -67,7 +69,10 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
         $this->index();
 
     }
-    public function voegPersoneelslidToe(){
+        public function voegPersoneelslidToe(){
+
+
+
 
         $this->load->model('persoon_model');
         $naam = $this->input->post('familienaam');
@@ -75,7 +80,8 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
         $voornaam = $this->input->post('voornaam');
         $email = $this->input->post('email');
         $gsm = $this->input->post('gsm');
-        $this->persoon_model->personeelslidToevoegen($naam, $voornaam, $email, $gsm);
+        $hashcode="test";
+        $this->persoon_model->personeelslidToevoegen($naam, $voornaam, $email, $gsm, $hashcode);
         $persoon = $this->persoon_model->getByNaam($naam,$voornaam);
         $persoonid = $persoon->id;
         $this->load->model('inschrijving_model');
@@ -92,6 +98,8 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
             }
 
                 redirect("/overzicht_helpers_personeelsleden/index");
+
+
     }
 
 
@@ -105,7 +113,8 @@ public function voegHelperToe(){
     $gsm = $this->input->post('gsm');
     $this->load->model('persoon_model');
     $inschrijvingen = $this->input->post('inschrijvingenhelper');
-    $this->persoon_model->helperToevoegen($naam, $voornaam, $email, $gsm);
+    $hashcode="test";
+    $this->persoon_model->helperToevoegen($naam, $voornaam, $email, $gsm, $hashcode);
     $this->load->model('shiftinschrijving_model');
     $persoon = $this->persoon_model->getByNaam($naam,$voornaam);
     $persoonid = $persoon->id;
@@ -122,23 +131,50 @@ public function voegHelperToe(){
 
     redirect("/overzicht_helpers_personeelsleden/index");
 }
-public function editPersoneelslid($personeelslidid){
+public function editPersoneelslid($persoonid)
+{
     $data['titel'] = "Overzicht helpers en personeelsleden";
     $data['verantwoordelijke'] = 'Sander Philipsen';
     $data['functionaliteit'] = "Overzicht helpers en personeelsleden";
     $this->load->model('persoon_model');
-    $data['persoon'] = $this->persoon_model->getByIdWithInschrijvingen($personeelslidid);
+
     $this->load->model('inschrijving_model');
-    $data['inschrijvingen'] = $this->inschrijving_model->getInschrijvingenByPersoonId($personeelslidid);
+    $this->load->model('shiftinschrijving_model');
     $this->load->model('optie_model');
-    $data['opties'] = $this->optie_model->getAllOptiesWithDagonderdeel();
+    $this->load->model('shift_model');
+
+        $data['inschrijvingen'] = $this->inschrijving_model->getInschrijvingenByPersoonId($persoonid);
+        $data['persoon'] = $this->persoon_model->getByIdWithInschrijvingen($persoonid);
+        $data['opties'] = $this->optie_model->getAllOptiesWithDagonderdeel();
+
     $partials = array('hoofding' => 'views_admin/admin_navbar',
         'sidenav' => 'views_admin/admin_sidebar',
         'content' => 'views_admin/admin_wijzig_persoon',
         'footer' => 'main_footer');
     $this->template->load('main_master', $partials, $data);
-
 }
+    public function editHelper($persoonid)
+    {
+        $data['titel'] = "Overzicht helpers en personeelsleden";
+        $data['verantwoordelijke'] = 'Sander Philipsen';
+        $data['functionaliteit'] = "Overzicht helpers en personeelsleden";
+        $this->load->model('persoon_model');
+
+        $this->load->model('shiftinschrijving_model');
+
+        $this->load->model('shift_model');
+
+        $data['inschrijvingen'] = $this->shiftinschrijving_model->getInschrijvingPersoon($persoonid);
+        $data['persoon'] = $this->persoon_model->getByIdWithInschrijvingen($persoonid);
+$data['shiften']= $this->shift_model->getAllShiften();
+
+        $partials = array('hoofding' => 'views_admin/admin_navbar',
+            'sidenav' => 'views_admin/admin_sidebar',
+            'content' => 'views_admin/admin_wijzig_helper',
+            'footer' => 'main_footer');
+        $this->template->load('main_master', $partials, $data);
+    }
+
     public function persoon($personeelslidid){
         $data['titel'] = "Overzicht helpers en personeelsleden";
         $data['verantwoordelijke'] = 'Sander Philipsen';
@@ -154,21 +190,60 @@ public function editPersoneelslid($personeelslidid){
         $this->template->load('main_master', $partials, $data);
 
     }
-    public function wijzigpersoon(){
+    public function wijzigPersoon(){
         $id = $this->input->post('id');
         $naam = $this->input->post('familienaam');
         $voornaam = $this->input->post('voornaam');
         $email = $this->input->post('email');
         $gsm = $this->input->post('gsm');
         $this->load->model('persoon_model');
-
-
+        $this->load->model('inschrijving_model');
+        $persoon = $this->persoon_model->getByNaam($naam,$voornaam);
+        $persoonid = $persoon->id;
         $data['persoon'] = $this->persoon_model->updatePersoon($id,$voornaam,$naam,$email,$gsm);
+        $this->inschrijving_model->deleteInschrijvingenWherePersoonId($id);
 
+        $inschrijvingen = $this->input->post('inschrijvingen');
+        if ($inschrijvingen != null) {
+
+
+            foreach ($inschrijvingen as $inschrijving) {
+
+                $optieid = $inschrijving;
+                $this->inschrijving_model->schrijfIn($persoonid, $optieid);
+            }
+        }
 
 
         redirect("/overzicht_helpers_personeelsleden/index");
     }
+    public function wijzigHelper(){
+        $id = $this->input->post('id');
+        $naam = $this->input->post('familienaam');
+        $voornaam = $this->input->post('voornaam');
+        $email = $this->input->post('email');
+        $gsm = $this->input->post('gsm');
+        $this->load->model('persoon_model');
+        $this->load->model('shiftinschrijving_model');
+        $persoon = $this->persoon_model->getByNaam($naam,$voornaam);
+        $persoonid = $persoon->id;
+        $data['persoon'] = $this->persoon_model->updatePersoon($id,$voornaam,$naam,$email,$gsm);
+        $this->shiftinschrijving_model->deleteInschrijvingenWherePersoonId($id);
+
+        $inschrijvingen = $this->input->post('inschrijvingen');
+        if ($inschrijvingen != null) {
+
+            foreach ($inschrijvingen as $inschrijving) {
+
+                -
+                $this->shiftinschrijving_model->schrijfIn($persoonid, $inschrijving);
+            }
+        }
+
+
+        redirect("/overzicht_helpers_personeelsleden/index");
+    }
+
 
 
 }

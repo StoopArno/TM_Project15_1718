@@ -26,6 +26,10 @@ class Shiftinschrijving_model extends CI_Model
         $inschrijving = $query->result();
         return $inschrijving;
     }
+    function deleteInschrijvingenWherePersoonId($persoonid){
+        $this->db->where('persoonid', $persoonid);
+        $this->db->delete('inschrijving');
+    }
 
 function getAllinschrijvingen(){
 

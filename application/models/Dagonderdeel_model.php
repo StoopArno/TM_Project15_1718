@@ -112,13 +112,21 @@ class Dagonderdeel_model extends CI_Model
      * @return mixed
      */
     function getAllByBegintijdWithOpties(){
-        $this->db->order_by('begintijd', 'asc');
+
+        $this->db->order_by('begintijd','datepart(hh,begintijd)');
+
+
         $query = $this->db->get("dagonderdeel");
         $dagonderdelen = $query->result();
 
         $this->load->model("Optie_model");
         foreach ($dagonderdelen as $onderdeel){
             $onderdeel->opties = $this->Optie_model->getAllByDagonderdeelIdWithInschrijvingen($onderdeel->id);
+            /*
+            $fixer = explode("",$onderdeel->begintijd);
+
+            $onderdeel->begintijd= $fixer[1];
+            */
         }
 
 

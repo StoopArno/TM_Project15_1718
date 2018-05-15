@@ -95,11 +95,11 @@
 </div>
 <div class="personeel col-lg-12">
 
-    <h2 id="personeelh2">Personeel <i id="editpersoneel" class="glyphicon glyphicon-pencil" aria-hidden="true"></i><i id="printpersoneel" class="glyphicon glyphicon-print"></i></h2>
+    <h2 id="personeelh2">Personeel <i id="editpersoneel" class="glyphicon glyphicon-pencil" aria-hidden="true"></i><i
+                id="printpersoneel" class="glyphicon glyphicon-print"></i></h2>
 
 
-
-    <table id="printpers"class="personeeltabel table text-center col-lg-12 ">
+    <table id="printpers" class="personeeltabel table text-center col-lg-12 ">
 
         <tr class="table-kleur">
             <td class="aanpasbug hidden"></td>
@@ -146,7 +146,7 @@
 
                     }
                     if ($fix == 0) {
-                        echo "<td>/</td>";
+                        echo "<td></td>";
                     }
 
                 }
@@ -178,6 +178,144 @@ if ($lid == "") {
 <div class="voegpersoneelslidtoe hidden col-sm-12 col-md-12 col-lg-12 ">
     <div class="col-lg-12">
         <?php echo form_open('overzicht_helpers_personeelsleden/voegPersoneelslidToe'); ?>
+        <div class="col-lg-6">
+            <h2>persoon</h2>
+
+            <div class="form-group">
+                <label for="familienaam">Familienaam</label>
+                <input type="text" class="form-control" placeholder="Familienaam" name="familienaam" required>
+                <small class="form-text text-muted">Voer hier de familienaam in.</small>
+            </div>
+            <div class="form-group">
+                <label for="voornaam">Voornaam</label>
+                <input type="text" class="form-control" placeholder="Voornaam" name="voornaam" required>
+                <small class="form-text text-muted">Voer hier de voornaam in.</small>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email"
+                       name="email" required>
+                <small id="emailHelp" class="form-text text-muted">Voer hier de email in.</small>
+            </div>
+
+
+            <div class="form-group">
+                <label for="number">GSM Nummer</label>
+                <input type="number" min="0" class="form-control" id="gsm" aria-describedby="emailHelp"
+                       placeholder="GSM Nummer" name="gsm">
+                <small id="emailHelp" class="form-text text-muted">Voer hier de GSM nummer in.</small>
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <h2>Inschrijven voor</h2>
+            <div class="col-lg-6  ">
+
+                <?php
+                $dagonderdeelidoud = "";
+                $total = count($opties);
+                $tel = 0;
+                foreach ($opties as $optie) {
+                    $tel++;
+
+                    $dagonderdeelid = $optie->dagonderdeelId;
+                    if ($dagonderdeelid != $dagonderdeelidoud) {
+                        if ($total / 3 < $tel) {
+                            echo "</div><div class='col-lg-3'>";
+                            $tel = 0;
+                        }
+                        echo '<h4>' . $optie->dagonderdeel->naam . '</h4>';
+
+                    }
+                    echo '<p><input class="form-check-input" name="inschrijvingen[]" type="checkbox" value="' . $optie->id . '" id="' . $optie->id . '" > &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ' . $optie->optie . '
+      </p>';
+                    $dagonderdeelidoud = $dagonderdeelid;
+                }
+                ?>
+            </div>
+
+
+        </div>
+        <div class="col-lg-12">
+            <p>
+                <button type="submit" class="btn btn-primary ">Voeg toe</button>
+                <button id="annuleer" class="btn btn-danger red ">Annuleer</button>
+            </p>
+
+        </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="printhelper" class="col-lg-12">
+    <h2 id="helpersh2">Helpers <i id="edithelper" class="glyphicon glyphicon-pencil" aria-hidden="true"></i> <i
+                id="printhelpers" class="glyphicon glyphicon-print"></i></h2>
+
+
+    <table class="table  text-center col-lg-12 ">
+        <tr class="table-kleur">
+            <td class="aanpasbug3 hidden"></td>
+            <td>Naam</td>
+            <?php
+
+
+            foreach ($shifturen as $uur) {
+
+                $begintijd = explode(" ", $uur->beginuur);
+                $eindtijd = explode(" ", $uur->einduur);
+
+                $begintijdpertwee = explode(":", $begintijd[1]);
+                $eindtijdpertwee = explode(":", $eindtijd[1]);
+
+
+                echo "<td class=''> <p class='' >  " . $begintijdpertwee[0] . ":" . $begintijdpertwee[1] . "-" . $eindtijdpertwee[0] . ":" . $eindtijdpertwee[1] . "</p></td>";
+
+
+            }
+            echo "</tr>";
+
+            foreach ($helpers as $helper) {
+                $helperid = $helper->id;
+               
+                echo '<tr>  <td class=" edithelper hidden">';
+                echo anchor('Overzicht_helpers_personeelsleden/editHelper/' . $helper->id, ' ', ' class="glyphicon text-dark glyphicon-pencil edithelper"');
+                echo anchor('Overzicht_helpers_personeelsleden/verwijderHelper/' . $helper->id, ' ', 'class=" text-dark  glyphicon glyphicon-trash verwijderhelper"') . "</td>";
+
+                echo '<td> ' . $helper->naam . " " . $helper->voornaam . '</td>';
+
+                foreach ($shifturen as $uur) {
+                    $helper = 0;
+                    foreach ($shiften as $shift) {
+                        if ($shift->beginuur == $uur->beginuur) {
+                            foreach ($shiftinschrijvingen as $shiftinschrijving) {
+
+                                if ($shiftinschrijving->shiftid == $shift->id && $helper == 0 && $helperid == $shiftinschrijving->persoonid) {
+
+                                    $helper = 1;
+                                    echo '<td>' . $shift->omschrijving . '</td>';
+
+                                }
+                            }
+                        }
+                    }
+                    if ($helper == 0) {
+
+                        echo '<td>/</td>';
+                    }
+
+                }
+
+                echo '</tr>';
+            }
+            ?>
+
+
+    </table>
+
+    <h2><i id="voeghelpertoe" class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></h2>
+    <div class="voeghelpertoe hidden col-sm-12 col-md-12 col-lg-12 ">
+        <?php echo form_open('overzicht_helpers_personeelsleden/voeghelperToe'); ?>
         <div class="col-lg-8">
 
             <div class="form-group  ">
@@ -190,7 +328,7 @@ if ($lid == "") {
                 <?php
                 echo '<input type="text" required class="form-control" placeholder="Familienaam" name="familienaam" id="familienaam" value="' . $familienaam
 
-                    . '"> '?>
+                    . '"> ' ?>
                 <small class="form-text text-muted">Voer hier de familienaam in.</small>
             </div>
             <div class="form-group">
@@ -209,144 +347,22 @@ if ($lid == "") {
             </div>
         </div>
         <div class="col-lg-4">
-            <h2>Inschrijven voor</h2>
-            <div class="col-lg-6 ">
-
-                <?php
-                $dagonderdeelidoud = "";
-                $total = count($opties);
-                $tel = 0;
-                foreach ($opties as $optie) {
-                    $tel++;
-                    if ($total / 2 < $tel) {
-                        echo "</div><div class='col-lg-6'>";
-                        $tel = 0;
-                    }
-                    $dagonderdeelid = $optie->dagonderdeelId;
-                    if ($dagonderdeelid != $dagonderdeelidoud) {
-                        echo '<h4>' . $optie->dagonderdeel->naam . '</h4>';
-                    }
-                    echo '<p ><input class="form-check-input" name="inschrijvingen[]" type="checkbox" value="' . $optie->id . '" id="' . $optie->id . '" > &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <label class="filter form-check-label" for="' . $optie->id . '">' . $optie->optie . '
-        </label></p>';
-                    $dagonderdeelidoud = $dagonderdeelid;
-                }
-                ?>
-            </div>
-        </div>
-        <button type="submit" class="col-lg-2 btn btn-primary ">Voeg toe</button>
-        <button id="annuleer" class="col-lg-2  btn btn-danger ">Annuleer</button>
-        <?php form_close() ?>
-    </div>
-</div>
-
-
-
-
-
-
-
-<div id="printhelper" class="col-lg-12">
-    <h2 id="helpersh2">Helpers <i id="edithelper" class="glyphicon glyphicon-pencil" aria-hidden="true"></i> <i id="printhelpers" class="glyphicon glyphicon-print"></i></h2>
-
-
-    <table class="table  text-center col-lg-12 ">
-    <tr class="table-kleur">
-        <td class="aanpasbug3 hidden"></td>
-        <td>Naam</td>
-        <?php
-        foreach ($shifturen as $uur) {
-
-            $begintijd = explode(" ", $uur->beginuur);
-            $eindtijd = explode(" ", $uur->einduur);
-
-            $begintijdpertwee = explode(":", $begintijd[1]);
-            $eindtijdpertwee = explode(":", $eindtijd[1]);
-
-            echo "<td class=''> <p class='' >  " . $begintijdpertwee[0] . ":" . $begintijdpertwee[1] . "-" . $eindtijdpertwee[0] . ":" . $eindtijdpertwee[1] . "</p></td>";
-
-        }
-        echo "</tr>";
-
-        foreach ($helpers as $helper){
-     echo '<tr>  <td class=" edithelper hidden">';
-            echo anchor('Overzicht_helpers_personeelsleden/editPersoneelslid/' . $helper->id, ' ', ' class="glyphicon text-dark glyphicon-pencil edithelper"');
-            echo anchor('Overzicht_helpers_personeelsleden/verwijderHelper/' . $helper->id, ' ', 'class=" text-dark  glyphicon glyphicon-trash verwijderhelper"') . "</td>";
-
-            echo '<td> ' . $helper->naam . " " . $helper->voornaam . '</td>';
-            foreach ($shifturen as $uur){
-               $fix =0;
-                foreach ($shiftinschrijvingen as $inschrijving) {
-                    if ($uur->id==$inschrijving->shiftid){
-                        if ($helper->id == $inschrijving->persoonid) {
-                            echo '<td>' . $inschrijvingenshiften[$inschrijving->shiftid]->naam . '</td>';
-                            $fix =1;
-                        }
-
-                    }
-
-                }
-                if ($fix==0){
-                    echo '<td> / </td>';
-                }
-            }
-            echo '</tr>' ;
-        }
-        ?>
-
-
-
-    </table>
-
-    <h2><i id="voeghelpertoe" class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></h2>
-    <div class="voeghelpertoe hidden col-sm-12 col-md-12 col-lg-12 ">
-    <?php echo form_open('overzicht_helpers_personeelsleden/voeghelperToe'); ?>
-    <div class="col-lg-8">
-
-        <div class="form-group  ">
-            <label for="voornaam">Voornaam</label>
-            <?php echo '   <input required type="text" class="form-control" placeholder="Voornaam" value="' . $voornaam . '" name="voornaam">' ?>
-            <small class="form-text text-muted">Voer hier de voornaam in.</small>
-        </div>
-        <div class="form-group">
-            <label for="familienaam">Familienaam</label>
-            <?php
-            echo '<input type="text" required class="form-control" placeholder="Familienaam" name="familienaam" id="familienaam" value="' . $familienaam
-
-                . '"> ' ?>
-            <small class="form-text text-muted">Voer hier de familienaam in.</small>
-        </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <?php echo '      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="' . $email . '" placeholder="Email"
-                           name="email"> ' ?>
-            <small id="emailHelp" class="form-text text-muted">Voer hier de email in.</small>
-        </div>
-
-
-        <div class="form-group">
-            <label for="number">GSM Nummer</label>
-            <input type="number" min="0" class="form-control" id="gsm" aria-describedby="emailHelp"
-                   placeholder="GSM Nummer" name="gsm">
-            <small id="emailHelp" class="form-text text-muted">Voer hier de GSM nummer in.</small>
-        </div>
-    </div>
-        <div class="col-lg-4">
             <h2>Komt helpen bij</h2>
             <div class="col-lg-6 ">
 
                 <?php
-             foreach ($shifturen as $shift){
-                 echo '<p ><input class="form-check-input" name="inschrijvingenhelper[]" type="checkbox" value="' . $shift->id . '" id="' . $shift->id . '" > &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <label class="filter form-check-label" for="' . $shift->id . '">' . $shift->omschrijving . '
+                foreach ($shifturen as $shift) {
+                    echo '<p ><input class="form-check-input" name="inschrijvingenhelper[]" type="checkbox" value="' . $shift->id . '" id="' . $shift->id . '" > &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <label class="filter form-check-label" for="' . $shift->id . '">' . $shift->omschrijving . '
         </label></p>';
-             }
+                }
                 ?>
             </div>
         </div>
 
 
-    <button type="submit" class="col-lg-2 btn btn-primary ">Voeg toe</button>
-    <button id="annuleerhelper" class="col-lg-2  btn btn-danger ">Annuleer</button>
-    <?php form_close() ?>
+        <button type="submit" class="col-lg-2 btn btn-primary ">Voeg toe</button>
+        <button id="annuleerhelper" class="col-lg-2  btn btn-danger ">Annuleer</button>
+        <?php form_close() ?>
     </div>
 </div>
 </div>

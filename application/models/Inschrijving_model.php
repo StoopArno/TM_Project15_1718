@@ -18,6 +18,10 @@ class Inschrijving_model extends CI_Model
         return $inschrijvingen;
 
     }
+function deleteInschrijvingenWherePersoonId($persoonid){
+    $this->db->where('persoonid', $persoonid);
+    $this->db->delete('inschrijving');
+}
 
 function getInschrijvingenByPersoonId($persoonid){
     $this->db->where('persoonid', $persoonid);

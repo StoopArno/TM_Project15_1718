@@ -72,6 +72,10 @@ class Persoon_model extends CI_Model
         $query = $this->db->get('persoon');
         return $query->result();
     }
+function getTypeBYPersoonId($persoonid){
+        $this->db->where('id',$persoonid);
+
+}
     function getAllHelpers(){
         $this->db->where('type', 'helper');
         $query = $this->db->get('persoon');
