@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Shiftinschrijving_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Shiftinschrijving'.
+ *
+ * Alle methoden waarmee data uit de tabel 'ShiftInschrijving' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
+ */
 class Shiftinschrijving_model extends CI_Model
 {
+    /**
+     * Shiftinschrijving_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
@@ -36,13 +45,13 @@ class Shiftinschrijving_model extends CI_Model
      * Deze functie haalt alle inschrijvingen op.
      * @return mixed
      */
-function getAllinschrijvingen(){
+    function getAllinschrijvingen(){
 
-    $query = $this->db->get('shiftinschrijving');
+        $query = $this->db->get('shiftinschrijving');
 
-    $inschrijvingen = $query->result();
-    return $inschrijvingen;
-}
+        $inschrijvingen = $query->result();
+        return $inschrijvingen;
+    }
 
     /**
      * Deze functie schrijft een persoon in voor een bepaalde shift.

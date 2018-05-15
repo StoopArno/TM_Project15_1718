@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Inschrijven_personeelslid
+ * @brief Controller-klasse voor Inschrijven_personeelslid.
+ *
+ * Controller-klasse met alle methoden i.v.m. het inschrijven van een personeelslid voor een optie.
+ */
 class Inschrijven_personeelslid extends CI_Controller
 {
+    /**
+     * Inschrijven_personeelslid constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -9,8 +18,11 @@ class Inschrijven_personeelslid extends CI_Controller
 
     /**
      * Toont een overzicht van inschrijfbare opties aan het personeelslid.
+     * @see Personeelsfeest_model::getLastPersoneelsfeest()
+     * @see Dagonderdeel_model::getAllWherePfidWithOpties_Inschrijving()
+     * @see views_personeelslid/foutpaginas/fout_general.php
+     * @see views_personeelslid/personeelslid_inschrijven.php
      */
-
     public function index(){
         $data["titel"] = "Inschrijven";
         $data["verantwoordelijke"] = "Arno Stoop";
@@ -42,6 +54,7 @@ class Inschrijven_personeelslid extends CI_Controller
      * Een personeelslid inschrijven.
      * als er geen personeelslid in de sesssie zit wordt er een fout weergegeven.
      * De pagina wordt opnieuw geladen na succesvolle inschrijving.
+     * @see Inschrijving_model::insert()
      */
     public function inschrijven(){
         if(!$this->session->has_userdata('personeelslid')){
@@ -64,6 +77,7 @@ class Inschrijven_personeelslid extends CI_Controller
      * De inschrijving van een personeelslid wijzigen.
      * als er geen personeelslid in de sesssie zit wordt er een fout weergegeven.
      * De pagina wordt opnieuw geladen na succesvolle wijziging.
+     * @see Inschrijving_model::update()
      */
     public function wijzigen(){
         if(!$this->session->has_userdata('personeelslid')){
@@ -85,6 +99,7 @@ class Inschrijven_personeelslid extends CI_Controller
     /**
      * De inschrijving van een personeelslid verwijderen.
      * @param $id Het id van de inschrijving.
+     * @see Inschrijving_model::delete()
      */
     public function uitschrijven($id){
         if(!$this->session->has_userdata('personeelslid')){
@@ -96,6 +111,10 @@ class Inschrijven_personeelslid extends CI_Controller
         }
     }
 
+    /**
+     * Toont een foutmelding dat de sessie verlopen is.
+     * @see views_personeelslid/foutpaginas/fout_general.php
+     */
     public function sessieverlopen(){
         $data["titel"] = "Inschrijven";
         $data["verantwoordelijke"] = "Arno Stoop";

@@ -1,4 +1,16 @@
 <?php
+/**
+ * @file views_admin/dagonderdelen_beheren/admin_overzicht_dagonderdelen.php
+ *
+ * View die een overzicht van alle dagonderdelen weergeeft en de mogelijkheid biedt deze aan te passen.
+ * Ook de opties van dagonderdelen kunnen aangepast worden.
+ *      - Krijgt een locatie-array binnen.
+ *      - Krijgt een dagonderdelen-array binnen.
+ *      - Krijgt '$dagonderdeelToClick' binnen. Voor als een bepaalde optie open moet staan bij het herladen van de pagina.
+ */
+?>
+
+<?php
     $locatieDropdown = array();
     foreach($locaties as $locatie){
         $locatieDropdown[$locatie->id] = ucfirst($locatie->locatie);

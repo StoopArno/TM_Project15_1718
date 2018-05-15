@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Personeelslid
+ * @brief Controller-klasse voor Personeelslid_home.
+ *
+ * Controller-klasse met alle methoden i.v.m. de homepagina van het personeelslid.
+ */
 class Personeelslid extends CI_Controller
 {
+    /**
+     * Personeelslid constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -12,6 +21,8 @@ class Personeelslid extends CI_Controller
     /**
      * Toont de startpagina van het personeelslid.
      * @param string|null $hashcode
+     * @see Tekst_model::getByNaam()
+     * @see views_personeelslid/home.php
      */
     public function index($hashcode = null){
         $data["titel"] = "Homepagina";
@@ -25,6 +36,8 @@ class Personeelslid extends CI_Controller
         }
 
         if($persoon != null){
+            $this->load->model('tekst_model');
+            $data["tekst"] = $this->tekst_model->getByNaam("home_personeelslid");
             $this->session->set_userdata("personeelslid", $persoon);
             $data["personeelslid"] = $persoon;
 
@@ -43,6 +56,10 @@ class Personeelslid extends CI_Controller
      * Geeft het persoon object terug enkel als de persoon een personeelslid is.
      * @param $hashcode
      * @return mixed personeelslid
+     * @see Persoon_model::getPersoonWhereHashcode()
+     * @see views_personeelslid/foutpaginas/fout_general.php
+     * @see views_personeelslid/foutpaginas/fout_persoonisadmin.php
+     * @see views_personeelslid/foutpaginas/fout_persoonishelper.php
      */
     function bepaalGebruiker($hashcode){
         $persoon = null;

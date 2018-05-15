@@ -1,4 +1,17 @@
 <?php
+/**
+ * @file views_admin/TakenEnShiften_beheren/admin_overzicht_TakenShiften.php
+ *
+ * View dat overzicht toont van alle Taken ne ook bijhorende shiften via ajac.
+ *      - Krijgt een locatie-array binnen.
+ *      - krijgt een dagonderdelen-array binnen.
+ *      - Krijgt een optie-array binnen.
+ *      - Krijgt een taak-array binnen.
+ *      - Krijgt '$taakToClick' binnen. bepaalt welke taak er eventueel aangeklikt moet worden bij het herladen van de pagina.
+ */
+?>
+
+<?php
     $locatieDropdown = array();
     foreach($locaties as $locatie){
         $locatieDropdown[$locatie->id] = ucfirst($locatie->locatie);

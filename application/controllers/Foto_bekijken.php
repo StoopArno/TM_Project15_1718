@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Foto_bekijken
+ * @brief Controller-klasse voor Foto-bekijken.
+ *
+ * Controller-klasse met alle methoden i.v.m. het bekijken van foto's voor personeelsleden.
+ */
 class Foto_bekijken extends CI_Controller
 {
+    /**
+     * Foto_bekijken constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -10,6 +19,9 @@ class Foto_bekijken extends CI_Controller
     /**
      * Toont een overzicht van alle foto's van het laatste jaar.
      * Met de mogelijkheid om andere jaren te selecteren.
+     * @see Personeelsfeest_model::getAllOrderByDatum()
+     * @see Personeelsfeest_model::getLastPersoneelsfeest()
+     * @see views_personeelslid/foto_bekijken/fotos_bekijken.php
      */
     public function index(){
         $data["titel"] = "Foto's bekijken";
@@ -32,6 +44,8 @@ class Foto_bekijken extends CI_Controller
     /**
      * Returned de view van een bepaald jaar.
      * @param $id
+     * @see Foto_model::getAllWherePfId()
+     * @see views_personeelslid/foto_bekijken/ajax_foto_specifiekJaar.php
      */
     public function haalAjaxOp_Foto($id){
         $this->load->model("foto_model");

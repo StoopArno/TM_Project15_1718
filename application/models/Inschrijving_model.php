@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Inschrijving_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Inschrijving'.
+ *
+ * Alle methoden waarmee data uit de tabel 'Inschrijving' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
+ */
 class Inschrijving_model extends CI_Model
 {
+    /**
+     * Inschrijving_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

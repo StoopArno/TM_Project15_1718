@@ -1,3 +1,12 @@
+<?php
+/**
+ * @file views_admin/fotos_beheren//ajax_foto_specifiekJaar.php
+ *
+ * View dat een overzicht van alle foto's van een bepaald jaar weergeeft. Biedt ook de mogelijkheid om foto's toe te voegen aan dat jaar.
+ *      - Krijgt een foto-array binnen.
+ */
+?>
+
 <div class="row">
     <?php foreach($fotos as $foto){ ?>
         <div class="col-3 offset-1 foto-item text-center">

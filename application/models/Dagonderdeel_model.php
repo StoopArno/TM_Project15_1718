@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Dagonderdeel_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Dagonderdeel'.
+ *
+ * Alle methoden waarmee data uit de tabel 'Dagonderdeel' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
+ */
 class Dagonderdeel_model extends CI_Model
 {
+    /**
+     * Dagonderdeel_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
@@ -69,6 +78,9 @@ class Dagonderdeel_model extends CI_Model
      * @param $personeelsfeestid
      * @param $persoonid
      * @return mixed array van dagonderdelen.
+     * @see Optie_model::getAllWhereDagonderdeelid()
+     * @see Inschrijving_model::getAantalInschrijvingenPerOptie()
+     * @see Inschrijving_model::getWherePersoonIdAndOptieId()
      */
     function getAllWherePfidWithOpties_Inschrijving($personeelsfeestid, $persoonid){
         $this->db->where("personeelsfeestId", $personeelsfeestid);
@@ -101,6 +113,7 @@ class Dagonderdeel_model extends CI_Model
      * Ophalen alle dagonderdelen en bijhorende locaties van een bepaald personeelsfeest.
      * @param $personeelsfeestid
      * @return mixed
+     * @see Locatie_model::get()
      */
     function getAllWherePfidWithLocaties($personeelsfeestid){
         $this->db->where("personeelsfeestid", $personeelsfeestid);
@@ -123,6 +136,7 @@ class Dagonderdeel_model extends CI_Model
      * Ophalen alle dagonderdelen en bijhorende opties, taken en shiften van een bepaald personeelsfeest
      * @param $personeelsfeestId
      * @return mixed
+     * @see Optie_model::getAllWhereDagonderdeelidWithTaken_Shiften()
      */
     function getAllWherePfIdWithOpties_Taken_Shiften($personeelsfeestId){
         $this->db->where("personeelsfeestid", $personeelsfeestId);
@@ -144,6 +158,7 @@ class Dagonderdeel_model extends CI_Model
     /**
      * Ophalen alle dagonderdelen en bijhorende opties met de inschrijvingen op die opties.
      * @return mixed
+     * @see Optie_model::getAllByDagonderdeelIdWithInschrijvingen()
      */
     function getAllByBegintijdWithOpties(){
         $this->db->order_by('begintijd', 'asc');
@@ -184,7 +199,11 @@ class Dagonderdeel_model extends CI_Model
         return $query->result();
     }
 
-
+    /**
+     * Ophalen specifiek dagonderdeel.
+     * @param $id
+     * @return mixed
+     */
     function getByDagonderdeelId($id){
         $this->db->where("id", $id);
         $this->db->order_by("id", "asc");

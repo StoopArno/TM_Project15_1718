@@ -1,3 +1,12 @@
+<?php
+/**
+ * @file views_admin/fotos_beheren/admin_fotos_beheren.php
+ *
+ * View die een overzicht weergeeft van alle foto's, gesorteerd in tabs per jaar.
+ *      - Krijgt een personeelsfeest-array binnen.
+ */
+?>
+
 <ul class="nav nav-tabs">
     <?php foreach($personeelsfeesten as $personeelsfeest){ ?>
             <li class="nav-item">

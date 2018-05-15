@@ -1,3 +1,13 @@
+<?php
+/**
+ * @file views_personeelslid/personeelslid_inschrijven.php
+ *
+ * View waar het personeelslid zich op kan inschrijven.
+ *      - Krijgt een dagonderdelen-array binnen.
+ *      - Krijgt
+ */
+?>
+
 <div class="table-responsive table-hover">
     <table class="table">
         <thead>
@@ -23,8 +33,10 @@
                 }
             }
             ?>
-            <?php if($dagonderdeel->opties != null){ ?>
-                <?php if(!$dagonderdeel->heeftInschrijving){ ?>
+            <?php if($dagonderdeel->opties != null){
+                //Als dit dagonderdeel een inschijving heeft, moeten de knoppen uitschrijven en wijzigen getoond worden, niet inschrijven.
+                //Ook zal er een radiobutton aangevinkt moeten worden.
+                 if(!$dagonderdeel->heeftInschrijving){ ?>
                     <tr class="optieRow">
                         <td class="align-middle">
                             <?php

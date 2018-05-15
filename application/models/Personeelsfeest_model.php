@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @class Personeelsfeest_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Personeelsfeest'.
+ *
+ * Alle methoden waarmee data uit de tabel 'Personeelsfeest' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
+ */
 class Personeelsfeest_model extends CI_Model
 {
+    /**
+     * Personeelsfeest_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
