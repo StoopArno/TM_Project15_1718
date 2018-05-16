@@ -196,7 +196,7 @@ $opmerkingen[]="";
 
                 }
                 $opmerkingstring="";
-                print_r($opmerkingen);
+
                 foreach ($opmerkingen as $opmerking){
 
               $opmerkingstring +=   '<li>' . $opmerking . '</li>';
