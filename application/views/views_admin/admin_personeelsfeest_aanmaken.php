@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 <?php 
 /**
  * @file views_admin/admin_personeelsfeest_aanmaken.php
  * Hier kan de administrator een nieuw personeelsfeest aanmaken
+=======
+<?php
+/**
+ * @file views_admin/hadmin_personeelsfeest_aanmaken.php
+ *
+ * View die de optie geeft om een personeelsfeest aan te maken aan de hand van een nederlandse datepicker.
+>>>>>>> 90e8f67fdfe1e9f7ae7a66c3723817734353784a
  */
 ?>
 <link href="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/css/datepicker3.css" rel="stylesheet"/>
