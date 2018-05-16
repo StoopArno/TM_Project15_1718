@@ -1,3 +1,10 @@
+<?php
+/**
+ * @file views_helper/faq_helper.php
+ *
+ * View die een overzicht weergeeft van de faq en een tutorial hoe je het kan gebruiken.
+ */
+?>
 <br>
 <br>
 <br>

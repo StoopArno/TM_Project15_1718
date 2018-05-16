@@ -1,8 +1,10 @@
-<script>
-
-</script>
-
-
+<?php
+/**
+ * @file views_helper/helper_fotos_raadplegen.php
+ *
+ * View die een overzicht weergeeft van de fotos van de voorbije jaren.
+ */
+?>
 <article>
     <div class="btn-group">
         <?php
