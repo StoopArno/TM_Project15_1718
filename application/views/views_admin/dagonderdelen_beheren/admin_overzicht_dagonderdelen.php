@@ -1,4 +1,16 @@
 <?php
+/**
+ * @file views_admin/dagonderdelen_beheren/admin_overzicht_dagonderdelen.php
+ *
+ * View die een overzicht van alle dagonderdelen weergeeft en de mogelijkheid biedt deze aan te passen.
+ * Ook de opties van dagonderdelen kunnen aangepast worden.
+ *      - Krijgt een locatie-array binnen.
+ *      - Krijgt een dagonderdelen-array binnen.
+ *      - Krijgt '$dagonderdeelToClick' binnen. Voor als een bepaalde optie open moet staan bij het herladen van de pagina.
+ */
+?>
+
+<?php
     $locatieDropdown = array();
     foreach($locaties as $locatie){
         $locatieDropdown[$locatie->id] = ucfirst($locatie->locatie);
@@ -6,7 +18,7 @@
 ?>
 <div class="row">
     <h4 class="col-5">Dagonderdelen</h4>
-    <h4 class="col-7 text-right "><a href="TakenEnShiften_beheren" class="">Taken en shiften<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
+    <h4 class="col-7 text-right "><a href="<?php echo base_url() ?>/index.php/TakenEnShiften_beheren" class="">Taken en shiften<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
 </div>
 
 <div class="table-responsive">
@@ -55,13 +67,24 @@
 
                 </td>
                 <td class="text-center"><i class="fa fa-edit fa-2x dagonderdeelActie dagonderdeelEdit" data-onderdeelid="<?php echo $dagonderdeel->id ?>"></i></td>
-                <td class="text-center"><a href="Dagonderdelen_beheren/dagonderdeelVerwijderen/<?php echo $dagonderdeel->id ?>"><i class="fa fa-trash fa-2x dagonderdeelActie dagonderdeelDelete text-dark"></i></a></td>
+                <td class="text-center"><a ><i class="fa fa-trash fa-2x dagonderdeelActie dagonderdeelDelete text-dark" data-dagonderdeelid="<?php echo $dagonderdeel->id ?>"></i></a></td>
                 <td class="text-center"><i class="fa fa-list-ul fa-2x dagonderdeelActie dagonderdeelDetails text-dark" id="dagonderdeelDetails<?php echo $dagonderdeel->id ?>" data-onderdeelid="<?php echo $dagonderdeel->id ?>"></i></td>
             </tr>
 
         <?php } ?>
         </tbody>
     </table>
+</div>
+<div class="modal fade" id="DagonderdeelDialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>Ben je zeker dat je dit dagonderdeel wilt verwijderen?</h4>
+            <div>
+                <button class="verwijderKnop btn btn-danger left">Verwijder</button>
+                <button class="annuleerKnop btn btn-primary right">Annuleer</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row optieDetails"></div>
 <script>
@@ -71,7 +94,7 @@
         var combobox = "<select name='locatieId' class='form-control " + soortId + "Id" + id + "' size=1 form='" + soortId + "Form" + id + "'>";
 
         $.ajax({
-            url: "Dagonderdelen_beheren/getLocaties",
+            url: "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getLocaties",
             dataType: 'json',
             async : false,
             success: function (data) {
@@ -90,12 +113,16 @@
 
     function haalOptiesOp(dagonderdeelId){
         $.ajax({
-            url: "Dagonderdelen_beheren/haalAjaxOp_dagonderdeelDetails/" + dagonderdeelId,
+            url: "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/haalAjaxOp_dagonderdeelDetails/" + dagonderdeelId,
             success: function (data) {
                 $(".optieDetails").append(data);
             }
         })
     };
+
+    function verwijderDagonderdeel(id){
+        window.location.href = site_url + "/Dagonderdelen_beheren/dagonderdeelVerwijderen/" + id;
+    }
 
     $(document).ready(function() {
 
@@ -115,7 +142,7 @@
         });
 
         <?php if(isset($dagonderdeelToClick)){ ?>
-        //Trigger het click event de taak waar iets is in aangeapst.
+        //Trigger het click event op de taak waar iets is in aangepast.
         //Note: Deze code moet altijd na de code komen waarin er iets met dit click event gedaan wordt.
         $('#dagonderdeelDetails<?php echo $dagonderdeelToClick ?>').trigger('click');
         <?php } ?>
@@ -127,6 +154,21 @@
                 console.log("Checked");
                 $("#dropdownCell" + $(this).data("onderdeelid")).empty().append(getCombobox("dagonderdeel", $(this).data("onderdeelid")));
             }
+        });
+
+        var id;
+        $(".dagonderdeelDelete").on('click', function(){
+            id = $(this).data("dagonderdeelid");
+            $('#DagonderdeelDialoog').modal('show');
+        })
+
+        $('.verwijderKnop').click(function() {
+            $('#DagonderdeelDialoog').modal('toggle');
+            verwijderDagonderdeel(id);
+        });
+
+        $('.annuleerKnop').click(function() {
+            $('#DagonderdeelDialoog').modal('toggle');
         });
     });
 </script>

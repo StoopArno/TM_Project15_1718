@@ -77,7 +77,9 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
+
 	'password' => 'usbw',
+
 	'database' => 'team_15',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

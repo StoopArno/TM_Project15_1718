@@ -8,18 +8,12 @@ footer h5 {
     font-size:16px;
 }
 
-div.collapse.navbar-collapse#basicExampleNav ul.navbar-nav.mr-auto li a.nav-link {
-    font-size:17px;
-}
 
 footer p {
     font-size:15px;
 }
 
-nav.navbar.navbar-expand-lg.navbar-dark.primary-color {
-  /*  background-color: #E73E16 !important;*/
-    background-color: #0091A6 !important;
-}
+
 
 footer.page-footer.font-small.stylish-color-dark.pt-4.mt-4 {
    /* background-color: #E73E16 !important;*/
@@ -31,7 +25,7 @@ table thead th {
     background-color: #E73E16 !important;
 }
 
-.btn.btn-warning, .btn.btn-success {
+.btn.btn-warning, .btn.btn-success, .btn.btn-danger {
     width:120px;
 }
 .btn.btn-warning {
@@ -42,3 +36,63 @@ table thead th {
     background-color: #0091A6 !important;
 }
 
+.btn.btn-danger {
+    background-color: #d13f38 !important;
+}
+
+.btn.btn-secondary {
+    background-color: pink !important;
+}
+
+div.modal.fade#helperDialog {
+    margin:auto auto;
+    position:fixed;
+    top:50%;
+}
+
+div.limiter {
+    position:relative;
+    top:-20px;
+}
+
+article {
+    text-align:center;
+}
+div.btn-group {
+    position:relative;
+    top:-75px;
+    margin:0px auto !important;
+}
+
+div.btn-group button.btn.btn-primary {
+width:80px;
+}
+.whov:hover { background-color: #00695c!important; }
+.view {
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 500px;
+}
+.secondbase {
+    background-color: rgba(255,255,255,.6);
+    margin-top: -90px;
+}
+
+div.collapse.navbar-collapse#navbarSupportedContent ul.navbar-nav.mr-auto li.nav-item a.nav-link {
+    font-size:17px;
+}
+nav.navbar.navbar-expand-lg.navbar-dark.default-color-dark.fixed-top {
+    /*  background-color: #E73E16 !important;*/
+    background-color: #0091A6 !important;
+}
+
+span.navbar-toggler-icon {
+    position:fixed;
+    right:15px;
+    top:7px;
+    font-size:25px;
+}
+
+.nav-item:active, .nav-item:hover, .nav-item:focus {
+    background-color: rgba(255,255,255,.6);
+}

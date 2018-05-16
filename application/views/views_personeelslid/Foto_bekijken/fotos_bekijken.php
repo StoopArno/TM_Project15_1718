@@ -1,3 +1,12 @@
+<?php
+/**
+ * @file views_personeelslid/Foto_bekijken/fotos_bekijken.php
+ *
+ * View die wordt getoond wanneer het personeelslid de foto's van vorige jaren wenst te bekijken.
+ *      - Krijgt een personeelsfeesten-array binnen.
+ */
+?>
+
 <ul class="nav nav-tabs">
     <?php foreach($personeelsfeesten as $personeelsfeest){ ?>
         <li class="nav-item">

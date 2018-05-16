@@ -1,3 +1,19 @@
+<?php /**
+
+* @file views_admin/admin_wijzig_helper.php
+*
+* View die een helper weergeeft met zijn shiften waar hij komt helper
+* De inschrijvingen en gegevens van dit helper kunnen worden gewijzigd.
+*      - Krijgt een Persoon-array binnen
+*      - Krijgt een shiften-array binnen.*  -
+*      - Krijgt een inschrijvingen-array binnen
+ *
+*
+*/
+?>
+
+
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 <?php echo form_open('overzicht_helpers_personeelsleden/wijzighelper');
 
 ?>
@@ -42,16 +58,19 @@
             <?php
 
             $beginuuroud="";
-
+$teller=0;
             foreach ($shiften as $shift) {
 $help=0;
                 $beginuur = explode(" ", $shift->beginuur);
                 $einduur = explode(" ", $shift->einduur);
                 $beginuurenmin= explode(":", $beginuur[1]);
                     $einduurenmin= explode(":", $einduur[1]);
-
+                if ($teller == 3){
+                    echo ' </div><div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"> ';
+                }
                 if ($beginuur[1]!= $beginuuroud){
                     echo '<h2>'.$beginuurenmin[0] . ':' . $beginuurenmin[1] . '-'.  $einduurenmin[0] . ':' . $einduurenmin[1] . '</h2>';
+                    $teller+=1;
                 }
                 foreach ($inschrijvingen as $inschrijving){
                     if ($inschrijving->shiftid==$shift->id){
@@ -76,16 +95,10 @@ $help=0;
 
         </div>
     </div>
-    <button type="submit" class="col-lg-6 btn btn-primary btn-organisator">Opslaan</button>
+
+    <button type="submit" class=" btn btn-primary ">Opslaan</button>
 
 
 
     </form>
-
-<?php
-/**
- * Created by PhpStorm.
- * User: sande
- * Date: 15/05/2018
- * Time: 11:12
- */
+</div>

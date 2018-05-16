@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Personeelsfeest_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Personeelsfeest'.
+ */
 class Personeelsfeest_model extends CI_Model
 {
+    /**
+     * Personeelsfeest_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
@@ -17,6 +24,26 @@ class Personeelsfeest_model extends CI_Model
         $this->db->where("id", $id);
         $query = $this->db->get("personeelsfeest");
         return $query->row();
+    }
+
+    /**
+     * Deze functie laat je toe een personeelsfeest te wijzigen.
+     * @param $id
+     * @param $date
+     */
+    function wijzig($id, $date) {
+        $data = array('datum' => $date);
+        $this->db->where('id', $id);
+        $this->db->update('personeelsfeest', $data);
+    }
+
+    /**
+     * Deze functie laat je toe een personeelsfeest te verwijderen.
+     * @param $id
+     */
+    function delete($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('personeelsfeest');
     }
 
     /**
@@ -44,21 +71,22 @@ class Personeelsfeest_model extends CI_Model
         return $query->row();
     }
 
+    /**
+     * Deze functie maakt een nieuw personeelsfeest aan.
+     * @param $datum
+     */
     function maakPersoneelsfeest($datum) {
         $personeelsfeest = new stdClass();
         $personeelsfeest->datum = $datum;
         $this->db->insert('personeelsfeest', $personeelsfeest);
     }
 
+    /**
+     * Deze functie haalt alle personeelsfeesten op.
+     * @return mixed
+     */
     function getPersoneelsfeesten() {
         $query = $this->db->get('personeelsfeest');
         return $query->result();
     }
-
-    function delete($id) {
-        $this->db->where('id', $id);
-        $this->db->delete('personeelsfeest');
-    }
-
-
 }

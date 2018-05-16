@@ -1,7 +1,41 @@
 <?php
 echo pasStylesheetAan('style.css');
 ?>
+<script>
+    $(document).ready(function() {
+        var id;
+        $('.verwijderAdmin').click(function() {
+            id = $(this).attr('id');
+            $('#Dialoog').modal('show');
+        });
 
+        $('.verwijderKnop').click(function() {
+            $('#Dialoog').modal('toggle');
+            verwijderKnop(id);
+        });
+
+        $('.annuleerKnop').click(function() {
+            $('#Dialoog').modal('toggle');
+        });
+    });
+
+    function verwijderKnop(id) {
+        $.ajax({type: "GET",
+            url: site_url + "/organisator_beheren/verwijderOrganisator",
+            data: {id: id},
+            success: function (result) {
+                $("#list-tab").empty();
+                $("#list-tab").html(result);
+            },
+            error: function (xhr, status, error) {
+                alert ("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+            }
+        });
+    }
+
+
+
+</script>
 <div class="container">
 
     <div class="col-12">
@@ -114,7 +148,7 @@ echo pasStylesheetAan('style.css');
                                         <?php
                                         if($admin->voornaam != "Admin") {
                                             ?>
-                                            <td><?php echo anchor('organisator_beheren/verwijderOrganisator/' . $admin->id,'Verwijder', 'class="btn btn-danger"'); ?></td>
+                                            <td><a class="verwijderAdmin btn btn-danger" id="<?php echo $admin->id; ?>">Verwijder</a></td>
                                             <?php
                                         }
                                         ?>
@@ -153,7 +187,7 @@ echo pasStylesheetAan('style.css');
                         <small class="form-text text-muted">Voer hier de voornaam in.</small>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email address</label>
+                        <label for="email">Email adres</label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" name="email" required>
                         <small id="emailHelp" class="form-text text-muted">Voer hier de email in.</small>
                     </div>
@@ -163,7 +197,7 @@ echo pasStylesheetAan('style.css');
                         <input type="password" class="form-control" id="wachtwoord" placeholder="Wachtwoord" name="wachtwoord" required>
                     </div>
                     <div class="form-group">
-                        <label for="number">GSM Nummer</label>
+                        <label for="number">GSM</label>
                         <input type="number" min="0" class="form-control" id="gsm" aria-describedby="emailHelp" placeholder="GSM Nummer" name="gsm">
                         <small id="emailHelp" class="form-text text-muted">Voer hier de GSM nummer in.</small>
                     </div>
@@ -178,27 +212,17 @@ echo pasStylesheetAan('style.css');
         </div>
     </div>
 
+</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="modal fade" id="Dialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>Ben je zeker dat je deze organisator wilt verwijderen?</h4>
+            <div>
+                <button class="verwijderKnop btn btn-danger left">Verwijder</button>
+                <button class="annuleerKnop btn btn-primary right">Annuleer</button>
+            </div>
+        </div>
+    </div>
 </div>

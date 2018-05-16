@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @class Shift_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Shift'.
+ */
 class Shift_model extends CI_Model
 {
     function __construct()
@@ -27,6 +31,10 @@ class Shift_model extends CI_Model
         $this->db->update("shift", $shift);
     }
 
+    /**
+     * Deze functie wijzigt het aantal ingeschreven helpers (+).
+     * @param $id
+     */
     function updateHelperAantal($id) {
         $shift = $this->get($id);
         $nieuwAantal = $shift->aantalHelpers + 1;
@@ -35,6 +43,10 @@ class Shift_model extends CI_Model
         $this->db->update('shift', $data);
     }
 
+    /**
+     * Deze functie wijzigt het aantal ingeschreven helpers (-).
+     * @param $id
+     */
     function updateHelperAantalMin($id) {
         $shift = $this->get($id);
         $nieuwAantal = $shift->aantalHelpers - 1;
@@ -80,6 +92,11 @@ class Shift_model extends CI_Model
 
         return $shiften;
     }
+
+    /**
+     * Deze functie haalt alle shiften op met bijhorende uren.
+     * @return mixed
+     */
     function  getAllShiftUren(){
         $this->db->select('*');
         $this->db->order_by("beginuur", "asc");
@@ -94,6 +111,12 @@ class Shift_model extends CI_Model
         $shiften = $query->result();
         return $shiften;
     }
+
+    /**
+     * Deze functie haalt alle inschrijvingen per taak op.
+     * @param $taakid
+     * @return mixed
+     */
 function getAllWhereTaakidWithInschrijvingen($taakid){
     $this->db->where('taakid', $taakid);
     $query = $this->db->get('shift');
@@ -104,6 +127,18 @@ function getAllWhereTaakidWithInschrijvingen($taakid){
 
     }
     return $shiften;
+
+}
+
+    /**
+     * Deze functie haalt alle shiften op van een bepaald persoon.
+     * @param $persoonId
+     * @return mixed
+     */
+function getAllShiftenByPersoonId($persoonId) {
+        $this->db->where('persoonid', $persoonId);
+        $query = $this->db->get('shiftinschrijving');
+        return $query->result();
 
 }
 

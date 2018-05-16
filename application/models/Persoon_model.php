@@ -1,18 +1,45 @@
 <?php
 
+/**
+ * @class Persoon_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Persoon'.
+ */
 class Persoon_model extends CI_Model
 {
+    /**
+     * Persoon_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
     }
 
-
+    /**
+     * Ophalen bepaalde persoon adhv hashcode.
+     * @param $hashcode
+     * @return mixed|null de persson die bij de hashcode hoort of null als de hashcode niet bestaat.
+     */
+    function getPersoonWhereHashcode($hashcode){
+        $this->db->where('hashcode', $hashcode);
+        $query = $this->db->get('persoon');
+        return $query->row();
+    }
+    /**
+     * Ophalen van de gegevens van een persoon
+     * @param $id
+     * @return mixed | null de persoon die bij de id hoort of null als de id niet bestaat.
+     */
     function get($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('persoon');
         return $query->row();
     }
+    /**
+     * Ophalen van de inloggegevens van een admin
+     * @param $login
+     * @param $wachtwoord
+     * @return mixed | null Als De persoon van het type organisator die bij de login en wachtwoord hoort of null indien iets niet correct
+     */
     function getAdmin($login, $wachtwoord) {
 
         $this->db->where('type', 'organisator');
@@ -34,6 +61,7 @@ class Persoon_model extends CI_Model
     }
     /**
      * Ophalen van alle personen van het type organisator
+     * @return mixed
      */
     function getAllAdmin() {
         $this->db->where('type', 'organisator');
@@ -42,6 +70,11 @@ class Persoon_model extends CI_Model
     }
     /**
      * Het toevoegen van een persoon met het type organisator
+     * @param $naam
+     * @param $voornaam
+     * @param $email
+     * @param $gsm
+     * @param $wachtwoord
      */
     function organisatorToevoegen($naam, $voornaam, $email, $gsm, $wachtwoord) {
         $admin = new stdClass();
@@ -55,6 +88,8 @@ class Persoon_model extends CI_Model
     }
     /**
      * Verwijderen van een persoon
+     * @param id
+     *
      */
     function verwijder($id) {
         $this->db->where('id', $id);
@@ -63,6 +98,8 @@ class Persoon_model extends CI_Model
 
     /**
      * Ophalen van alle personeelsleden
+     * @param $zoekstring
+     * @return mixed | null geeft de personeelsleden terug die aan de zoekstring voldoen of null als er niets gelijk is aan die zoekstring
      */
     function getAllPersoneelsleden($zoekstring){
         $this->db->where('type', 'personeelslid');
@@ -72,16 +109,33 @@ class Persoon_model extends CI_Model
         $query = $this->db->get('persoon');
         return $query->result();
     }
+    /**
+     * Ophalen van het type van een persoon
+     * @param $persoonid
+     * @return mixed | null geeft een persoon terug of null als id niet bestaat
+     */
 function getTypeBYPersoonId($persoonid){
         $this->db->where('id',$persoonid);
 
 }
+    /**
+     * Ophalen van alle personen van het type helper
+     * @return mixed
+     */
     function getAllHelpers(){
         $this->db->where('type', 'helper');
         $query = $this->db->get('persoon');
         return $query->result();
 }
 
+    /**
+     * Deze functie laat je een personeelslid aan de database toevoegen.
+     * @param $naam
+     * @param $voornaam
+     * @param $email
+     * @param $gsm
+     * @param $hashcode
+     */
     function personeelslidToevoegen($naam, $voornaam, $email, $gsm, $hashcode) {
         $personeelslid = new stdClass();
         $personeelslid->naam = $naam;
@@ -92,6 +146,15 @@ function getTypeBYPersoonId($persoonid){
         $personeelslid->hashcode = $hashcode;
         $this->db->insert('persoon', $personeelslid);
     }
+
+    /**
+     * Deze functie laat je een helper aan de database toevoegen.
+     * @param $naam
+     * @param $voornaam
+     * @param $email
+     * @param $gsm
+     * @param $hashcode
+     */
     function helperToevoegen($naam, $voornaam, $email, $gsm, $hashcode) {
         $helper = new stdClass();
         $helper->naam = $naam;
@@ -103,17 +166,36 @@ function getTypeBYPersoonId($persoonid){
 
         $this->db->insert('persoon', $helper);
     }
+
+    /**
+     *  Deze functie haalt een bepaald personeelslid op.
+     * @param $id
+     * @return mixed
+     */
 function getpersoneelslid($id){
     $this->db->where('id', $id);
     $query = $this->db->get('persoon');
     return $query->row();
 }
+
+    /**
+     * Deze functie haalt iemand op per naam en voornaam.
+     * @param $naam
+     * @param $voornaam
+     * @return mixed
+     */
     function getByNaam($naam,$voornaam){
         $this->db->where('naam', $naam);
         $this->db->where('voornaam', $voornaam);
         $query = $this->db->get('persoon');
         return $query->row();
     }
+
+    /**
+     * Deze functie haalt personeelsleden op met een optieID.
+     * @param $id
+     * @return mixed
+     */
 function getAllPersoneelsledenWhereOptieId($id){
     $this->db->where('type', 'personeelslid');
     $query = $this->db->get('personen');
@@ -124,12 +206,24 @@ function getAllPersoneelsledenWhereOptieId($id){
     }
     return $query->result();
 }
+    /**
+     * Deze functiehaalt een persoon op
+     * @param $id
+     * @return mixed | null geeft een persoon terug of null als de id niet bestaat
+     */
 function getByIdWithInschrijvingen($id){
     $this->db->where('id', $id);
     $query = $this->db->get('persoon');
     return $query->row();
 }
-
+    /**
+     * Deze functie wijzigt een persoon
+     * @param $id
+     * @param $voornaam
+     * @param $naam
+     * @param $email
+     * @param $gsm
+     */
     function updatePersoon($id,$voornaam,$naam,$email,$gsm){
         $this->db->where('id', $id);
         $persoon = new stdClass();
@@ -147,6 +241,11 @@ function getByIdWithInschrijvingen($id){
 
 
 
+    /**
+     * Deze functie haalt een persoon op a.d.h.v. een hashcode. Zo weet de applicatie wie er aangemeld is.
+     * @param $hashcode
+     * @return mixed
+     */
 function getPersoon($hashcode) {
     $this->db->where('type', 'helper');
     $this->db->where('hashcode', $hashcode);

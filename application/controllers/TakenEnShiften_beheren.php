@@ -18,15 +18,19 @@ class TakenEnShiften_beheren extends CI_Controller
         $data['titel'] = 'Taken en shiften beheren';
         $data['functionaliteit'] = "Taken en shiften beheren. Hier kan je als organisator nieuwe taken en shiften toevoegen, verwijderen of aanpassen.";
 
-        $this->load->model("personeelsfeest_model");
-        $pfId = $this->personeelsfeest_model->getLastPersoneelsfeest()->id;
+        if($this->session->has_userdata('actiefPersoneelsfeest')){
+            $personeelsfeest = $this->session->userdata("actiefPersoneelsfeest");
+        } else{
+            $this->load->model("personeelsfeest_model");
+            $personeelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
+        }
 
         $this->load->model("dagonderdeel_model");
-        $dagonderdelen = $this->dagonderdeel_model->getAllWherePfIdAndLocatieIdIsNull($pfId);
+        $dagonderdelen = $this->dagonderdeel_model->getAllWherePfIdAndLocatieIdIsNull($personeelsfeest->id);
         $data["dagonderdelen"] = $dagonderdelen;
 
         //Ophalen dagonderdelen waarvan de opties geen taken hebben. Dit is enkel als het dagonderdeel een locatie heeft.
-        $data["dagonderdelenDropdown"] = $this->dagonderdeel_model->getAllWherePfIdAndLocatieIdIsNotNull($pfId);
+        $data["dagonderdelenDropdown"] = $this->dagonderdeel_model->getAllWherePfIdAndLocatieIdIsNotNull($personeelsfeest->id);
 
         $dagonderdeelIds = array();
         foreach ($dagonderdelen as $dagonderdeel){
@@ -37,7 +41,7 @@ class TakenEnShiften_beheren extends CI_Controller
         $data["opties"] = $this->optie_model->getAllWhereDagonderdeeidsWithDagonderdelen($dagonderdeelIds);
 
         $this->load->model("taak_model");
-        $data["taken"] = $this->taak_model->getAllWherePfIdWithDagonderdelen_Opties($pfId);
+        $data["taken"] = $this->taak_model->getAllWherePfIdWithDagonderdelen_Opties($personeelsfeest->id);
 
         $this->load->model("locatie_model");
         $data["locaties"] = $this->locatie_model->getAll();

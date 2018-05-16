@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Locatie_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Locatie'.
+ */
 class Locatie_model extends CI_Model
 {
+    /**
+     * Locatie_model constructor.
+     */
     function __construct()
     {
         parent::__construct();

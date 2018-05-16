@@ -9,6 +9,11 @@ class Aanmelden extends CI_Controller
 
     }
 
+
+    /**
+     * Kijkt na of je al aangemeld bent als administrator. Indien dit niet is dan stuurt deze functie
+     * je door naar de aanmeldpagina.
+     */
     public function index() {
         if(!$this->authex->isAdmin()){
             $data['titel'] = 'Admin - Login';
@@ -19,6 +24,10 @@ class Aanmelden extends CI_Controller
 
     }
 
+    /**
+     * Haalt de loginnaam en wachtwoord op, kijkt of dit overeenkomt met de admins in de database.
+     * Indien dit overeenkomt meldt hij aan, anders krijg je een error message.
+     */
     public function meldAan() {
 
         $login = $_POST['admin_login'];
@@ -34,15 +43,28 @@ class Aanmelden extends CI_Controller
         }
     }
 
+    /**
+     * Hier kom je terecht als je aangemeld bent.
+     * Dit is de homepagina van de administrators.
+     */
     public function home() {
         if($this->authex->isAdmin()) {
-            $data['verantwoordelijke'] = 'Lindert Van de Poel';
-
+            $data['verantwoordelijke'] = 'Lindert Van de Poel & Arno Stoop';
             $data['titel'] ='Homepagina';
-
             $data['functionaliteit'] = "Geen functionaliteit. Dit is de homepagina.";
 
             $data['admin'] = $this->authex->getGebruikerInfo();
+
+            $this->load->model('personeelsfeest_model');
+            if($this->session->has_userdata('actiefPersoneelsfeest')){
+                $actiefPersoneelsfeest = $this->session->userdata('actiefPersoneelsfeest');
+            } else{
+                $actiefPersoneelsfeest = $this->personeelsfeest_model->getLastPersoneelsfeest();
+            }
+            $data["actiefPersoneelsfeest"] = $actiefPersoneelsfeest;
+
+            $feesten = $this->personeelsfeest_model->getAllOrderByDatum();
+            $data['feesten'] = $feesten;
 
             $partials = array('hoofding' => 'views_admin/admin_navbar',
                 'sidenav' => 'views_admin/admin_sidebar',
@@ -55,9 +77,23 @@ class Aanmelden extends CI_Controller
         }
     }
 
+    /**
+     * Hier kun je mee afmelden
+     */
     public function meldAf() {
         $this->authex->meldAf();
         redirect(base_url());
+    }
+
+    /**
+     * Verandert het actieve personeelsfeest door deze in sessie te zetten.
+     */
+    public function VeranderPersoneeelsfeest(){
+        $pfId = $this->input->post('feestId');
+        $this->load->model('personeelsfeest_model');
+        $personeelsfeest = $this->personeelsfeest_model->get($pfId);
+        $this->session->set_userdata('actiefPersoneelsfeest', $personeelsfeest);
+        redirect(base_url() . "index.php/Aanmelden");
     }
 
 

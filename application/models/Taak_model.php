@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Taak_model
+ * @brief Bevar alle CRUD-methoden voor de tabel 'Taak'.
+ */
 class Taak_model extends CI_Model
 {
+    /**
+     * Taak_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
@@ -64,6 +71,11 @@ class Taak_model extends CI_Model
         return $taken;
     }
 
+    /**
+     * Deze functie haalt alle opties per ID op.
+     * @param $optieId
+     * @return mixed
+     */
     function getAllByOptieId($optieId) {
         $this->db->where('optieId', $optieId);
         $query = $this->db->get('taak');

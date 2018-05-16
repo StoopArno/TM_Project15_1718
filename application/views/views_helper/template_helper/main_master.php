@@ -12,22 +12,37 @@
     <title>Project 15_1718</title>
 
     <!-- Bootstrap Core CSS -->
-    <?php echo pasStylesheetAan("mdb.min.css"); ?>
+
+    <?php echo pasStylesheetAan("mdb.min.css");
+    echo pasStylesheetAan("tooltip.css");?>
     <?php echo pasStylesheetAan("bootstrap.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-grid.css"); ?>
     <?php echo pasStylesheetAan("bootstrap-reboot.css"); ?>
+    <?php
 
+    echo pasStylesheetAan("helper.css");
 
+    echo pasStylesheetAan("animate.css");
+    echo pasStylesheetAan("select2.min.css");
+    echo pasStylesheetAan("perfect-scrollbar.css");
+    echo pasStylesheetAan("main.css");
+    echo pasStylesheetAan("font-awesome.min.css");
+    echo pasStylesheetAan("helper_fotos.css"); ?>
     <!--  Fontawesome css  -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
 
     <?php echo haalJavascriptOp("jquery-3.3.1.min.js"); ?>
-    <?php echo haalJavascriptOp("bootstrap.js"); ?>
+    <?php echo haalJavascriptOp("bootstrap.js");
+    echo haalJavascriptOp("popper.js");
+    echo haalJavascriptOp("select2.min.js");
+    echo haalJavascriptOp("perfect-scrollbar.min.js");
+    echo haalJavascriptOp("main.js");
+    echo haalJavascriptOp("helper_fotos.js");?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <?php echo pasStylesheetAan("style.css"); ?>
-    <?php echo pasStylesheetAan("helper.css"); ?>
+
+
 
     <script type="text/javascript">
         var site_url = '<?php echo site_url(); ?>';

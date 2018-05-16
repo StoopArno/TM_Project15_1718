@@ -25,7 +25,7 @@ echo pasStylesheetAan('style.css');
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-3 col-lg-3">
-                    <p class="centerKnop"><?php echo form_submit('submitTeksten', 'Opslagen', 'class="btn btn-primary knop"'); ?></p>
+                    <p class="centerKnop"><?php echo form_submit('submitTeksten', 'Opslaan', 'class="btn btn-primary knop"'); ?></p>
                 </div>
             </div>
             <?php echo form_close(); ?>

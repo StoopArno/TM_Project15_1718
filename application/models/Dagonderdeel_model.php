@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Dagonderdeel_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Dagonderdeel'.
+ */
 class Dagonderdeel_model extends CI_Model
 {
+    /**
+     * Dagonderdeel_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
@@ -48,7 +55,7 @@ class Dagonderdeel_model extends CI_Model
     /**
      * Ophalen alle dagonderdelen van een bepaald personeelsfeest.
      * @param $personeelsfeestid
-     * @return mixed
+     * @return mixed array van dagonderdelen.
      */
     function getAllWherePfid($personeelsfeestid){
         $this->db->where("personeelsfeestId", $personeelsfeestid);
@@ -58,6 +65,40 @@ class Dagonderdeel_model extends CI_Model
         foreach($dagonderdelen as $dagonderdeel){
             $dagonderdeel->begintijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->begintijd);
             $dagonderdeel->eindtijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->eindtijd);
+        }
+
+        return $dagonderdelen;
+    }
+
+    /**
+     * Ophalen alle dagonderdelen van een bepaald personeelsfeest met bijhorende opties.
+     * Per dagonderdeel wordt ook bepaald of er al een inschrijving bestaat voor één van de bijhorende opties.
+     * @param $personeelsfeestid
+     * @param $persoonid
+     * @return mixed array van dagonderdelen.
+     */
+    function getAllWherePfidWithOpties_Inschrijving($personeelsfeestid, $persoonid){
+        $this->db->where("personeelsfeestId", $personeelsfeestid);
+        $query = $this->db->get("dagonderdeel");
+
+        $this->load->model("optie_model");
+        $this->load->model('inschrijving_model');
+        $dagonderdelen = $query->result();
+        foreach($dagonderdelen as $dagonderdeel){
+            $dagonderdeel->begintijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->begintijd);
+            $dagonderdeel->eindtijd = DateTime::createFromFormat("Y-m-d H:i:s", $dagonderdeel->eindtijd);
+            $dagonderdeel->opties = $this->optie_model->getAllWhereDagonderdeelid($dagonderdeel->id);
+
+            $dagonderdeel->heeftInschrijving = false;
+            foreach($dagonderdeel->opties as $optie){
+                $optie->aantalInschrijvingen = $this->inschrijving_model->getAantalInschrijvingenPerOptie($optie->id);
+                $inschrijving = $this->inschrijving_model->getWherePersoonIdAndOptieId($persoonid, $optie->id);
+                if($inschrijving != null){
+                    $dagonderdeel->heeftInschrijving = true;
+                    $dagonderdeel->inschrijving = $inschrijving;
+                }
+            }
+
         }
 
         return $dagonderdelen;
@@ -158,7 +199,11 @@ class Dagonderdeel_model extends CI_Model
         $query = $this->db->get("dagonderdeel");
         return $query->result();
     }
-
+    /**
+     * Ophalen van een dagonderdeel
+     * @param $id
+     * @return mixed | null geeft een dagonderdeel terug of null als het id niet bestaat.
+     */
 
     function getByDagonderdeelId($id){
         $this->db->where("id", $id);

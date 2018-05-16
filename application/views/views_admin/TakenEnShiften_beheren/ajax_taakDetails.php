@@ -1,3 +1,12 @@
+<?php
+/**
+ * @file views_admin/TakenEnShiften_beheren/ajax_taakDetails.php
+ *
+ * View dat wordt opgehaald in admin_overzicht_TakenShiften.php voor het tonen van shiften specifiek voor een taak.
+ *      - Krijgt een shiften-array binnen.
+ */
+?>
+
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
@@ -24,13 +33,28 @@
                     <td><?php echo form_input(array("type" => "time", "name" => "shiftBegin", "class" => "form-control shiftId" . $shift->id, "disabled" => "true", "form" => $shiftFormNaam), date_format($shift->beginuur, "H:i")); ?></td>
                     <td><?php echo form_input(array("type" => "time", "name" => "shiftEind", "class" => "form-control shiftId" . $shift->id, "disabled" => "true", "form" => $shiftFormNaam), date_format($shift->einduur, "H:i")); ?></td>
                     <td class="text-center"><i class="fa fa-edit fa-2x shiftActie shiftEdit" data-shiftid="<?php echo $shift->id ?>"></i></td>
-                    <td class="text-center"><a href="TakenEnShiften_beheren/shiftVerwijderen/<?php echo $shift->id ?>"><i class="fa fa-trash fa-2x shiftActie shiftDelete text-dark"></i></a></td>
+                    <td class="text-center"><i class="fa fa-trash fa-2x shiftActie shiftDelete text-dark" data-shiftid="<?php echo $shift->id ?>"></i></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
 </div>
+<div class="modal fade" id="ShiftDialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>Ben je zeker dat je deze taak wilt verwijderen?</h4>
+            <div>
+                <button class="verwijderKnop btn btn-danger left">Verwijder</button>
+                <button class="annuleerKnop btn btn-primary right">Annuleer</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+    function verwijderShift(id){
+        window.location.href = site_url + "/TakenEnShiften_beheren/shiftVerwijderen/" + id;
+    }
+
     $(document).ready(function() {
         $(".shiftActie.shiftEdit").on("click", function(){
             if($(this).hasClass("fa-edit")){
@@ -49,6 +73,21 @@
                 console.log("Checked");
                 $("#optieDropDownCell" + $(this).data("optieid")).empty().append("De locatie wordt gedefinieerd bij het dagonderdeel");
             }
+        });
+
+        var id;
+        $('.shiftDelete').click(function() {
+            id = $(this).data("shiftid");
+            $('#ShiftDialoog').modal('show');
+        });
+
+        $('.verwijderKnop').click(function() {
+            $('#ShiftDialoog').modal('toggle');
+            verwijderTaak(id);
+        });
+
+        $('.annuleerKnop').click(function() {
+            $('#ShiftDialoog').modal('toggle');
         });
     });
 </script>

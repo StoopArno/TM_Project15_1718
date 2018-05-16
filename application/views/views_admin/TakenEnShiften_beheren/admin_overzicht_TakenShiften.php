@@ -1,4 +1,17 @@
 <?php
+/**
+ * @file views_admin/TakenEnShiften_beheren/admin_overzicht_TakenShiften.php
+ *
+ * View dat overzicht toont van alle Taken ne ook bijhorende shiften via ajac.
+ *      - Krijgt een locatie-array binnen.
+ *      - krijgt een dagonderdelen-array binnen.
+ *      - Krijgt een optie-array binnen.
+ *      - Krijgt een taak-array binnen.
+ *      - Krijgt '$taakToClick' binnen. bepaalt welke taak er eventueel aangeklikt moet worden bij het herladen van de pagina.
+ */
+?>
+
+<?php
     $locatieDropdown = array();
     foreach($locaties as $locatie){
         $locatieDropdown[$locatie->id] = ucfirst($locatie->locatie);
@@ -8,15 +21,18 @@
         $dagonderdeelDropdown[$dagonderdeel->id] = ucfirst($dagonderdeel->naam);
     }
     $optieDropdown = array();
-    //var_dump($optieDropdown);
-    foreach($opties as $optie){
-        $optieDropdown[$optie->id] = ucfirst($optie->optie . " - " . $optie->dagonderdeel);
+    if($opties != null){
+        foreach($opties as $optie){
+            $optieDropdown[$optie->id] = ucfirst($optie->optie . " - " . $optie->dagonderdeel);
+        }
+    } else{
+        $optieDropdown = null;
     }
 ?>
 
 <div class="row">
     <h4 class="col-5">Taken en shiften</h4>
-    <h4 class="col-7 text-right "><a href="Dagonderdelen_beheren" class="">Dagonderdelen<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
+    <h4 class="col-7 text-right "><a href="<?php echo base_url() ?>/index.php/Dagonderdelen_beheren" class="">Dagonderdelen<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
 </div>
 
 <div class="table-responsive">
@@ -69,19 +85,30 @@
                     <?php } ?>
                 </td>
                 <td class="text-center"><i class="fa fa-edit fa-2x taakActie taakEdit" data-taakid="<?php echo $taak->id ?>"></i></td>
-                <td class="text-center"><a href="TakenEnShiften_beheren/taakVerwijderen/<?php echo $taak->id ?>"><i class="fa fa-trash fa-2x taakActie taakDelete text-dark"></i></a></td>
+                <td class="text-center"><i class="fa fa-trash fa-2x taakActie taakDelete text-dark" data-taakid="<?php echo $taak->id ?>"></i></td>
                 <td class="text-center"><i class="fa fa-list-ul fa-2x taakActie taakDetails text-dark" id="taakDetails<?php echo $taak->id ?>" data-taakid="<?php echo $taak->id ?>"></i></td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
 </div>
+<div class="modal fade" id="TaakDialoog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>Ben je zeker dat je deze taak wilt verwijderen?</h4>
+            <div>
+                <button class="verwijderKnop btn btn-danger left">Verwijder</button>
+                <button class="annuleerKnop btn btn-primary right">Annuleer</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="shiften"></div>
 <script>
     function getComboBoxDagonderdelen(taakId){
         var combobox = "<select name='dagonderdeelId' class='form-control taakId'" + taakId + " size=1 form='taakForm'" + taakId + ">"
         $.ajax({
-            url : "Dagonderdelen_beheren/getDagonderdelenLocatieNotNull",
+            url : "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getDagonderdelenLocatieNotNull",
             dataType: 'json',
             async: false,
             success: function(data){
@@ -97,7 +124,7 @@
     function getComboBoxOpties(taakId){
         var combobox = "<select name='optieId' class='form-control taakId" + taakId + "' size=1 form='taakForm" + taakId + "'>"
         $.ajax({
-            url : "Dagonderdelen_beheren/getOptiesWithTaken",
+            url : "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getOptiesWithTaken",
             dataType: 'json',
             async: false,
             success: function(data){
@@ -117,13 +144,17 @@
     function haalShiftenOp(taakId){
         var retValue = "";
         $.ajax({
-            url:"TakenEnShiften_beheren/haalAjaxOp_TaakDetails/" + taakId,
+            url:"<?php echo base_url() ?>/index.php/TakenEnShiften_beheren/haalAjaxOp_TaakDetails/" + taakId,
             async : false,
             success: function( data ){
                 retValue = data;
             }
         });
         return retValue;
+    }
+
+    function verwijderTaak(id){
+        window.location.href = site_url + "/TakenEnShiften_beheren/taakVerwijderen/" + id;
     }
 
     $(document).ready(function() {
@@ -147,7 +178,6 @@
         $('#taakDetails<?php echo $taakToClick ?>').trigger('click');
         <?php } ?>
 
-
         $(".checkboxHeeftOptie").on("change", function(){
 
             if($(this).prop("checked")){
@@ -159,5 +189,19 @@
             }
         });
 
+        var id;
+        $('.taakDelete').click(function() {
+            id = $(this).data("taakid");
+            $('#TaakDialoog').modal('show');
+        });
+
+        $('.verwijderKnop').click(function() {
+            $('#TaakDialoog').modal('toggle');
+            verwijderTaak(id);
+        });
+
+        $('.annuleerKnop').click(function() {
+            $('#TaakDialoog').modal('toggle');
+        });
     });
 </script>

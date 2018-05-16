@@ -18,8 +18,11 @@ class Organisator_beheren extends CI_Controller
 
     }
 
+    /**
+     * Deze functie laat de adminstrators van de applicatie andere admins toevoegen die dezelfde rechten krijgen.
+     */
     public function organisatorToevoegen() {
-        $data['titel'] = "Aanmelden - Login";
+        $data['titel'] = "Organisator toevoegen";
         $data['verantwoordelijke'] = 'Lindert Van de Poel';
         $data['functionaliteit'] = "Organisatoren beheren (in de analysefase organisator toevoegen). Hier kan je als
         organisator/admin een extra admin toevoegen en/of verwijderen. Je kan hier ook de nodige info raadplegen";
@@ -34,6 +37,9 @@ class Organisator_beheren extends CI_Controller
         $this->template->load('main_master', $partials, $data);
     }
 
+    /**
+     * Deze functie zal de admin effectief toevoegen.
+     */
     public function voegToe() {
         $this->load->model('persoon_model');
         $naam = $this->input->post('familienaam');
@@ -45,9 +51,15 @@ class Organisator_beheren extends CI_Controller
         redirect('organisator_beheren/organisatorToevoegen');
     }
 
-    public function verwijderOrganisator($id) {
+    /**
+     * Admins kunnen ook steeds andere admins verwijderen
+     */
+    public function verwijderOrganisator() {
+        $id = $this->input->get('id');
         $this->load->model('persoon_model');
         $this->persoon_model->verwijder($id);
-        $this->organisatorToevoegen();
+        $data['admins'] = $this->persoon_model->getAllAdmin();
+        $this->load->view('views_admin/organisator_ajax', $data);
+
     }
 }

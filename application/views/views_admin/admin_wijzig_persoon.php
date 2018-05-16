@@ -1,7 +1,20 @@
-<?php echo form_open('overzicht_helpers_personeelsleden/wijzigpersoon');
+<?php /**
+
+* @file views_admin/admin_wijzig_persoon.php
+*
+* View die een personeelslid weergeeft met zijn inschrijvingen
+* De inschrijvingen en gegevens van dit personeelslid kunnen worden gewijzigd.
+*      - Krijgt een Persoon-array binnen
+*      - Krijgt een opties-array binnen.
+ *     - Krijgt een Inschrijvingen-array binnen.
+*
+*/
+
+
+echo form_open('overzicht_helpers_personeelsleden/wijzigpersoon');
 
  ?>
-<div class="col-sm-12 col-md-6 col-lg-6">
+<div class="col-sm-6 col-xs-12 col-md-6 col-lg-6">
     <h2>Persoon wijzigen</h2>
 
     <div class="form-group hidden">
@@ -35,26 +48,28 @@
 
 
 </div>
-<div class="col-sm-12 col-md-6 col-lg-6">
-    <h2 class="align-left">Inschrijvingen wijzigen</h2>
-    <div class="col-sm-12 col-md-6 col-lg-6">
+<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+    <h2>Inschrijven voor</h2>
+    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 ">
 
         <?php
-        $dagonderdeeloud = "";
-        $aantal = count($opties);
+        $dagonderdeelidoud = "";
+        $total = count($opties);
         $tel = 0;
-        $dagonderdeel="";
+        $hulp="";
         foreach ($opties as $optie) {
             $tel++;
-            if ($aantal / 2 < $tel) {
-                echo "</div><div class='col-lg-6 col-md-6 col-sm-12'>";
-                $tel=0;
+
+            $dagonderdeelid = $optie->dagonderdeelId;
+            if ($dagonderdeelid != $dagonderdeelidoud) {
+                if ($total / 3 < $tel) {
+                    echo "</div><div class='col-lg-6'>";
+                    $tel = 0;
+                }
+                echo '<h3 class="text-lg-left text-left">' . $optie->dagonderdeel->naam . '</h3>';
+
             }
-            $dagonderdeel = $optie->dagonderdeel->naam;
-            if ($dagonderdeel != $dagonderdeeloud) {
-                echo '<h3>' .$dagonderdeel . '</h3>';
-            }
-            $hulp = 0;
+
             foreach ($inschrijvingen as $inschrijving) {
                 if ($inschrijving->optieid == $optie->id) {
                     $hulp = 1;
@@ -63,23 +78,23 @@
                 }
 
             }
-         if ($hulp==0){
-             echo '<p class="row"><input class="form-check-input"  name="inschrijvingen[]" type="checkbox" value="' . $optie->id . '" id="' . $optie->id . '" >  &nbsp;&nbsp;&nbsp; ' . $optie->optie . '
+            if ($hulp==0){
+                echo '<p class=" text-left row"><input class="form-check-input"  name="inschrijvingen[]" type="checkbox" value="' . $optie->id . '" id="' . $optie->id . '" >  &nbsp;&nbsp;&nbsp; ' . $optie->optie . '
         </p>';
-         }
-$dagonderdeeloud=$dagonderdeel;
-     }
-
-     ?>
-
-
+            }
+            $dagonderdeelidoud = $dagonderdeelid;
+        }
+        ?>
+    </div>
 
 
 </div>
+
+
+<div class=" row col-12">
+    <p class="text-lg-left text-left">
+        <button type="submit" class=" btn btn-primary">Opslaan</button>
+    </p>
 </div>
-<button type="submit" class="col-lg-6 btn btn-primary btn-organisator">Opslaan</button>
-
-
-
     </form>
-    
+

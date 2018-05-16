@@ -1,0 +1,54 @@
+.whov:hover { background-color: #00695c!important; }
+.view {
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 500px;
+}
+.secondbase {
+    background-color: rgba(255,255,255,.6);
+    margin-top: -90px;
+}
+
+div.collapse.navbar-collapse#navbarSupportedContent ul.navbar-nav.mr-auto li.nav-item a.nav-link {
+    font-size:17px;
+    color:white;
+}
+nav.navbar.navbar-expand-lg.navbar-dark.default-color-dark.fixed-top {
+    /*  background-color: #E73E16 !important;*/
+    background-color: #0091A6 !important;
+}
+
+span.navbar-toggler-icon {
+    position:fixed;
+    right:15px;
+    top:7px;
+    font-size:25px;
+    color:white !important;
+}
+
+.nav-item {
+    padding-left:10px;
+}
+.nav-item:active, .nav-item:hover, .nav-item:focus {
+    background-color: rgba(255,255,255,.6);
+}
+
+footer strong {
+    color:white;
+}
+
+footer h5 {
+
+    font-weight:bold;
+    font-size:16px;
+}
+
+
+footer p {
+    font-size:15px;
+}
+
+footer.page-footer.font-small.stylish-color-dark.pt-4.mt-4 {
+    /* background-color: #E73E16 !important;*/
+    background-color: #0091A6 !important;
+}

@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @class Optie_model
+ * @brief Bevat alle CRUD-methoden voor de tabel 'Optie'.
+ */
 class Optie_model extends CI_Model
 {
+    /**
+     * Optie_model constructor.
+     */
     function __construct()
     {
         parent::__construct();
@@ -61,19 +68,23 @@ class Optie_model extends CI_Model
      * Ophalen alle opties voor een array van dagonderdelen.
      * De naam van de dagonderdelen zelf wordt ook gereturned.
      * @param $dagonderdeelIds
-     * @return mixed
+     * @return mixed|null
      */
     function getAllWhereDagonderdeeidsWithDagonderdelen($dagonderdeelIds){
-        $this->db->where("dagonderdeelId", $dagonderdeelIds[0]);
-        for ($i = 1; $i < count($dagonderdeelIds); $i++) {
-            $this->db->or_where("dagonderdeelId", $dagonderdeelIds[$i]);
-        }
-        $this->db->order_by("dagonderdeelId", "asc");
-        $query = $this->db->get("optie");
-        $opties = $query->result();
-        $this->load->model("dagonderdeel_model");
-        foreach($opties as $optie){
-            $optie->dagonderdeel = $this->dagonderdeel_model->get($optie->dagonderdeelId)->naam;
+        if($dagonderdeelIds == null){
+            $opties = null;
+        } else{
+            $this->db->where("dagonderdeelId", $dagonderdeelIds[0]);
+            for ($i = 1; $i < count($dagonderdeelIds); $i++) {
+                $this->db->or_where("dagonderdeelId", $dagonderdeelIds[$i]);
+            }
+            $this->db->order_by("dagonderdeelId", "asc");
+            $query = $this->db->get("optie");
+            $opties = $query->result();
+            $this->load->model("dagonderdeel_model");
+            foreach($opties as $optie){
+                $optie->dagonderdeel = $this->dagonderdeel_model->get($optie->dagonderdeelId)->naam;
+            }
         }
 
         return $opties;
@@ -116,7 +127,10 @@ class Optie_model extends CI_Model
         return $opties;
     }
 
-
+    /**
+     * Deze functie geeft alle opties met dagonderdelen terug.
+     * @return mixed
+     */
     function getAllOptiesWithDagonderdeel(){
         $this->db->order_by('dagonderdeelid', 'desc');
         $query = $this->db->get('optie');
@@ -132,6 +146,10 @@ class Optie_model extends CI_Model
 
         }
 
+    /**
+     * Deze functie geeft alle opties terug.
+     * @return mixed
+     */
         function getAllOpties(){
             $query = $this->db->get('optie');
 
