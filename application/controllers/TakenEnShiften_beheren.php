@@ -1,6 +1,16 @@
 <?php
+
+/**
+ * @class TakenEnShiften_beheren
+ * @brief Controller-klasse voor TakenEnShiften_beheren
+ *
+ * Controller-klasse met alle methoden i.v.m. het beheren van alle taken en shiften.
+ */
 class TakenEnShiften_beheren extends CI_Controller
 {
+    /**
+     * TakenEnShiften_beheren constructor.
+     */
     public function __construct()
     {
         parent::__construct();

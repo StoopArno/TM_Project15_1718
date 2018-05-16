@@ -1,4 +1,12 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<?php
+/**
+ * @file views_admin/admin_navbar.php
+ *
+ * Dit is de balk vanboven aan de view. Hier krijg je een titel van de pagina.
+ */
+?>
+  
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         </div>
     <a class="navbar-brand pull-left" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>

@@ -1,4 +1,11 @@
-<script>
+<?php
+/**
+ * @file views_helper/helper_inschrijfpagina.php
+ *
+ * Hier kan de helper, nadat hij de inschrijflink gevolgd is, zich inschrijven voor verschillende shiften.
+ */
+?>
+   <script>
     $('.js-pscroll').each(function(){
         var ps = new PerfectScrollbar(this);
 

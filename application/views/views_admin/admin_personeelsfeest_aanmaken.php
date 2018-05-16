@@ -1,3 +1,11 @@
+<?php
+/**
+ * @file views_admin/admin_personeelsfeest_aanmaken.
+ *
+ * Hier kan de administrator een personeelsfeest aanmaken & verwijderen.
+ */
+?>
+
 <link href="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/css/datepicker3.css" rel="stylesheet"/>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -109,7 +117,7 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
+
 <br>
 <br>
 <br>
@@ -125,5 +133,4 @@
 <br>
 <br>
 <br>
-=======
->>>>>>> a4d0ea96ce51249fe2b6b01debdd5fff6ec3878d
+

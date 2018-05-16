@@ -1,3 +1,12 @@
+
+<?php
+/**
+ * @file views_admin/admin_sidebar.php
+ *
+ * Dit is het menu waaruit de admin kan navigeren.
+ */
+?>
+
 <!-- Sidebar -->
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">

@@ -1,3 +1,4 @@
+
 <?php /**
  * @file views_admin/admin_overzicht_helpers_personeel.php
  *
@@ -14,6 +15,10 @@
  */
 ?>
 <script>
+
+  
+   <script>
+
     $(document).ready(function () {
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()

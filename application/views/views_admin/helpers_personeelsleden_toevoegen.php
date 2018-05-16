@@ -1,4 +1,14 @@
-<div class="container">
+<?php
+/**
+ * @file views_admin/admin_personeelsleden_toevoegen.php
+ *
+ * Hier kan de administrator meerdere helpers en personeelsleden toevoegen die zich hierna kunnen
+ * inschrijven voor het personeelsfeest.
+ */
+?>
+   
+
+   <div class="container">
     <div class="col-sm-12 col-md-6">
         <h1>Personeelslid toevoegen</h1>
         <?php echo form_open('helpers_personeelsleden_toevoegen/personeelslidToevoegen');?>

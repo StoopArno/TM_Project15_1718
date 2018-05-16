@@ -3,6 +3,8 @@
 /**
  * @class Shift_model
  * @brief Bevat alle CRUD-methoden voor de tabel 'Shift'.
+ *
+ * Alle methoden waarmee data uit de tabel 'Shift' wordt gehaald, bewerkt of weggeschreven, is hier terug te vinden.
  */
 class Shift_model extends CI_Model
 {
@@ -117,30 +119,30 @@ class Shift_model extends CI_Model
      * @param $taakid
      * @return mixed
      */
-function getAllWhereTaakidWithInschrijvingen($taakid){
-    $this->db->where('taakid', $taakid);
-    $query = $this->db->get('shift');
-    $shiften = $query->result();
-    $this->load->model('Shiftinschrijving_model');
-    foreach($shiften as $shift){
-        $shift->inschrijvingen = $this->Shiftinschrijving_model->getAllInschrijvingenWhereShiftId($shift->id);;
+    function getAllWhereTaakidWithInschrijvingen($taakid){
+        $this->db->where('taakid', $taakid);
+        $query = $this->db->get('shift');
+        $shiften = $query->result();
+        $this->load->model('Shiftinschrijving_model');
+        foreach($shiften as $shift){
+            $shift->inschrijvingen = $this->Shiftinschrijving_model->getAllInschrijvingenWhereShiftId($shift->id);;
+
+        }
+        return $shiften;
 
     }
-    return $shiften;
-
-}
 
     /**
      * Deze functie haalt alle shiften op van een bepaald persoon.
      * @param $persoonId
      * @return mixed
      */
-function getAllShiftenByPersoonId($persoonId) {
-        $this->db->where('persoonid', $persoonId);
-        $query = $this->db->get('shiftinschrijving');
-        return $query->result();
+    function getAllShiftenByPersoonId($persoonId) {
+            $this->db->where('persoonid', $persoonId);
+            $query = $this->db->get('shiftinschrijving');
+            return $query->result();
 
-}
+    }
 
 
 }

@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * @file views_admin/admin_organisator_beheren.php
+ *
+ * Hier kan de administrator meerdere admins toevoegen en/of verwijderen.
+ */
+
 echo pasStylesheetAan('style.css');
 ?>
 <script>

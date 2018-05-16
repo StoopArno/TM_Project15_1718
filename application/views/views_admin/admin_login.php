@@ -1,3 +1,12 @@
+
+<?php
+/**
+ * @file views_admin/admin_login.php
+ *
+ * Hier moet de organisator inloggen voor hij/zij met de applicatie kan werken.
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file views_helper/home.php
+ *
+ * Hier komt de helper terecht nadat hij de inschrijflink gevolgd is.
+ */
+
 echo pasStylesheetAan('style.css');
 ?>
 

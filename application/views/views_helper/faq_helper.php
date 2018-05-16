@@ -1,3 +1,10 @@
+<?php
+/**
+ * @file views_helper/faq_helper.php
+ *
+ * View die een overzicht weergeeft van de faq en een tutorial hoe je het kan gebruiken.
+ */
+?>
 <br>
 <br>
 <br>
@@ -49,6 +56,24 @@
             </div>
         </div>
     </div>
+    
+<video width="400" controls>
+  <source src="<?php echo base_url("assets/video/project.mp4") ?>" type="video/mp4">
+  <source src="/assets/video/project.mp4" type="video/ogg">
+  Your browser does not support HTML5 video.
+</video>
+    
+    <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
 
 
 <style>
