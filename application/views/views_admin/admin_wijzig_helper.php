@@ -58,9 +58,9 @@
             <?php
 
             $beginuuroud="";
-$teller=0;
+            $teller=0;
             foreach ($shiften as $shift) {
-$help=0;
+                $help=0;
                 $beginuur = explode(" ", $shift->beginuur);
                 $einduur = explode(" ", $shift->einduur);
                 $beginuurenmin= explode(":", $beginuur[1]);
@@ -73,7 +73,7 @@ $help=0;
                     $teller+=1;
                 }
                 foreach ($inschrijvingen as $inschrijving){
-                    if ($inschrijving->shiftid==$shift->id){
+                    if ($inschrijving->shiftid==$shift->id && $help==0){
                         $help=1;
                         echo '<p class="row"><input class="form-check-input" checked name="inschrijvingen[]" type="checkbox" value="' . $shift->id . '" id="' . $shift->id . '" >  &nbsp;&nbsp;&nbsp; ' . $shift->omschrijving ;
                     }

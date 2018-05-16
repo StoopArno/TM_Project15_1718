@@ -14,7 +14,7 @@
  *      - Krijgt een shiften-array binnen
  */
 ?>
-<script>
+
 
   
    <script>
@@ -158,10 +158,10 @@
 
             ?>
 
-            <td class="">Opmerkingen</td>
+
             <?php
             foreach ($personeelsleden as $personeelslid) {
-$opmerkingen[]="";
+
                 echo "<tr><td class='edit hidden' >";
                 echo anchor('Overzicht_helpers_personeelsleden/editPersoneelslid/' . $personeelslid->id, ' ', ' class="glyphicon text-dark glyphicon-pencil editpersoneelslid"');
                 echo anchor('Overzicht_helpers_personeelsleden/verwijderPersoneelslid/' . $personeelslid->id, ' ', 'class=" text-dark  glyphicon glyphicon-trash verwijderpersoneelslid"');
@@ -177,7 +177,7 @@ $opmerkingen[]="";
                             foreach ($optie->inschrijvingen as $inschrijving) {
 
                                 if ($inschrijving->persoonid == $personeelslid->id) {
-                                    $opmerkingen[]+= $inschrijving->opmerking;
+
                                     $opmerking = $inschrijving->opmerking;
                                     echo "<td class='text-left'>" . '<i  class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="' . $opmerking . '" data-placement="top" > 
                            
@@ -195,14 +195,10 @@ $opmerkingen[]="";
                     }
 
                 }
-                $opmerkingstring="";
 
-                foreach ($opmerkingen as $opmerking){
 
-              $opmerkingstring +=   '<li>' . $opmerking . '</li>';
-                }
-                echo '<td class="hidden"><ul>'. $opmerkingstring .
-                '</ul></td>';
+
+
                 echo '</tr>';
             }
 
@@ -220,7 +216,7 @@ $opmerkingen[]="";
 <div class="voegpersoneelslidtoe hidden col-sm-12 col-md-12 col-lg-12 ">
     <div class="col-lg-12">
         <?php echo form_open('overzicht_helpers_personeelsleden/voegPersoneelslidToe'); ?>
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <h2>persoon</h2>
 
             <div class="form-group">
@@ -249,9 +245,9 @@ $opmerkingen[]="";
             </div>
 
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <h2>Inschrijven voor</h2>
-            <div class="col-lg-6  ">
+            <div class="col-lg-6">
 
                 <?php
                 $dagonderdeelidoud = "";
@@ -262,8 +258,8 @@ $opmerkingen[]="";
 
                     $dagonderdeelid = $optie->dagonderdeelId;
                     if ($dagonderdeelid != $dagonderdeelidoud) {
-                        if ($total / 3 < $tel) {
-                            echo "</div><div class='col-lg-3'>";
+                        if ($total / 2 < $tel) {
+                            echo "</div><div class='col-lg-6'>";
                             $tel = 0;
                         }
                         echo '<h4>' . $optie->dagonderdeel->naam . '</h4>';
@@ -321,7 +317,7 @@ $opmerkingen[]="";
             foreach ($helpers as $helper) {
                 $helperid = $helper->id;
 
-                echo '<tr>  <td class=" edithelper hidden">';
+                echo '<tr>  <td class=" row edithelper hidden">';
                 echo anchor('Overzicht_helpers_personeelsleden/editHelper/' . $helper->id, ' ', ' class="glyphicon text-dark glyphicon-pencil edithelper"');
                 echo anchor('Overzicht_helpers_personeelsleden/verwijderHelper/' . $helper->id, ' ', 'class=" text-dark left  glyphicon glyphicon-trash verwijderhelper"') . "</td>";
 
@@ -411,11 +407,11 @@ $opmerkingen[]="";
 
                     if ($beginuur[1] != $beginuuroud) {
                         $teller += 1;
-                        echo '<h2>' . $beginuurenmin[0] . ':' . $beginuurenmin[1] . '-' . $einduurenmin[0] . ':' . $einduurenmin[1] . '</h2>';
+                        echo '<h3>' . $beginuurenmin[0] . ':' . $beginuurenmin[1] . '-' . $einduurenmin[0] . ':' . $einduurenmin[1] . '</h3>';
                     }
 
 
-                    echo '<p class="row"><input class="form-check-input"  name="inschrijvingen[]" type="checkbox" value="' . $shift->id . '" id="' . $shift->id . '" >  &nbsp;&nbsp;&nbsp; ' . $shift->omschrijving;
+                    echo '<p class="row"><input class="form-check-input"  name="inschrijvingenhelper[]" type="checkbox" value="' . $shift->id . '" id="' . $shift->id . '" >  &nbsp;&nbsp;&nbsp; ' . $shift->omschrijving;
 
 
                     $beginuuroud = $beginuur[1];

@@ -56,8 +56,9 @@ echo form_open('overzicht_helpers_personeelsleden/wijzigpersoon');
         $dagonderdeelidoud = "";
         $total = count($opties);
         $tel = 0;
-        $hulp="";
+
         foreach ($opties as $optie) {
+            $hulp=0;
             $tel++;
 
             $dagonderdeelid = $optie->dagonderdeelId;
