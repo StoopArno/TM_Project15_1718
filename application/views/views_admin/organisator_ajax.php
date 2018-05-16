@@ -1,4 +1,5 @@
 <?php
+
 foreach($admins as $admin){
     if($admin->voornaam == "Admin") {
         ?>

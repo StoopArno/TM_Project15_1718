@@ -22,7 +22,7 @@ class Personeelsfeest_aanmaken extends CI_Controller
      */
     public function index() {
         $data['titel'] = "Personeelsfeest aanmaken";
-        $data['verantwoordelijke'] = 'Lindert Van de Poel';
+        $data['verantwoordelijke'] = 'Lindert Van de Poel (& Dean datepicker)';
         $data['functionaliteit'] = "Personeelsfeest aanmaken (in de analysefase organisator toevoegen). Hier kan je als
         organisator/admin een personeelsfeest aanmaken";
 

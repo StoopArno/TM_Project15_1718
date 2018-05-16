@@ -1,4 +1,12 @@
-<script>
+<?php
+/**
+ * @file views_admin/admin_overzicht_helpers_personeel.php
+ *
+ * Hier kan de administrator meerdere admins toevoegen en/of verwijderen.
+ */
+?>
+  
+   <script>
     $(document).ready(function () {
 
         $("#editpersoneel").click(function () {

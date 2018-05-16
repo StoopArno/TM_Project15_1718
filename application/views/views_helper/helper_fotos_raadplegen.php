@@ -1,3 +1,12 @@
+<?php
+/**
+ * @file views_helper/helper_fotos_raadplegen.php
+ *
+ * Hier kan de helper leuke herinneringen ophalen en foto's van afgelopen jaren bekijken.
+ */
+?>
+
+
 <script>
 
 </script>

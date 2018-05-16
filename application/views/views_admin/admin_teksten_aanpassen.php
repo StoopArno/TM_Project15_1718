@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file views_admin/admin_teksten_aanpassen.php
+ *
+ * Hier kan de administrator de teksten van de helper- en personeelslidinschrijfpagina aanpassen.
+ */
+
 echo pasStylesheetAan('style.css');
 ?>
 
