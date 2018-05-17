@@ -115,7 +115,7 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
         $voornaam = $this->input->post('voornaam');
         $email = $this->input->post('email');
         $gsm = $this->input->post('gsm');
-        $hashcode = "test";
+        $hashcode =  $this->getHash(50);
         $this->persoon_model->personeelslidToevoegen($naam, $voornaam, $email, $gsm, $hashcode);
         $persoon = $this->persoon_model->getByNaam($naam, $voornaam);
         $persoonid = $persoon->id;
@@ -154,7 +154,7 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
         $gsm = $this->input->post('gsm');
         $this->load->model('persoon_model');
         $inschrijvingen = $this->input->post('inschrijvingenhelper');
-        $hashcode = "test";
+        $hashcode =  $this->getHash(50);
         $this->persoon_model->helperToevoegen($naam, $voornaam, $email, $gsm, $hashcode);
         $this->load->model('shiftinschrijving_model');
         $persoon = $this->persoon_model->getByNaam($naam, $voornaam);
@@ -303,5 +303,7 @@ class Overzicht_helpers_personeelsleden extends CI_Controller
         redirect("/overzicht_helpers_personeelsleden/index");
     }
 
-
+    public function getHash($len) {
+        return substr(md5(openssl_random_pseudo_bytes(20)), -$len);
+    }
 }
