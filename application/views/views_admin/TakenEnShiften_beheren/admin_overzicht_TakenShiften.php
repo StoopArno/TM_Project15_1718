@@ -32,7 +32,7 @@
 
 <div class="row">
     <h4 class="col-5">Taken en shiften</h4>
-    <h4 class="col-7 text-right "><a href="<?php echo base_url() ?>/index.php/Dagonderdelen_beheren" class="">Dagonderdelen<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
+    <h4 class="col-7 text-right "><a href="<?php echo base_url() ?>index.php/Dagonderdelen_beheren" class="">Dagonderdelen<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
 </div>
 
 <div class="table-responsive">
@@ -45,7 +45,9 @@
                 <th scope="col">Dagonderdeel</th>
                 <th scope="ool">Optie</th>
                 <th scope="col" class="text-center">Hoort bij een optie</th>
-                <th scope="col" colspan="2" class="text-center"><a class="btn-primary btn" id="newTaak" href="TakenEnShiften_beheren/taakToevoegen" role="button">Nieuwe taak</a></th>
+                <th scope="col" colspan="2" class="text-center">
+                    <?php echo anchor("TakenEnShiften_beheren/taakToevoegen", "Nieuwe taak", array("class" => "btn-primary btn", "id" => "newTaak", "role" => "button")) ?>
+                </th>
                 <th scope="col" class="text-center">Shiften <br><i class="fa fa-angle-double-down fa-lg"></i></th>
             </tr>
         </thead>
@@ -108,7 +110,7 @@
     function getComboBoxDagonderdelen(taakId){
         var combobox = "<select name='dagonderdeelId' class='form-control taakId'" + taakId + " size=1 form='taakForm'" + taakId + ">"
         $.ajax({
-            url : "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getDagonderdelenLocatieNotNull",
+            url : site_url + "/index.php/Dagonderdelen_beheren/getDagonderdelenLocatieNotNull",
             dataType: 'json',
             async: false,
             success: function(data){
@@ -124,7 +126,7 @@
     function getComboBoxOpties(taakId){
         var combobox = "<select name='optieId' class='form-control taakId" + taakId + "' size=1 form='taakForm" + taakId + "'>"
         $.ajax({
-            url : "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getOptiesWithTaken",
+            url :  site_url + "/Dagonderdelen_beheren/getOptiesWithTaken",
             dataType: 'json',
             async: false,
             success: function(data){
@@ -144,7 +146,7 @@
     function haalShiftenOp(taakId){
         var retValue = "";
         $.ajax({
-            url:"<?php echo base_url() ?>/index.php/TakenEnShiften_beheren/haalAjaxOp_TaakDetails/" + taakId,
+            url: site_url + "/TakenEnShiften_beheren/haalAjaxOp_TaakDetails/" + taakId,
             async : false,
             success: function( data ){
                 retValue = data;

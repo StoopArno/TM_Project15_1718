@@ -18,7 +18,7 @@
 ?>
 <div class="row">
     <h4 class="col-5">Dagonderdelen</h4>
-    <h4 class="col-7 text-right "><a href="<?php echo base_url() ?>/index.php/TakenEnShiften_beheren" class="">Taken en shiften<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
+    <h4 class="col-7 text-right "><a href="<?php echo base_url() ?>index.php/TakenEnShiften_beheren" class="">Taken en shiften<i class="fa fa-angle-double-right fa-lg"></i></a></h4>
 </div>
 
 <div class="table-responsive">
@@ -30,7 +30,9 @@
             <th scope="col">Eindtijd</th>
             <th scope="col">Locatie</th>
             <th scope="col" class="text-center">Heeft deelactiviteiten</th>
-            <th colspan="2" class="text-center"><a class="btn-primary btn" id="newDagonderdeel" href="Dagonderdelen_beheren/dagonderdeelToevoegen" role="button">Nieuw dagonderdeel</a></th>
+            <th colspan="2" class="text-center">
+                <?php echo anchor("Dagonderdelen_beheren/dagonderdeelToevoegen", "Nieuwe dagonderdeel", array("class" => "btn-primary btn", "id" => "newDagonderdeel", "role" => "button")) ?>
+            </th>
             <th scope="col" class="text-center">Opties <br><i class="fa fa-angle-double-down fa-lg"></i> </th>
         </tr>
         </thead>
@@ -94,7 +96,7 @@
         var combobox = "<select name='locatieId' class='form-control " + soortId + "Id" + id + "' size=1 form='" + soortId + "Form" + id + "'>";
 
         $.ajax({
-            url: "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/getLocaties",
+            url: site_url + "/Dagonderdelen_beheren/getLocaties",
             dataType: 'json',
             async : false,
             success: function (data) {
@@ -113,7 +115,7 @@
 
     function haalOptiesOp(dagonderdeelId){
         $.ajax({
-            url: "<?php echo base_url() ?>/index.php/Dagonderdelen_beheren/haalAjaxOp_dagonderdeelDetails/" + dagonderdeelId,
+            url: site_url + "/Dagonderdelen_beheren/haalAjaxOp_dagonderdeelDetails/" + dagonderdeelId,
             success: function (data) {
                 $(".optieDetails").append(data);
             }
