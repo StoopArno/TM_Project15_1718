@@ -102,7 +102,7 @@ class Shift_model extends CI_Model
     function  getAllShiftUren(){
         $this->db->select('*');
         $this->db->order_by("beginuur", "asc");
-        $this->db->group_by('beginuur');
+
         $query = $this->db->get('shift');
         $shiften = $query->result();
         return $shiften;

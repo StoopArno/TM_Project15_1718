@@ -298,19 +298,25 @@
             <td class="text-lg-left">Naam</td>
             <?php
 
-
+$ouduur="";
             foreach ($shifturen as $uur) {
 
-                $begintijd = explode(" ", $uur->beginuur);
-                $eindtijd = explode(" ", $uur->einduur);
 
-                $begintijdpertwee = explode(":", $begintijd[1]);
-                $eindtijdpertwee = explode(":", $eindtijd[1]);
+                $nieuwuur=$uur->beginuur;
+
+        if ($nieuwuur!=$ouduur){
+    $begintijd = explode(" ", $uur->beginuur);
+    $eindtijd = explode(" ", $uur->einduur);
+
+    $begintijdpertwee = explode(":", $begintijd[1]);
+    $eindtijdpertwee = explode(":", $eindtijd[1]);
 
 
-                echo "<td class='text-lg-left'> <p class='' >  " . $begintijdpertwee[0] . ":" . $begintijdpertwee[1] . "-" . $eindtijdpertwee[0] . ":" . $eindtijdpertwee[1] . "</p></td>";
+    echo "<td class='text-lg-left'> <p class='' >  " . $begintijdpertwee[0] . ":" . $begintijdpertwee[1] . "-" . $eindtijdpertwee[0] . ":" . $eindtijdpertwee[1] . "</p></td>";
 
+            }
 
+            $ouduur=$nieuwuur;
             }
             echo "</tr>";
 
@@ -322,29 +328,36 @@
                 echo anchor('Overzicht_helpers_personeelsleden/verwijderHelper/' . $helper->id, ' ', 'class=" text-dark left  glyphicon glyphicon-trash verwijderhelper"') . "</td>";
 
                 echo '<td class="text-lg-left"> ' . $helper->naam . " " . $helper->voornaam . '</td>';
-
+                $oud="";
                 foreach ($shifturen as $uur) {
                     $helper = 0;
-                    foreach ($shiften as $shift) {
-                        if ($shift->beginuur == $uur->beginuur) {
-                            foreach ($shiftinschrijvingen as $shiftinschrijving) {
 
-                                if ($shiftinschrijving->shiftid == $shift->id && $helper == 0 && $helperid == $shiftinschrijving->persoonid) {
+                    $nieuw = $uur->beginuur;
+                    if ($nieuw != $oud) {
 
-                                    $helper = 1;
-                                    echo '<td class="text-lg-left">' . $shift->omschrijving . '</td>';
 
+                        foreach ($shiften as $shift) {
+                            if ($shift->beginuur == $uur->beginuur) {
+                                foreach ($shiftinschrijvingen as $shiftinschrijving) {
+
+                                    if ($shiftinschrijving->shiftid == $shift->id && $helper == 0 && $helperid == $shiftinschrijving->persoonid) {
+
+                                        $helper = 1;
+                                        echo '<td class="text-lg-left">' . $shift->omschrijving . '</td>';
+
+                                    }
                                 }
                             }
                         }
-                    }
-                    if ($helper == 0) {
+                        if ($helper == 0) {
 
-                        echo '<td class="text-lg-left"></td>';
+                            echo '<td class="text-lg-left"></td>';
+                        }
+
                     }
+                    $oud = $nieuw;
 
                 }
-
                 echo '</tr>';
             }
             ?>
